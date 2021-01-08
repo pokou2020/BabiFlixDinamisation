@@ -1,0 +1,17 @@
+-------------------- Auto-Git Log --------------------
+		Wed Dec 23 2020 10:07:38 GMT+0000 (Greenwich Mean Time)
+------------------------------------------------------
+
+Modified files:
+* ios/Runner.xcodeproj/project.pbxproj
+
+
+Created files:
+* .autogit/logs/log-23-11-2020-9-37-30.txt
+* ios/Flutter/.last_build_id
+
+
+Deleted files:
+
+
+Renamed files:
