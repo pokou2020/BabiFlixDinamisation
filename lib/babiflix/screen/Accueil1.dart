@@ -1,8 +1,10 @@
 
+import 'package:baby_flix/babiflix/provider/filmProvider.dart';
 import 'package:baby_flix/babiflix/widget/drawer.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class Acceuil1 extends StatefulWidget {
@@ -11,6 +13,18 @@ class Acceuil1 extends StatefulWidget {
 }
 
 class _Acceuil1State extends State<Acceuil1>with SingleTickerProviderStateMixin {
+  bool init = true;
+  @override
+  Future<void> didChangeDependencies()async {
+    if(init){
+      print("333333333333333333Bonjour le monde");
+      await Provider.of<FilmProvider>(context,listen: false).getAllFilm();
+      
+      init = false;
+    }
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

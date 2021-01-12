@@ -33,6 +33,7 @@ import 'babiflix/screen/connexion.dart';
 import 'babiflix/screen/inscription.dart';
 import 'babiflix/screen/youtbe.dart';
 import 'babiflix/widget/detailTele.dart';
+import 'babiflix/provider/filmProvider.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,7 +44,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [],
+      providers: [
+        Provider<FilmProvider>(create: (_) => FilmProvider()),
+      ],
       child: MaterialApp(
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
