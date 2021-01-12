@@ -1,9 +1,10 @@
 import 'dart:convert';
 
+import 'package:baby_flix/babiflix/screen/film.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class Film with ChangeNotifier {
+class Films with ChangeNotifier {
   final String id;
   final String titre;
   final String descrip;
@@ -16,7 +17,7 @@ class Film with ChangeNotifier {
   bool status;
   final int numeroEpisode;
   final String urlFilm;
-  Film({
+  Films({
     @required this.id,
     @required this.titre,
     @required this.descrip,
@@ -30,29 +31,4 @@ class Film with ChangeNotifier {
     @required this.numeroEpisode,
     @required this.urlFilm,
   });
-
-  void _setFavValue(bool newValue) {
-    isFilm = newValue;
-    notifyListeners();
-  }
-
-  Future<void> toggleFavoriteStatus() async {
-    final oldStatus = isFilm;
-    isFilm = !isFilm;
-    notifyListeners();
-
-    final url = 'https://sydney-apps-projet.firebaseio.com/products/$id.json';
-    try {
-      final response = await http.patch(
-        url,
-        body: json.encode({'isFilm': isFilm}),
-      );
-
-      if (response.statusCode >= 400) {
-        _setFavValue(oldStatus);
-      }
-    } catch (error) {
-      _setFavValue(oldStatus);
-    }
-  }
 }
