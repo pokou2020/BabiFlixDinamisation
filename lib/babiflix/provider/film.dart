@@ -1,44 +1,58 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class Film with ChangeNotifier {
   final String id;
+  final String titre;
   final String descrip;
   final String image;
+  final String realisateur;
   final String genre;
+  final DateTime dateDeSortie;
+  bool isFilm;
+  final List saison;
+  bool status;
+  final int numeroEpisode;
+  final String urlFilm;
   Film({
     @required this.id,
+    @required this.titre,
     @required this.descrip,
     @required this.image,
+    @required this.realisateur,
     @required this.genre,
+    @required this.dateDeSortie,
+    @required this.saison,
+    this.isFilm = true,
+    this.status = false,
+    @required this.numeroEpisode,
+    @required this.urlFilm,
   });
 
-  // Future<void> addFilm(Film film) async {
-  //   const url = 'https://sydney-apps-projet.firebaseio.com/products.json';
-  //   try {
-  //     final response = await http.post(
-  //       url,
-  //       body: json.encode({
-  //         'title': product.title,
-  //         'description': product.description,
-  //         'imagURl': product.imageUrl,
-  //         'price': product.price,
-  //         'isFavorite': product.isFavorite,
-  //       }),
-  //     );
+  void _setFavValue(bool newValue) {
+    isFilm = newValue;
+    notifyListeners();
+  }
 
-  //     final newProduct = Product(
-  //       title: product.title,
-  //       description: product.description,
-  //       price: product.price,
-  //       imageUrl: product.imageUrl,
-  //       id: json.decode(response.body)['name'],
-  //     );
-  //     _items.add(newProduct);
-  //     // _items.insert(0, newProduct); // at the start of the list
-  //     notifyListeners();
-  //   } catch (error) {
-  //     print(error);
-  //     throw error;
-  //   }
-  // }
+  Future<void> toggleFavoriteStatus() async {
+    final oldStatus = isFilm;
+    isFilm = !isFilm;
+    notifyListeners();
+
+    final url = 'https://sydney-apps-projet.firebaseio.com/products/$id.json';
+    try {
+      final response = await http.patch(
+        url,
+        body: json.encode({'isFilm': isFilm}),
+      );
+
+      if (response.statusCode >= 400) {
+        _setFavValue(oldStatus);
+      }
+    } catch (error) {
+      _setFavValue(oldStatus);
+    }
+  }
 }
