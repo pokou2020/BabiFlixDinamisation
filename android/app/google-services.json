@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "252583735716",
+    "project_id": "babiflixdinamisation",
+    "storage_bucket": "babiflixdinamisation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252583735716:android:519b046f38321071a1d131",
+        "android_client_info": {
+          "package_name": "com.example.baby_flix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252583735716-nvn6p6o5c4aqej584khmuv937pe5n1v1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI1P5J078IjmyQUejKs6vAcUog9HqAziY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252583735716-nvn6p6o5c4aqej584khmuv937pe5n1v1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
