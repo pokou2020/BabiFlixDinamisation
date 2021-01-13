@@ -12,6 +12,7 @@ import 'package:baby_flix/babiflix/widget/drawer.dart';
 import 'package:baby_flix/babiflix/widget/splashscreen.dart';
 import 'package:baby_flix/babiflix/widget/teve.dart';
 import 'package:provider/provider.dart';
+import 'babiflix/provider/film.dart';
 import 'babiflix/screen/Accueil1.dart';
 import 'babiflix/screen/Chaine.dart';
 
