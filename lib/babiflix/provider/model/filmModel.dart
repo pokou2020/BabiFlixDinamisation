@@ -9,66 +9,89 @@ Film filmFromMap(String str) => Film.fromMap(json.decode(str));
 String filmToMap(Film data) => json.encode(data.toMap());
 
 class Film {
-    Film({
-        this.id,
-        this.titre,
-        this.description,
-        this.image,
-        this.realisateur,
-        this.genre,
-        this.dateSortie,
-        this.isFilm,
-        this.saison,
-        this.status,
-        this.urlFims,
-        this.numeroEpisode,
-    });
+  Film({
+    this.id,
+    this.titre,
+    this.descrition,
+    this.image,
+    this.realisateur,
+    this.genreMovie,
+    this.isFilm,
+    this.dateSortie,
+    this.urlMovie,
+    this.numeroEpisode,
+    this.nomSerie,
+    this.numeroSaison,
+    this.casting,
+  });
 
-    String id;
-    String titre;
-    String description;
-    String image;
-    String realisateur;
-    String genre;
-    String dateSortie;
-    bool isFilm;
-    String saison;
-    bool status;
-    String urlFims;
-    int numeroEpisode;
+  String id;
+  String titre;
+  String descrition;
+  String image;
+  String realisateur;
+  GenreMovie genreMovie;
+  bool isFilm;
+  String dateSortie;
+  String urlMovie;
+  int numeroEpisode;
+  String nomSerie;
+  int numeroSaison;
+  String casting;
 
-    factory Film.fromMap(Map<String, dynamic> json) => Film(
+  factory Film.fromMap(Map<String, dynamic> json) => Film(
         id: json["id"] == null ? null : json["id"],
         titre: json["titre"] == null ? null : json["titre"],
-        description: json["description"] == null ? null : json["description"],
+        descrition: json["descrition"] == null ? null : json["descrition"],
         image: json["image"] == null ? null : json["image"],
         realisateur: json["realisateur"] == null ? null : json["realisateur"],
-        genre: json["genre"] == null ? null : json["genre"],
-        dateSortie: json["dateSortie"] == null ? null : json["dateSortie"],
+        genreMovie: json["genreMovie"] == null
+            ? null
+            : GenreMovie.fromMap(json["genreMovie"]),
         isFilm: json["isFilm"] == null ? null : json["isFilm"],
-        saison: json["saison"] == null ? null : json["saison"],
-        status: json["status"] == null ? null : json["status"],
-        urlFims: json["urlFims"] == null ? null : json["urlFims"],
-        numeroEpisode: json["numeroEpisode"] == null ? null : json["numeroEpisode"],
-    );
-//permette de convertir ma classe en map
-    Map<String, dynamic> toMap() => {
+        dateSortie: json["dateSortie"] == null ? null : json["dateSortie"],
+        urlMovie: json["urlMovie"] == null ? null : json["urlMovie"],
+        numeroEpisode:
+            json["numeroEpisode"] == null ? null : json["numeroEpisode"],
+        nomSerie: json["nomSerie"] == null ? null : json["nomSerie"],
+        numeroSaison:
+            json["numeroSaison"] == null ? null : json["numeroSaison"],
+        casting: json["casting"] == null ? null : json["casting"],
+      );
+
+  Map<String, dynamic> toMap() => {
         "id": id == null ? null : id,
         "titre": titre == null ? null : titre,
-        "description": description == null ? null : description,
+        "descrition": descrition == null ? null : descrition,
         "image": image == null ? null : image,
         "realisateur": realisateur == null ? null : realisateur,
-        "genre": genre == null ? null : genre,
-        "dateSortie": dateSortie == null ? null : dateSortie,
+        "genreMovie": genreMovie == null ? null : genreMovie.toMap(),
         "isFilm": isFilm == null ? null : isFilm,
-        "saison": saison == null ? null : saison,
-        "status": status == null ? null : status,
-        "urlFims": urlFims == null ? null : urlFims,
+        "dateSortie": dateSortie == null ? null : dateSortie,
+        "urlMovie": urlMovie == null ? null : urlMovie,
         "numeroEpisode": numeroEpisode == null ? null : numeroEpisode,
-    };
+        "nomSerie": nomSerie == null ? null : nomSerie,
+        "numeroSaison": numeroSaison == null ? null : numeroSaison,
+        "casting": casting == null ? null : casting,
+      };
 }
 
+class GenreMovie {
+  GenreMovie({
+    this.id,
+    this.titre,
+  });
 
-//2 methode pour prendre nos donnes
-//asynchrone permet d'excecute le code rapidement
-//inistate est excecute  une seul fois
+  String id;
+  String titre;
+
+  factory GenreMovie.fromMap(Map<String, dynamic> json) => GenreMovie(
+        id: json["id"] == null ? null : json["id"],
+        titre: json["titre"] == null ? null : json["titre"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "id": id == null ? null : id,
+        "titre": titre == null ? null : titre,
+      };
+}
