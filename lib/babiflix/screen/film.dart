@@ -1,11 +1,13 @@
 import 'package:baby_flix/babiflix/provider/data.dart';
+import 'package:baby_flix/babiflix/provider/film.dart';
+import 'package:baby_flix/babiflix/provider/films.dart';
 import 'package:baby_flix/babiflix/widget/filmItem.dart';
 import 'package:baby_flix/babiflix/widget/teveItem.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class Film extends StatefulWidget {
-
   @override
   _FilmState createState() => _FilmState();
 }
@@ -26,8 +28,14 @@ class _FilmState extends State<Film> {
           ))
       .toList();
   String _btnSelectedVAl = 'Saison 1';
+
+  Future<void> _refreshProduct(BuildContext context) async {
+    await Provider.of<Movies>(context).fetchAndSetFilms();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final filmsData = Provider.of<Movies>(context);
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

@@ -13,6 +13,7 @@ import 'package:baby_flix/babiflix/widget/splashscreen.dart';
 import 'package:baby_flix/babiflix/widget/teve.dart';
 import 'package:provider/provider.dart';
 import 'babiflix/provider/film.dart';
+import 'babiflix/provider/films.dart';
 import 'babiflix/screen/Accueil1.dart';
 import 'babiflix/screen/Chaine.dart';
 
@@ -45,8 +46,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        Provider<FilmProvider>(create: (_) => FilmProvider()),
+     providers: [
+       ChangeNotifierProvider.value(value: FilmProvider()),
+      
       ],
       child: MaterialApp(
           title: 'Flutter Demo',
