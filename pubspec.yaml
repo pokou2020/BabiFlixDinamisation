@@ -31,6 +31,7 @@ dependencies:
   chips_choice: ^2.0.1
   provider: ^4.3.2+3
   http: ^0.12.2
+  intl: ^0.16.1
 
 
   # The following adds the Cupertino Icons font to your application.
