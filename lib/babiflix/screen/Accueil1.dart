@@ -1,26 +1,26 @@
-
 import 'package:baby_flix/babiflix/provider/filmProvider.dart';
 import 'package:baby_flix/babiflix/provider/genreProvider.dart';
 import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
+import 'package:baby_flix/babiflix/screen/film.dart';
 import 'package:baby_flix/babiflix/widget/drawer.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
 class Acceuil1 extends StatefulWidget {
   @override
   _Acceuil1State createState() => _Acceuil1State();
 }
 
-class _Acceuil1State extends State<Acceuil1>with SingleTickerProviderStateMixin {
+class _Acceuil1State extends State<Acceuil1>
+    with SingleTickerProviderStateMixin {
   bool init = true;
   @override
-  Future<void> didChangeDependencies()async {
-    if(init){
+  Future<void> didChangeDependencies() async {
+    if (init) {
       print("333333333333333333Bonjour le monde");
-      await Provider.of<FilmProvider>(context,listen: false).getAllFilm();
+      await Provider.of<FilmProvider>(context, listen: false).getAllFilm();
       await Provider.of<GenreProvider>(context, listen: false).getAllGenre();
       setState(() {
         init = false;
@@ -29,14 +29,20 @@ class _Acceuil1State extends State<Acceuil1>with SingleTickerProviderStateMixin 
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
-  
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black12,
       endDrawer: Drawers(),
-      body: init?Center(child: Text("Loading ...",style: TextStyle(color: Colors.red),),): MainBody(),
+      body: init
+          ? Center(
+              child: Text(
+                "Loading ...",
+                style: TextStyle(color: Colors.red),
+              ),
+            )
+          : MainBody(),
     );
   }
 }
@@ -47,12 +53,10 @@ class MainBody extends StatefulWidget {
 }
 
 class _MainBodyState extends State<MainBody> {
- 
-
   @override
   Widget build(BuildContext context) {
     final filmsData = Provider.of<FilmProvider>(context);
-    final genreData=Provider.of<GenreProvider>(context);
+    final genreData = Provider.of<GenreProvider>(context);
     print(filmsData);
     return Scaffold(
       backgroundColor: Colors.black,
@@ -330,8 +334,8 @@ class _MainBodyState extends State<MainBody> {
                     child: ListView.builder(
                       itemCount: genreData.genre.length,
                       scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index){
-                        return       Padding(
+                      itemBuilder: (context, index) {
+                        return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: InkWell(
                             onTap: () {
@@ -354,7 +358,6 @@ class _MainBodyState extends State<MainBody> {
                           ),
                         );
                       },
-                     
                     ),
                   ),
                   SizedBox(
@@ -369,32 +372,34 @@ class _MainBodyState extends State<MainBody> {
                       ),
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushNamed("movieDetail");
-                    },
-                    child: Container(
-                      height: 150,
-                      child: ListView.builder(
-                        itemCount: filmsData.films.length ,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, i) {
-                          return Padding(
+                  Container(
+                    height: 150,
+                    child: ListView.builder(
+                      itemCount: filmsData.films.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, i) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                                FilmDetail.routeName,
+                                arguments: filmsData.films[i].id);
+                          },
+                          child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               width: 120,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: NetworkImage(
-                                        filmsData.films[i].image),
+                                    image:
+                                        NetworkImage(filmsData.films[i].image),
                                     fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.red,
                               ),
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                   SizedBox(
