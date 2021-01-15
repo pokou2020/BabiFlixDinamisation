@@ -517,95 +517,31 @@ class _MainBodyState extends State<MainBody> {
                       ),
                     ),
                   ),
-                  InkWell(
+                InkWell(
                     onTap: () {
                       Navigator.of(context).pushNamed("movieDetail");
                     },
                     child: Container(
                       height: 150,
-                      child: ListView(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 120,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("images/film3.jpg"),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 120,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("images/film2.jpg"),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 120,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("images/serie3.jpg"),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 120,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("images/serie1.jpg"),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed("VoirPlus");
-                                  },
-                                  child: Container(
-                                    height: 40,
-                                    width: 100,
-                                    child: Center(
-                                      child: Text(
-                                        "Voir plus",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 15),
-                                      ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                        color: Colors.red,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                      child: ListView.builder(
+                        itemCount: filmsData.films.length ,
                         scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, i) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: 120,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        filmsData.films[i].image),
+                                    fit: BoxFit.cover),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.red,
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),
