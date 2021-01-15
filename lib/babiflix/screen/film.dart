@@ -1,5 +1,6 @@
 import 'package:baby_flix/babiflix/provider/data.dart';
 import 'package:baby_flix/babiflix/provider/film.dart';
+import 'package:baby_flix/babiflix/provider/filmProvider.dart';
 import 'package:baby_flix/babiflix/provider/films.dart';
 import 'package:baby_flix/babiflix/widget/filmItem.dart';
 import 'package:baby_flix/babiflix/widget/teveItem.dart';
@@ -8,6 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class Film extends StatefulWidget {
+  static const routeName = '/film-detail';
   @override
   _FilmState createState() => _FilmState();
 }
@@ -35,7 +37,11 @@ class _FilmState extends State<Film> {
 
   @override
   Widget build(BuildContext context) {
-    final filmsData = Provider.of<Movies>(context);
+    final filmsData = Provider.of<FilmProvider>(context);
+    final filmID = ModalRoute.of(context).settings.arguments as String;
+    final selectedFilm =
+        filmsData.films.firstWhere((film) => film.id == filmID);
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -69,7 +75,7 @@ class _FilmState extends State<Film> {
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                         Text(
-                          'Avengers',
+                          '${selectedFilm.titre}',
                           style: TextStyle(color: Colors.red, fontSize: 18),
                         ),
                         Text(
@@ -86,7 +92,7 @@ class _FilmState extends State<Film> {
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     image: DecorationImage(
-                      image: AssetImage("images/film3.jpg"),
+                      image: AssetImage("${selectedFilm.image}"),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -130,14 +136,14 @@ class _FilmState extends State<Film> {
                             decoration: BoxDecoration(
                               color: Colors.transparent,
                               image: DecorationImage(
-                                  image: AssetImage('images/film4.jpg'),
+                                  image: AssetImage('${selectedFilm.image}'),
                                   fit: BoxFit.cover),
                             ),
                           ),
                           Container(
                             width: 200,
                             child: Text(
-                              "Harry Potter à l'école des sorciers ",
+                              "${selectedFilm.titre}",
                               style: TextStyle(
                                   color: Colors.red,
                                   fontSize: 20,
@@ -199,7 +205,8 @@ class _FilmState extends State<Film> {
                         width: MediaQuery.of(context).size.width,
                         height: 150,
                         child: Text(
-                          "Orphelin, le jeune Harry Potter peut enfin quitter ses tyranniques oncle et tante Dursley lorsqu'un curieux messager lui révèle qu'il est un sorcier. À 11 ans, Harry va enfin pouvoir intégrer la légendaire école de sorcellerie de Poudlard, y trouver une famille digne de ce nom et des amis, développer ses dons, et préparer son glorieux avenir...",
+                          '${selectedFilm.description}',
+                          // "Orphelin, le jeune Harry Potter peut enfin quitter ses tyranniques oncle et tante Dursley lorsqu'un curieux messager lui révèle qu'il est un sorcier. À 11 ans, Harry va enfin pouvoir intégrer la légendaire école de sorcellerie de Poudlard, y trouver une famille digne de ce nom et des amis, développer ses dons, et préparer son glorieux avenir...",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -218,7 +225,7 @@ class _FilmState extends State<Film> {
                       Container(
                         width: MediaQuery.of(context).size.width,
                         child: Text(
-                          "Christother Colombus",
+                          "${selectedFilm.realisateur}",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -238,7 +245,7 @@ class _FilmState extends State<Film> {
                       Container(
                         width: MediaQuery.of(context).size.width,
                         child: Text(
-                          "Daniel Radcliffe, Rupert Grint, Emma Watson",
+                          "${selectedFilm.personnage}",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -258,7 +265,7 @@ class _FilmState extends State<Film> {
                       Container(
                         width: MediaQuery.of(context).size.width,
                         child: Text(
-                          "2021",
+                          "${selectedFilm.dateSortie}",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -278,7 +285,8 @@ class _FilmState extends State<Film> {
                       Container(
                         width: MediaQuery.of(context).size.width,
                         child: Text(
-                          "Action",
+                          // "${selectedFilm.}",
+                          'genre',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
