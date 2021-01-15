@@ -22,6 +22,7 @@ class _Acceuil1State extends State<Acceuil1>
       print("333333333333333333Bonjour le monde");
       await Provider.of<FilmProvider>(context, listen: false).getAllFilm();
       await Provider.of<GenreProvider>(context, listen: false).getAllGenre();
+
       setState(() {
         init = false;
       });
@@ -291,30 +292,26 @@ class _MainBodyState extends State<MainBody> {
                       ),
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushNamed("movieDetail");
-                    },
-                    child: Container(
-                      height: 200,
-                      width: MediaQuery.of(context).size.width,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 6,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width / 1.6,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    image: DecorationImage(
-                                        image: AssetImage("images/fli.jpg"),
-                                        fit: BoxFit.cover)),
-                              ),
-                            );
-                          }),
-                    ),
+                  Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: filmsData.films.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 1.6,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          filmsData.films[index].image),
+                                      fit: BoxFit.cover)),
+                            ),
+                          );
+                        }),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),
@@ -522,98 +519,37 @@ class _MainBodyState extends State<MainBody> {
                       ),
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushNamed("movieDetail");
-                    },
-                    child: Container(
-                      height: 150,
-                      child: ListView(
-                        children: [
-                          Padding(
+                  Container(
+                    height: 150,
+                    child: ListView.builder(
+                      itemCount: filmsData.films.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, i) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                                FilmDetail.routeName,
+                                arguments: filmsData.films[i].id);
+                          },
+                          child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               width: 120,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage("images/film3.jpg"),
+                                    image:
+                                        NetworkImage(filmsData.films[i].image),
                                     fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.red,
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 120,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("images/film2.jpg"),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 120,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("images/serie3.jpg"),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 120,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("images/serie1.jpg"),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed("VoirPlus");
-                                  },
-                                  child: Container(
-                                    height: 40,
-                                    width: 100,
-                                    child: Center(
-                                      child: Text(
-                                        "Voir plus",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 15),
-                                      ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                        color: Colors.red,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                        scrollDirection: Axis.horizontal,
-                      ),
+                        );
+                      },
                     ),
                   ),
+
                   SizedBox(
                     height: 10,
                   ),
