@@ -8,13 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-class Film extends StatefulWidget {
+class FilmDetail extends StatefulWidget {
   static const routeName = '/film-detail';
   @override
-  _FilmState createState() => _FilmState();
+  _FilmDetailState createState() => _FilmDetailState();
 }
 
-class _FilmState extends State<Film> {
+class _FilmDetailState extends State<FilmDetail> {
   static const menuItems = <String>[
     'Saison 1',
     'Saison 2',
@@ -92,7 +92,7 @@ class _FilmState extends State<Film> {
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     image: DecorationImage(
-                      image: AssetImage("${selectedFilm.image}"),
+                      image: NetworkImage('${selectedFilm.image}'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -136,7 +136,7 @@ class _FilmState extends State<Film> {
                             decoration: BoxDecoration(
                               color: Colors.transparent,
                               image: DecorationImage(
-                                  image: AssetImage('${selectedFilm.image}'),
+                                  image: NetworkImage('${selectedFilm.image}'),
                                   fit: BoxFit.cover),
                             ),
                           ),
@@ -285,8 +285,7 @@ class _FilmState extends State<Film> {
                       Container(
                         width: MediaQuery.of(context).size.width,
                         child: Text(
-                          // "${selectedFilm.}",
-                          'genre',
+                          "${selectedFilm.genreFilm.titre}",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),

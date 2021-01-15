@@ -48,11 +48,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-     providers: [
-       ChangeNotifierProvider.value(value: FilmProvider(),),
-        ChangeNotifierProvider.value(value: GenreProvider(),),
-      
-      
+      providers: [
+        ChangeNotifierProvider.value(
+          value: FilmProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: GenreProvider(),
+        ),
       ],
       child: MaterialApp(
           title: 'Flutter Demo',
@@ -77,12 +79,12 @@ class MyApp extends StatelessWidget {
             "nov": (context) => Novelas(),
             "par": (context) => Parametr(),
             "compt": (ctx) => Profil(),
-            "sinops": (context) => Film(),
+            // "sinops": (context) => Film(),
             "VoirPlus": (context) => VoirPlus(),
             "drawer": (context) => Drawers(),
             'Accueil1': (context) => Acceuil1(),
             "suggession": (context) => Suggession(),
-            'movieDetail': (context) => Film(),
+            // 'movieDetail': (context) => FilmDetail(),
             'teleDetail': (context) => DetailTele(),
             //"radio":(context)=>RadioCate(),
             "Chaine": (context) => Chaine(),
@@ -91,9 +93,10 @@ class MyApp extends StatelessWidget {
             "Liste_Films": (context) => Listefilms(),
             "Liste_Animes": (context) => ListeAnimes(),
             "Liste_Novelas": (context) => ListeNovelas(),
-            "detailserie": (context) => DetailSerie(),
+            "movieDetail": (context) => DetailSerie(),
             "modifProfile": (context) => ModiProfile(),
-            "MoadifModepass": (context) => MoadifModepass()
+            "MoadifModepass": (context) => MoadifModepass(),
+            FilmDetail.routeName: (context) => FilmDetail(),
           }),
     );
   }
