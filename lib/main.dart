@@ -1,3 +1,5 @@
+import 'package:baby_flix/babiflix/provider/genreProvider.dart';
+import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
 import 'package:baby_flix/babiflix/screen/Liste_Animes.dart';
 import 'package:baby_flix/babiflix/screen/Liste_Films.dart';
 import 'package:baby_flix/babiflix/screen/Liste_Novelas.dart';
@@ -47,7 +49,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
      providers: [
-       ChangeNotifierProvider.value(value: FilmProvider()),
+       ChangeNotifierProvider.value(value: FilmProvider(),),
+        ChangeNotifierProvider.value(value: GenreProvider(),),
+      
       
       ],
       child: MaterialApp(

@@ -1,10 +1,13 @@
 
 import 'package:baby_flix/babiflix/provider/filmProvider.dart';
+import 'package:baby_flix/babiflix/provider/genreProvider.dart';
+import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
 import 'package:baby_flix/babiflix/widget/drawer.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 
 class Acceuil1 extends StatefulWidget {
   @override
@@ -18,6 +21,7 @@ class _Acceuil1State extends State<Acceuil1>with SingleTickerProviderStateMixin 
     if(init){
       print("333333333333333333Bonjour le monde");
       await Provider.of<FilmProvider>(context,listen: false).getAllFilm();
+      await Provider.of<GenreProvider>(context, listen: false).getAllGenre();
       setState(() {
         init = false;
       });
@@ -25,6 +29,8 @@ class _Acceuil1State extends State<Acceuil1>with SingleTickerProviderStateMixin 
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +52,7 @@ class _MainBodyState extends State<MainBody> {
   @override
   Widget build(BuildContext context) {
     final filmsData = Provider.of<FilmProvider>(context);
+    final genreData=Provider.of<GenreProvider>(context);
     print(filmsData);
     return Scaffold(
       backgroundColor: Colors.black,
@@ -320,10 +327,11 @@ class _MainBodyState extends State<MainBody> {
                   Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width,
-                    child: ListView(
+                    child: ListView.builder(
+                      itemCount: genreData.genre.length,
                       scrollDirection: Axis.horizontal,
-                      children: [
-                        Padding(
+                      itemBuilder: (context, index){
+                        return       Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: InkWell(
                             onTap: () {
@@ -333,7 +341,7 @@ class _MainBodyState extends State<MainBody> {
                               width: 100,
                               child: Center(
                                 child: Text(
-                                  "Films",
+                                  genreData.genre[index].titre,
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20),
                                 ),
@@ -344,96 +352,9 @@ class _MainBodyState extends State<MainBody> {
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed("Liste_Serie");
-                            },
-                            child: Container(
-                              width: 100,
-                              child: Center(
-                                child: Text(
-                                  "Serie",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed("Liste_Animes");
-                            },
-                            child: Container(
-                              width: 100,
-                              child: Center(
-                                child: Text(
-                                  "Animes",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed("teve");
-                            },
-                            child: Container(
-                              width: 100,
-                              child: Center(
-                                child: Text(
-                                  "TV",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed("radio");
-                            },
-                            child: Container(
-                              width: 100,
-                              child: Center(
-                                child: Text(
-                                  "Radio",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                        );
+                      },
+                     
                     ),
                   ),
                   SizedBox(

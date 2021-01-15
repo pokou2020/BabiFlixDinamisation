@@ -1,5 +1,4 @@
-import 'package:baby_flix/babiflix/widget/customchip.dart';
-import 'package:chips_choice/chips_choice.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
