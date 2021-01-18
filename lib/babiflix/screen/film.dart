@@ -31,9 +31,9 @@ class _FilmDetailState extends State<FilmDetail> {
       .toList();
   String _btnSelectedVAl = 'Saison 1';
 
-  Future<void> _refreshProduct(BuildContext context) async {
-    await Provider.of<Movies>(context).fetchAndSetFilms();
-  }
+  // Future<void> _refreshProduct(BuildContext context) async {
+  //   await Provider.of<Movies>(context).fetchAndSetFilms();
+  // }
 
   @override
   Widget build(BuildContext context) {

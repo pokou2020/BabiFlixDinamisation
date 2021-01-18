@@ -61,7 +61,7 @@ class GenreSerie {
 
     String id;
     String titre;
-    String status;
+    bool status;
 
     factory GenreSerie.fromMap(Map<String, dynamic> json) => GenreSerie(
         id: json["id"] == null ? null : json["id"],

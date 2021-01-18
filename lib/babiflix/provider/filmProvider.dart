@@ -36,23 +36,24 @@ class FilmProvider with ChangeNotifier {
   }
 
    // permet de convertir les chaines de caratere en Datime et d'afficher les  films les  plus recent  
-   List<Film> filmRecent() {
-     
- List<Film> _films = [];
- List<DateTime> sortieFilm = [];
-  DateFormat format = DateFormat("yyyy/MM/dd");
+   List<Film> filmRecent() {  
+   //List<Film> _films = [];
+  List<DateTime> sortieFilm = [];
+  DateFormat format = DateFormat("yyyy-MM-dd HH:mm:ss");
+   
    for (int i = 0; i < films.length; i++) {
    sortieFilm.add(format.parse(_films[i].dateSortie));
   }
  
- sortieFilm.sort((a,b) {
- var adate = "10/05/2021";//before -> var adate = a.expiry;
- var bdate =  "10/04/2021";//before -> var bdate = b.expiry;
- return adate.compareTo(bdate); //to get the order other way just switch `adate & bdate`
-});
-
-    for (int i = 0; i < films.length; i++) {
-    print("///////////////////////////////////$sortieFilm[i]////////////////////////////////////////");
+ sortieFilm.sort((key, value) {
+   var now = DateTime.now();
+ //before -> var adate = a.expiry;
+ //var bdate =  "10/04/2021";//before -> var bdate = b.expiry;
+ return now.compareTo(value); //to get the order other way just switch `adate & bdate`
+}
+);
+    for (int i = 0; i < sortieFilm.length; i++) {     
+    print("///////////////////////////////////////${films[i].dateSortie}//////////////////////////////////////");
   }
   }
  
@@ -73,7 +74,7 @@ class FilmProvider with ChangeNotifier {
           Film newFilm = Film.fromMap(value);
           newFilm.id = key;
           all.add(newFilm);
-          print("Nouveau add ${newFilm.toMap()}");
+          print("////////////////Nouveau add ${newFilm.toMap()}//////////////////////////");
         });
         _films = all;
         notifyListeners();
