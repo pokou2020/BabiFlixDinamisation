@@ -1,14 +1,19 @@
 import 'package:baby_flix/babiflix/provider/filmProvider.dart';
 import 'package:baby_flix/babiflix/provider/genreProvider.dart';
 import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
+import 'package:baby_flix/babiflix/provider/serieProvider.dart';
+import 'package:baby_flix/babiflix/screen/Liste_saison.dart';
 import 'package:baby_flix/babiflix/screen/film.dart';
 import 'package:baby_flix/babiflix/widget/drawer.dart';
+import 'package:baby_flix/babiflix/widget/series.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class Acceuil1 extends StatefulWidget {
+  
   @override
   _Acceuil1State createState() => _Acceuil1State();
 }
@@ -19,9 +24,11 @@ class _Acceuil1State extends State<Acceuil1>
   @override
   Future<void> didChangeDependencies() async {
     if (init) {
-      print("333333333333333333Bonjour le monde");
+       var now = new DateTime.now();
+       print(now);
+      print("//////////////Bonjour le monde//////////////////////");
       await Provider.of<FilmProvider>(context, listen: false).getAllFilm();
-      //await Provider.of<FilmProvider>(context, listen: false).filmRecent();
+      await Provider.of<SerieProvider>(context, listen: false).getAllSerie();
        
       await Provider.of<GenreProvider>(context, listen: false).getAllGenre();
 
@@ -40,12 +47,7 @@ class _Acceuil1State extends State<Acceuil1>
       backgroundColor: Colors.black12,
       endDrawer: Drawers(),
       body: init
-          ? Center(
-              child: Text(
-                "Loading ...",
-                style: TextStyle(color: Colors.red),
-              ),
-            )
+          ? Center(child: CircularProgressIndicator())
           : MainBody(),
     );
   }
@@ -61,6 +63,8 @@ class _MainBodyState extends State<MainBody> {
   Widget build(BuildContext context) {
     final filmsData = Provider.of<FilmProvider>(context);
     final genreData = Provider.of<GenreProvider>(context);
+    final serieData = Provider.of<SerieProvider>(context);
+    
     print(filmsData);
     return Scaffold(
       backgroundColor: Colors.black,
@@ -165,20 +169,22 @@ class _MainBodyState extends State<MainBody> {
                               fontWeight: FontWeight.bold)),
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, "movieDetail");
-                    },
-                    child: Container(
-                      child: CarouselSlider.builder(
-                          itemCount: 5,
-                          itemBuilder: (context, index) {
-                            return Container(
+                  Container(
+                    child: CarouselSlider.builder(
+                        itemCount: serieData.series.length,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                              onTap: () {
+                            Navigator.of(context).pushNamed(
+                                ListeSaison.routeName,
+                                arguments: serieData.series[index].id);
+                          },
+                                                      child: Container(
                               height: 150,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage("images/esse.jpg"),
+                                    image: NetworkImage(serieData.series[index].image),
                                     fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -206,7 +212,7 @@ class _MainBodyState extends State<MainBody> {
                                         Container(
                                           child: FittedBox(
                                             child: Text(
-                                              "Marvel's The Defenders",
+                                             serieData.series[index].titre,
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
@@ -238,12 +244,14 @@ class _MainBodyState extends State<MainBody> {
                                       child: Row(
                                         children: [
                                           Container(
-                                            child: Text(
-                                              "Saison 1",
+                                            child: FittedBox(
+                                              child: Text(
+                                              serieData.series[index].dateDajout,
                                               style: TextStyle(
                                                 color: Colors.white,
                                               ),
                                             ),
+                                            )
                                           ),
                                           SizedBox(
                                             width: 3,
@@ -259,29 +267,23 @@ class _MainBodyState extends State<MainBody> {
                                           SizedBox(
                                             width: 3,
                                           ),
-                                          Container(
-                                            child: Text(
-                                              "Episodes 9",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          )
+                                         
+                                          
                                         ],
                                       ),
                                     ),
                                   )
                                 ],
                               ),
-                            );
-                          },
-                          options: CarouselOptions(
-                            aspectRatio: 2.0,
-                            enlargeCenterPage: true,
-                            scrollDirection: Axis.horizontal,
-                            autoPlay: true,
-                          )),
-                    ),
+                            ),
+                          );
+                        },
+                        options: CarouselOptions(
+                          aspectRatio: 2.0,
+                          enlargeCenterPage: true,
+                          scrollDirection: Axis.horizontal,
+                          autoPlay: true,
+                        )),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),
@@ -295,13 +297,14 @@ class _MainBodyState extends State<MainBody> {
                       ),
                     ),
                   ),
+                
                   Container(
                     height: 200,
                     width: MediaQuery.of(context).size.width,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: filmsData.films.length,
-                        itemBuilder: (context, index) {
+                        itemBuilder: (context, i) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -309,8 +312,9 @@ class _MainBodyState extends State<MainBody> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   image: DecorationImage(
-                                      image: NetworkImage(
-                                          filmsData.films[index].image),
+                                      image: 
+                                      NetworkImage(
+                                          filmsData.films[i].image),
                                       fit: BoxFit.cover)),
                             ),
                           );
