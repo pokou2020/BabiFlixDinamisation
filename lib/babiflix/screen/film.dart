@@ -7,6 +7,7 @@ import 'package:baby_flix/babiflix/widget/teveItem.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:video_player/video_player.dart';
 
 class FilmDetail extends StatefulWidget {
   static const routeName = '/film-detail';
@@ -31,13 +32,32 @@ class _FilmDetailState extends State<FilmDetail> {
       .toList();
   String _btnSelectedVAl = 'Saison 1';
 
-  Future<void> _refreshProduct(BuildContext context) async {
-    await Provider.of<Movies>(context).fetchAndSetFilms();
+  // Future<void> _refreshProduct(BuildContext context) async {
+  //   await Provider.of<Movies>(context).fetchAndSetFilms();
+  // }
+  double opacite = 1.0;
+  VideoPlayerController _controller;
+
+  FilmProvider filmsData;
+
+  @override
+  void didChangeDependencies() {
+    filmsData = Provider.of<FilmProvider>(context);
+    final filmID = ModalRoute.of(context).settings.arguments as String;
+    final selectedFilm =
+        filmsData.films.firstWhere((film) => film.id == filmID);
+    _controller = VideoPlayerController.network(selectedFilm.urlFilm)
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {});
+      });
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    final filmsData = Provider.of<FilmProvider>(context);
+    // final filmsData = Provider.of<FilmProvider>(context);
     final filmID = ModalRoute.of(context).settings.arguments as String;
     final selectedFilm =
         filmsData.films.firstWhere((film) => film.id == filmID);
@@ -114,6 +134,68 @@ class _FilmDetailState extends State<FilmDetail> {
                       ),
                     ],
                   ),
+                ),
+
+                Stack(
+                  overflow: Overflow.visible,
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height / 2.5,
+                      width: MediaQuery.of(context).size.width,
+                      child: _controller.value.initialized
+                          ? AspectRatio(
+                              aspectRatio: _controller.value.aspectRatio,
+                              child: VideoPlayer(_controller),
+                            )
+                          : Container(
+                              height: MediaQuery.of(context).size.height / 2.5,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                image: DecorationImage(
+                                  image: NetworkImage('${selectedFilm.image}'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          this.opacite = 1.0 - this.opacite;
+                          _controller.value.isPlaying
+                              ? _controller.pause()
+                              : _controller.play();
+                        });
+                      },
+                      child: AnimatedOpacity(
+                        opacity: opacite,
+                        duration: Duration(seconds: 1),
+                        child: Container(
+                          margin: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.height / 4.8,
+                            top: MediaQuery.of(context).size.height / 7,
+                          ),
+                          height: 70,
+                          width: 70,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            shape: BoxShape.circle,
+                            border: Border.all(width: 1, color: Colors.red),
+                          ),
+                          child: Icon(
+                            _controller.value.isPlaying
+                                ? Icons.pause
+                                : Icons.play_arrow,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 10),
                 Padding(
