@@ -6,7 +6,7 @@ import 'dart:convert';
 
 class GenreProvider with ChangeNotifier{
   List<Genre>_genre=[];
-  List<Genre> get genre=>this._genre;
+  List<Genre> get genre =>this._genre;
 
   Future<void>getAllGenre() async{
     final url="https://babiflixdinamisation-default-rtdb.firebaseio.com/genre.json";

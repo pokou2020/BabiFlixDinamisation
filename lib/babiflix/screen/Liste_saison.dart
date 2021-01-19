@@ -178,7 +178,7 @@ class _ListeSaisonState extends State<ListeSaison> {
                                   width: 60,
                                   color: Colors.black38,
                                   child: Text(
-                                    "Saison ${selectedSaison.nombreSaisonSerie}",
+                                    "Saison ${selectedSaison.id}",
                                     style: TextStyle(color: Colors.red),
                                   ),
                                 )

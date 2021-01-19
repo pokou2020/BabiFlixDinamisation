@@ -60,7 +60,6 @@ class _MainBodyState extends State<MainBody> {
     final filmsData = Provider.of<FilmProvider>(context);
     final genreData = Provider.of<GenreProvider>(context);
     final serieData = Provider.of<SerieProvider>(context);
-
     print(filmsData);
     return Scaffold(
       backgroundColor: Colors.black,
@@ -167,7 +166,7 @@ class _MainBodyState extends State<MainBody> {
                   ),
                   Container(
                     child: CarouselSlider.builder(
-                        itemCount: serieData.series.length,
+                        itemCount: serieData?.series?.length ?? 0,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {

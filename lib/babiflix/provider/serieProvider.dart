@@ -18,9 +18,10 @@ class SerieProvider with ChangeNotifier {
       print(result.body);
       print(result.statusCode);
     if(result.statusCode == 200){
-      final fetchData = json.decode(result.body) as Map<String, dynamic>;
+       final fetchData = json.decode(result.body) as  Map<String, dynamic> ;
       List<Serie> all = [];
       fetchData.forEach((key, value) {
+        print(value);
         Serie mesSerie = Serie.fromMap(value);
         mesSerie.id = key;
         all.add(mesSerie);
