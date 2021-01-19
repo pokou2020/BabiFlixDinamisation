@@ -18,18 +18,16 @@ class SerieProvider with ChangeNotifier {
       print(result.body);
       print(result.statusCode);
     if(result.statusCode == 200){
-
-
-       final fetchData = json.decode(result.body) as Map ;
+       final fetchData = json.decode(result.body) as  Map<String, dynamic> ;
       List<Serie> all = [];
       fetchData.forEach((key, value) {
         print(value);
         Serie mesSerie = Serie.fromMap(value);
-        mesSerie.dateDajout = key;
+        mesSerie.id = key;
         all.add(mesSerie);
          print("////////////////Nouveau add ${mesSerie.toMap()}//////////////////////////");
       });
-     // _series = all;
+      _series = all;
       notifyListeners();
     }
   } catch(e){
