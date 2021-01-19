@@ -33,12 +33,12 @@ class GenreProvider with ChangeNotifier {
     }
   }
 
-  final genreID = Genre().id;
+  var genreTitre = Genre().titre;
 
   List<Film> getgenreFlim() {
     try {
       return _films
-          .where((element) => element.genreFilm.titre == genreID)
+          .where((element) => element.genreFilm.titre == genreTitre)
           .toList();
     } catch (e) {
       print("Error to get info from provider ${e.toString()}");
