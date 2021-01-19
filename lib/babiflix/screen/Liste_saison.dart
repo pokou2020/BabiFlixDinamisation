@@ -1,3 +1,4 @@
+import 'package:baby_flix/babiflix/provider/episodeProvider.dart';
 import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
 import 'package:baby_flix/babiflix/provider/serieProvider.dart';
 import "package:flutter/material.dart";
@@ -81,6 +82,8 @@ class _ListeSaisonState extends State<ListeSaison> {
   @override
   Widget build(BuildContext context) {
     final serieData = Provider.of<SerieProvider>(context);
+    final episodeData=Provider.of<EpisodeProvider>(context);
+      final saisonData=Provider.of<EpisodeSaison>(context);
     final serieID = ModalRoute.of(context).settings.arguments as String;
     final selectedSaison =
         serieData.series.firstWhere((element) => element.id == serieID);
@@ -178,7 +181,7 @@ class _ListeSaisonState extends State<ListeSaison> {
                                   width: 60,
                                   color: Colors.black38,
                                   child: Text(
-                                    "Saison ${selectedSaison.id}",
+                                    "Saison ${saisonData.id}",
                                     style: TextStyle(color: Colors.red),
                                   ),
                                 )
