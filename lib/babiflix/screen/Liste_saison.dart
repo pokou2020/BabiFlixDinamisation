@@ -167,7 +167,7 @@ class _ListeSaisonState extends State<ListeSaison> {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: NetworkImage(
-                                    '${selectedSaison.serieSaison.imageSaison}'),
+                                    '${selectedSaison.saisonList[index].imageSaison}'),
                                 fit: BoxFit.cover),
                             color: Colors.grey,
                             borderRadius: BorderRadius.circular(10)),
@@ -198,7 +198,7 @@ class _ListeSaisonState extends State<ListeSaison> {
                                 ),
                               ),
                               child: Text(
-                                "${selectedSaison.serieSaison.titreSaison}",
+                                "${selectedSaison.saisonList[index].titreSaison}",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
