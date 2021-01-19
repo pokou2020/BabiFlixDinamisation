@@ -64,6 +64,11 @@ class _MainBodyState extends State<MainBody> {
     final filmsData = Provider.of<FilmProvider>(context);
     final genreData = Provider.of<GenreProvider>(context);
     final serieData = Provider.of<SerieProvider>(context);
+    print('/////////////////////////////////////////');
+    print(serieData.series);
+    print('/////////////////////////////////////////');
+    print(serieData.series.length);
+
     
     print(filmsData);
     return Scaffold(
@@ -171,13 +176,13 @@ class _MainBodyState extends State<MainBody> {
                   ),
                   Container(
                     child: CarouselSlider.builder(
-                        itemCount: serieData.series.length,
+                        itemCount: serieData?.series?.length ?? 0,
                         itemBuilder: (context, index) {
                           return InkWell(
                               onTap: () {
                             Navigator.of(context).pushNamed(
                                 ListeSaison.routeName,
-                                arguments: serieData.series[index].id);
+                                arguments: serieData?.series[index]?.dateDajout);
                           },
                                                       child: Container(
                               height: 150,
@@ -212,7 +217,7 @@ class _MainBodyState extends State<MainBody> {
                                         Container(
                                           child: FittedBox(
                                             child: Text(
-                                             serieData.series[index].titre,
+                                             serieData.series[index].image,
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
@@ -246,7 +251,7 @@ class _MainBodyState extends State<MainBody> {
                                           Container(
                                             child: FittedBox(
                                               child: Text(
-                                              serieData.series[index].dateDajout,
+                                              "serieData.series[index].dateDajout",
                                               style: TextStyle(
                                                 color: Colors.white,
                                               ),

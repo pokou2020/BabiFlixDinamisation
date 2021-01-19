@@ -15,7 +15,7 @@ class Saison {
     this.nombreEpisode,
     this.numeroSaison,
     this.image,
-    this.serieSaison,
+    this.episodeSaison,
   });
 
   String id;
@@ -23,7 +23,7 @@ class Saison {
   int nombreEpisode;
   int numeroSaison;
   String image;
-  SerieSaison serieSaison;
+  EpisodeSaison episodeSaison;
 
   factory Saison.fromMap(Map<String, dynamic> json) => Saison(
         id: json["id"] == null ? null : json["id"],
@@ -33,9 +33,9 @@ class Saison {
         numeroSaison:
             json["numeroSaison"] == null ? null : json["numeroSaison"],
         image: json["image"] == null ? null : json["image"],
-        serieSaison: json["serieSaison"] == null
+        episodeSaison: json["episodeSaison"] == null
             ? null
-            : SerieSaison.fromMap(json["serieSaison"]),
+            : EpisodeSaison.fromMap(json["episodeSaison"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -44,12 +44,12 @@ class Saison {
         "nombreEpisode": nombreEpisode == null ? null : nombreEpisode,
         "numeroSaison": numeroSaison == null ? null : numeroSaison,
         "image": image == null ? null : image,
-        "serieSaison": serieSaison == null ? null : serieSaison.toMap(),
+        "episodeSaison": episodeSaison == null ? null : episodeSaison.toMap(),
       };
 }
 
-class SerieSaison {
-  SerieSaison({
+class EpisodeSaison {
+  EpisodeSaison({
     this.id,
     this.titre,
     this.realisateur,
@@ -69,7 +69,7 @@ class SerieSaison {
   bool status;
   String description;
 
-  factory SerieSaison.fromMap(Map<String, dynamic> json) => SerieSaison(
+  factory EpisodeSaison.fromMap(Map<String, dynamic> json) => EpisodeSaison(
         id: json["id"] == null ? null : json["id"],
         titre: json["titre"] == null ? null : json["titre"],
         realisateur: json["realisateur"] == null ? null : json["realisateur"],

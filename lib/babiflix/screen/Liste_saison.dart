@@ -162,7 +162,7 @@ class _ListeSaisonState extends State<ListeSaison> {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-          image:  DecorationImage(image: NetworkImage('${selectedSaison.serieSaison.image}'), fit: BoxFit.cover),
+          image:  DecorationImage(image: NetworkImage('${selectedSaison.image}'), fit: BoxFit.cover),
           color: Colors.grey,
           borderRadius: BorderRadius.circular(10)
         ),
@@ -175,7 +175,7 @@ class _ListeSaisonState extends State<ListeSaison> {
                   height: 30,
                   width: 60,
                   color: Colors.black38,
-                  child: Text("Saison ${serieData.series[index].serieSaison.titre}",
+                  child: Text("Saison ${selectedSaison.titre}",
                   style: TextStyle(
                     color: Colors.red
                   ),
