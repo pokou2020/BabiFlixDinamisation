@@ -1,4 +1,4 @@
-import 'package:baby_flix/babiflix/provider/episodeProvider.dart';
+
 import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
 import 'package:baby_flix/babiflix/provider/saisonProvider.dart';
 import 'package:baby_flix/babiflix/provider/serieProvider.dart';
@@ -83,7 +83,7 @@ class _ListeSaisonState extends State<ListeSaison> {
   @override
   Widget build(BuildContext context) {
     final serieData = Provider.of<SerieProvider>(context);
-    final episodeData=Provider.of<EpisodeProvider>(context);
+   
     final saisonData=Provider.of<SaisonProvider>(context);
     final serieID = ModalRoute.of(context).settings.arguments as String;
     final selectedSaison =
