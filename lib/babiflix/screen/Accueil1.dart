@@ -557,7 +557,7 @@ class _MainBodyState extends State<MainBody> {
                     padding: const EdgeInsets.all(10),
                     child: Container(
                       child: Text(
-                        "Comiques",
+                        "Comique",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ),
