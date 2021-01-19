@@ -46,7 +46,8 @@ class _FilmDetailState extends State<FilmDetail> {
     final filmID = ModalRoute.of(context).settings.arguments as String;
     final selectedFilm =
         filmsData.films.firstWhere((film) => film.id == filmID);
-    _controller = VideoPlayerController.network(selectedFilm.urlFilm)
+    _controller = VideoPlayerController.network(
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
@@ -106,41 +107,41 @@ class _FilmDetailState extends State<FilmDetail> {
                     ),
                   ),
                 ),
-                Container(
-                  height: MediaQuery.of(context).size.height / 2.5,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    image: DecorationImage(
-                      image: NetworkImage('${selectedFilm.image}'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          shape: BoxShape.circle,
-                          border: Border.all(width: 1, color: Colors.red),
-                        ),
-                        child: IconButton(
-                          icon: Icon(Icons.play_arrow, color: Colors.white),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Container(
+                //   height: MediaQuery.of(context).size.height / 2.5,
+                //   width: MediaQuery.of(context).size.width,
+                //   decoration: BoxDecoration(
+                //     color: Colors.transparent,
+                //     image: DecorationImage(
+                //       image: NetworkImage('${selectedFilm.image}'),
+                //       fit: BoxFit.cover,
+                //     ),
+                //   ),
+                //   child: Column(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       Container(
+                //         height: 50,
+                //         width: 50,
+                //         decoration: BoxDecoration(
+                //           color: Colors.transparent,
+                //           shape: BoxShape.circle,
+                //           border: Border.all(width: 1, color: Colors.red),
+                //         ),
+                //         child: IconButton(
+                //           icon: Icon(Icons.play_arrow, color: Colors.white),
+                //           onPressed: () {},
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
 
                 Stack(
                   overflow: Overflow.visible,
                   children: [
                     Container(
-                      height: MediaQuery.of(context).size.height / 2.5,
+                      height: MediaQuery.of(context).size.height / 2.8,
                       width: MediaQuery.of(context).size.width,
                       child: _controller.value.initialized
                           ? AspectRatio(
@@ -148,7 +149,7 @@ class _FilmDetailState extends State<FilmDetail> {
                               child: VideoPlayer(_controller),
                             )
                           : Container(
-                              height: MediaQuery.of(context).size.height / 2.5,
+                              height: MediaQuery.of(context).size.height / 2.8,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: Colors.transparent,
@@ -523,5 +524,11 @@ class _FilmDetailState extends State<FilmDetail> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 }

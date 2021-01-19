@@ -13,7 +13,6 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class Acceuil1 extends StatefulWidget {
-  
   @override
   _Acceuil1State createState() => _Acceuil1State();
 }
@@ -24,14 +23,13 @@ class _Acceuil1State extends State<Acceuil1>
   @override
   Future<void> didChangeDependencies() async {
     if (init) {
-       var now = new DateTime.now();
-       print(now);
+      var now = new DateTime.now();
+      print(now);
       print("//////////////Bonjour le monde//////////////////////");
       await Provider.of<FilmProvider>(context, listen: false).getAllFilm();
       await Provider.of<SerieProvider>(context, listen: false).getAllSerie();
-       
-      await Provider.of<GenreProvider>(context, listen: false).getAllGenre();
 
+      await Provider.of<GenreProvider>(context, listen: false).getAllGenre();
 
       setState(() {
         init = false;
@@ -46,9 +44,7 @@ class _Acceuil1State extends State<Acceuil1>
     return Scaffold(
       backgroundColor: Colors.black12,
       endDrawer: Drawers(),
-      body: init
-          ? Center(child: CircularProgressIndicator())
-          : MainBody(),
+      body: init ? Center(child: CircularProgressIndicator()) : MainBody(),
     );
   }
 }
@@ -64,7 +60,7 @@ class _MainBodyState extends State<MainBody> {
     final filmsData = Provider.of<FilmProvider>(context);
     final genreData = Provider.of<GenreProvider>(context);
     final serieData = Provider.of<SerieProvider>(context);
-    
+
     print(filmsData);
     return Scaffold(
       backgroundColor: Colors.black,
@@ -174,17 +170,18 @@ class _MainBodyState extends State<MainBody> {
                         itemCount: serieData.series.length,
                         itemBuilder: (context, index) {
                           return InkWell(
-                              onTap: () {
-                            Navigator.of(context).pushNamed(
-                                ListeSaison.routeName,
-                                arguments: serieData.series[index].id);
-                          },
-                                                      child: Container(
+                            onTap: () {
+                              Navigator.of(context).pushNamed(
+                                  ListeSaison.routeName,
+                                  arguments: serieData.series[index].id);
+                            },
+                            child: Container(
                               height: 150,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: NetworkImage(serieData.series[index].image),
+                                    image: NetworkImage(
+                                        serieData.series[index].imageSerie),
                                     fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -212,7 +209,8 @@ class _MainBodyState extends State<MainBody> {
                                         Container(
                                           child: FittedBox(
                                             child: Text(
-                                             serieData.series[index].titre,
+                                              serieData
+                                                  .series[index].titreSerie,
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
@@ -244,15 +242,15 @@ class _MainBodyState extends State<MainBody> {
                                       child: Row(
                                         children: [
                                           Container(
-                                            child: FittedBox(
-                                              child: Text(
-                                              serieData.series[index].dateDajout,
+                                              child: FittedBox(
+                                            child: Text(
+                                              serieData.series[index]
+                                                  .dateSortieSerie,
                                               style: TextStyle(
                                                 color: Colors.white,
                                               ),
                                             ),
-                                            )
-                                          ),
+                                          )),
                                           SizedBox(
                                             width: 3,
                                           ),
@@ -267,8 +265,6 @@ class _MainBodyState extends State<MainBody> {
                                           SizedBox(
                                             width: 3,
                                           ),
-                                         
-                                          
                                         ],
                                       ),
                                     ),
@@ -297,7 +293,7 @@ class _MainBodyState extends State<MainBody> {
                       ),
                     ),
                   ),
-                
+
                   Container(
                     height: 200,
                     width: MediaQuery.of(context).size.width,
@@ -312,8 +308,7 @@ class _MainBodyState extends State<MainBody> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   image: DecorationImage(
-                                      image: 
-                                      NetworkImage(
+                                      image: NetworkImage(
                                           filmsData.films[i].image),
                                       fit: BoxFit.cover)),
                             ),
@@ -536,7 +531,8 @@ class _MainBodyState extends State<MainBody> {
                           onTap: () {
                             Navigator.of(context).pushNamed(
                                 FilmDetail.routeName,
-                                arguments: filmsData.getgenreFlimAfrique()[i].id);
+                                arguments:
+                                    filmsData.getgenreFlimAfrique()[i].id);
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -544,8 +540,9 @@ class _MainBodyState extends State<MainBody> {
                               width: 120,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image:
-                                        NetworkImage(filmsData.getgenreFlimAfrique()[i].image),
+                                    image: NetworkImage(filmsData
+                                        .getgenreFlimAfrique()[i]
+                                        .image),
                                     fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.red,
@@ -557,7 +554,7 @@ class _MainBodyState extends State<MainBody> {
                     ),
                   ),
 
-                    Padding(
+                  Padding(
                     padding: const EdgeInsets.all(10),
                     child: Container(
                       child: Text(
@@ -576,7 +573,8 @@ class _MainBodyState extends State<MainBody> {
                           onTap: () {
                             Navigator.of(context).pushNamed(
                                 FilmDetail.routeName,
-                                arguments: filmsData.getgenreFlimAComique()[i].id);
+                                arguments:
+                                    filmsData.getgenreFlimAComique()[i].id);
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -584,8 +582,9 @@ class _MainBodyState extends State<MainBody> {
                               width: 120,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image:
-                                        NetworkImage(filmsData.getgenreFlimAComique()[i].image),
+                                    image: NetworkImage(filmsData
+                                        .getgenreFlimAComique()[i]
+                                        .image),
                                     fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.red,
