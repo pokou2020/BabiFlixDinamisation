@@ -914,325 +914,68 @@ class _ListefilmsState extends State<Listefilms> {
                             ),
                           ),
                     ),
-                Expanded(
-                    child: Container(
-                    child: ListView(      
-                       children: [
-
-                               Row(
-                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                 children: [
-                                   
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                     
-                                     height: MediaQuery.of(context).size.height/2.8,
-                                     width: MediaQuery.of(context).size.width/2.6,
-       
-                                     child:Column(
-                                       children: [
-                                         Expanded(
-                                       flex: 3,
-                                       child: Container(
-                                           decoration: BoxDecoration(
-                                       color: Colors.red,
-                                      image:DecorationImage(image: AssetImage("images/anime1.jpg"), fit: BoxFit.cover),
-                                         borderRadius: BorderRadius.only(
-                                             topLeft: Radius.circular(10),
-                                             topRight: Radius.circular(10),
-                                           ),
-                                           
-                                     ),
-                                     ),
-                                         ),
-                                       Expanded(
-                                         flex: 1,
-                                         child: Container(
-                                           width: MediaQuery.of(context).size.width,
-                                                   decoration: BoxDecoration(
-                                                      
-                                       color: Color.fromRGBO(59, 59, 60, 1),
-                                         borderRadius: BorderRadius.only(
-                                             bottomLeft: Radius.circular(10),
-                                             bottomRight: Radius.circular(10),
-                                           ),
-                                           
-                                     ),
-                                     child: Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text("My Hero Academia",
-                                       style: TextStyle(
-                                         color: Colors.white,
-                                         fontWeight: FontWeight.bold,
-                                         fontSize: 18
-                                       ),
-                                       ),
-                                     ),
-                                         )
-                                         )
-                                       ],
-                                     )
-                                    
-                                     ),
-                                      ),   
-                                      
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                     
-                                       height: MediaQuery.of(context).size.height/2.8,
-                                     width: MediaQuery.of(context).size.width/2.6,
-                                     child:Column(
-                                       children: [
-                                         Expanded(
-                                       flex: 3,
-                                       child: Container(
-                                           decoration: BoxDecoration(
-                                       color: Colors.red,
-                                      image:DecorationImage(image: AssetImage("images/anime2.jpg"), fit: BoxFit.cover),
-                                         borderRadius: BorderRadius.only(
-                                             topLeft: Radius.circular(10),
-                                             topRight: Radius.circular(10),
-                                           ),
-                                           
-                                     ),
-                                     ),
-                                         ),
-                                       Expanded(
-                                         flex: 1,
-                                         child: Container(
-                                           width: MediaQuery.of(context).size.width,
-                                                   decoration: BoxDecoration(
-                                                      
-                                       color: Color.fromRGBO(59, 59, 60, 1),
-                                         borderRadius: BorderRadius.only(
-                                             bottomLeft: Radius.circular(10),
-                                             bottomRight: Radius.circular(10),
-                                           ),
-                                           
-                                     ),
-                                     child: Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text("Sho",
-                                       style: TextStyle(
-                                         color: Colors.white,
-                                         fontWeight: FontWeight.bold,
-                                         fontSize: 18
-                                       ),
-                                       ),
-                                     ),
-                                         )
-                                         )
-                                       ],
-                                     )
-                                    
-                                     ),
-                                      ),
-                                              
-                                   
-                                    
-                                 ],
-                               ),
-
-                                Row(
-                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                 children: [
-                                   
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                     
-                                     height: MediaQuery.of(context).size.height/2.8,
-                                     width: MediaQuery.of(context).size.width/2.6,
-       
-                                     child:Column(
-                                       children: [
-                                         Expanded(
-                                       flex: 3,
-                                       child: Container(
-                                           decoration: BoxDecoration(
-                                       color: Colors.red,
-                                      image:DecorationImage(image: AssetImage("images/anime3.jpg"), fit: BoxFit.cover),
-                                         borderRadius: BorderRadius.only(
-                                             topLeft: Radius.circular(10),
-                                             topRight: Radius.circular(10),
-                                           ),
-                                           
-                                     ),
-                                     ),
-                                         ),
-                                       Expanded(
-                                         flex: 1,
-                                         child: Container(
-                                           width: MediaQuery.of(context).size.width,
-                                                   decoration: BoxDecoration(
-                                                      
-                                       color: Color.fromRGBO(59, 59, 60, 1),
-                                         borderRadius: BorderRadius.only(
-                                             bottomLeft: Radius.circular(10),
-                                             bottomRight: Radius.circular(10),
-                                           ),
-                                           
-                                     ),
-                                     child: Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text("Attaques des titans",
-                                       style: TextStyle(
-                                         color: Colors.white,
-                                         fontWeight: FontWeight.bold,
-                                         fontSize: 18
-                                       ),
-                                       ),
-                                     ),
-                                         )
-                                         )
-                                       ],
-                                     )
-                                    
-                                     ),
-                                      ),
-                                         
-                                      
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                     
-                                     height: MediaQuery.of(context).size.height/2.8,
-                                     width: MediaQuery.of(context).size.width/2.6,
-                                     child:Column(
-                                       children: [
-                                         Expanded(
-                                       flex: 3,
-                                       child: Container(
-                                           decoration: BoxDecoration(
-                                       color: Colors.red,
-                                      image:DecorationImage(image: AssetImage("images/anime4.jpg"), fit: BoxFit.cover),
-                                         borderRadius: BorderRadius.only(
-                                             topLeft: Radius.circular(10),
-                                             topRight: Radius.circular(10),
-                                           ),
-                                           
-                                     ),
-                                     ),
-                                         ),
-                                       Expanded(
-                                         flex: 1,
-                                         child: Container(
-                                           width: MediaQuery.of(context).size.width,
-                                                   decoration: BoxDecoration(
-                                                      
-                                       color: Color.fromRGBO(59, 59, 60, 1),
-                                         borderRadius: BorderRadius.only(
-                                             bottomLeft: Radius.circular(10),
-                                             bottomRight: Radius.circular(10),
-                                           ),
-                                           
-                                     ),
-                                     child: Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text("The sevens",
-                                       style: TextStyle(
-                                         color: Colors.white,
-                                         fontWeight: FontWeight.bold,
-                                         fontSize: 18
-                                       ),
-                                       ),
-                                     ),
-                                         )
-                                         )
-                                       ],
-                                     )
-                                    
-                                     ),
-                                      ),
-                                          
-                                   
-                                    
-                                 ],
-                               ),
-
-
-                             
-
-
-                               
-                               
-                             
-                              
-                   
-                  
-                     
-                                 
-                     
-                                         
-                               
-                        
-                          
-                                
-                  
-                    
-                     
-                      
-                     
-                                
-                              
-                                 Container(
-                                   width: MediaQuery.of(context).size.width,
-                                  // color: Color.fromRGBO(59, 59, 60, 1),
-                                   child: Column(
-                                     children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      children: [
-                                   
                     Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(   
-
-                            width: MediaQuery.of(context).size.width/2,
-                          child: Column(
-                            children: [
-                              Container(
-                              height: 70,
-                              width: 100,
-                               child: Icon(Icons.tv, color: Colors.red, size: 70,)),
-                                        
-                                    
-                                        SizedBox(height: 25,),
-                      Container(
-                        height: 20,
+                child: Container(
+                    child: GridView.builder(
+                  itemCount: 5,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 1,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
                         decoration: BoxDecoration(
-                          image: DecorationImage(image: AssetImage("images/bbf.png"))
-                        ),
-                        
-                                       
-                                        
-                                        ),
-                                    
-                            ],
-                          ),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                    'images/film1.jpg'),
+                                fit: BoxFit.cover),
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  height: 30,
+                                  width: 60,
+                                  color: Colors.black38,
+                                  child: Text(
+                                    "Saison 2",
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Color.fromRGBO(59, 59, 60, 1),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  bottomRight: Radius.circular(10),
+                                ),
+                              ),
+                              child: Text(
+                                "rat",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                    ),
-                                      ],
-                                    ),
-                             
-                                 SizedBox(
-                                   height: 20,
-                                 ),
-                                  
-                              
-                                
-                                     ],
-                                   ),
-                                 ),
-                               
-                              ],
-                            )
-        ),
-                ),
+                    );
+                    //just for testing, will fill with image later
+                  },
+                )),
+              ),
             ],
           ),
         ),

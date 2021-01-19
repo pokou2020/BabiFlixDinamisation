@@ -166,7 +166,7 @@ class _MainBodyState extends State<MainBody> {
                   ),
                   Container(
                     child: CarouselSlider.builder(
-                        itemCount: serieData?.series?.length ?? 0,
+                        itemCount: serieData.series.length,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {
@@ -180,7 +180,7 @@ class _MainBodyState extends State<MainBody> {
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        serieData.series[index].imageSerie),
+                                        serieData.series[index].image),
                                     fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -209,7 +209,7 @@ class _MainBodyState extends State<MainBody> {
                                           child: FittedBox(
                                             child: Text(
                                               serieData
-                                                  .series[index].titreSerie,
+                                                  .series[index].titre,
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
@@ -244,7 +244,7 @@ class _MainBodyState extends State<MainBody> {
                                               child: FittedBox(
                                             child: Text(
                                               serieData.series[index]
-                                                  .dateSortieSerie,
+                                                  .dateDajout,
                                               style: TextStyle(
                                                 color: Colors.white,
                                               ),
