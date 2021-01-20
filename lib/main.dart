@@ -1,3 +1,4 @@
+
 import 'package:baby_flix/babiflix/provider/genreProvider.dart';
 import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
 import 'package:baby_flix/babiflix/provider/serieProvider.dart';
@@ -60,6 +61,9 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider.value(
           value: SerieProvider(),
         ),
+       
+        
+        
       ],
       child: MaterialApp(
           title: 'Flutter Demo',

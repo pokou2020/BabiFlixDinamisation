@@ -1,4 +1,3 @@
-import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
 import 'package:baby_flix/babiflix/provider/serieProvider.dart';
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
@@ -81,6 +80,7 @@ class _ListeSaisonState extends State<ListeSaison> {
   @override
   Widget build(BuildContext context) {
     final serieData = Provider.of<SerieProvider>(context);
+
     final serieID = ModalRoute.of(context).settings.arguments as String;
     final selectedSaison =
         serieData.series.firstWhere((element) => element.id == serieID);
@@ -161,6 +161,7 @@ class _ListeSaisonState extends State<ListeSaison> {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
+                        color: Colors.red,
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: AssetImage(

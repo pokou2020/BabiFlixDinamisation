@@ -166,7 +166,7 @@ class _MainBodyState extends State<MainBody> {
                   ),
                   Container(
                     child: CarouselSlider.builder(
-                        itemCount: serieData?.series?.length ?? 0,
+                        itemCount: serieData.series.length,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {
@@ -253,14 +253,7 @@ class _MainBodyState extends State<MainBody> {
                                           SizedBox(
                                             width: 3,
                                           ),
-                                          Container(
-                                            child: Text(
-                                              "-",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
+                                          
                                           SizedBox(
                                             width: 3,
                                           ),
