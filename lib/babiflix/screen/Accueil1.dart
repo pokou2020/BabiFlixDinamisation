@@ -27,7 +27,7 @@ class _Acceuil1State extends State<Acceuil1>
       print(now);
       print("//////////////Bonjour le monde//////////////////////");
       await Provider.of<FilmProvider>(context, listen: false).getAllFilm();
-      await Provider.of<SerieProvider>(context, listen: false).getAllSerie();
+      // await Provider.of<SerieProvider>(context, listen: false).getAllSerie();
 
       await Provider.of<GenreProvider>(context, listen: false).getAllGenre();
 
@@ -179,7 +179,7 @@ class _MainBodyState extends State<MainBody> {
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: NetworkImage(
+                                    image: AssetImage(
                                         serieData.series[index].imageSerie),
                                     fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(10),

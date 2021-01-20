@@ -150,7 +150,7 @@ class _ListeSaisonState extends State<ListeSaison> {
               Expanded(
                 child: Container(
                     child: GridView.builder(
-                  itemCount: serieData.series.length,
+                  itemCount: selectedSaison.saison.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 1,
@@ -163,8 +163,8 @@ class _ListeSaisonState extends State<ListeSaison> {
                       child: Container(
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: NetworkImage(
-                                    '${selectedSaison.saisonList[index].imageSaison}'),
+                                image: AssetImage(
+                                    '${selectedSaison.saison[index].imageSaison}'),
                                 fit: BoxFit.cover),
                             color: Colors.grey,
                             borderRadius: BorderRadius.circular(10)),
@@ -178,7 +178,7 @@ class _ListeSaisonState extends State<ListeSaison> {
                                   width: 60,
                                   color: Colors.black38,
                                   child: Text(
-                                    "Saison ${selectedSaison.id}",
+                                    "${selectedSaison.saison[index].titreSaison}",
                                     style: TextStyle(color: Colors.red),
                                   ),
                                 )
@@ -195,7 +195,7 @@ class _ListeSaisonState extends State<ListeSaison> {
                                 ),
                               ),
                               child: Text(
-                                "${selectedSaison.saisonList[index].titreSaison}",
+                                "${selectedSaison.titreSerie}",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
