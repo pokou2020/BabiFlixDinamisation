@@ -1,6 +1,5 @@
 
-import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
-import 'package:baby_flix/babiflix/provider/saisonProvider.dart';
+
 import 'package:baby_flix/babiflix/provider/serieProvider.dart';
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
@@ -84,7 +83,7 @@ class _ListeSaisonState extends State<ListeSaison> {
   Widget build(BuildContext context) {
     final serieData = Provider.of<SerieProvider>(context);
    
-    final saisonData=Provider.of<SaisonProvider>(context);
+ 
     final serieID = ModalRoute.of(context).settings.arguments as String;
     final selectedSaison =
         serieData.series.firstWhere((element) => element.id == serieID);
@@ -154,7 +153,7 @@ class _ListeSaisonState extends State<ListeSaison> {
               Expanded(
                 child: Container(
                     child: GridView.builder(
-                  itemCount: saisonData.saisons.length,
+                  itemCount: selectedSaison.saison.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 1,
@@ -169,7 +168,7 @@ class _ListeSaisonState extends State<ListeSaison> {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: NetworkImage(
-                                    saisonData.saisons[index].imageSaison),
+                                    serieData.series[index].imageSerie),
                                 fit: BoxFit.cover),
                             color: Colors.grey,
                             borderRadius: BorderRadius.circular(10)),
@@ -184,7 +183,7 @@ class _ListeSaisonState extends State<ListeSaison> {
                                   color: Colors.black38,
                                   child: Text(
                                     
-                                    saisonData.saisons[index].id,
+                                    serieData.series[index].id,
                                     style: TextStyle(color: Colors.red),
                                   ),
                                 )
@@ -201,7 +200,7 @@ class _ListeSaisonState extends State<ListeSaison> {
                                 ),
                               ),
                               child: Text(
-                                saisonData.saisons[index].titreSaison,
+                                serieData.series[index].titreSerie,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),

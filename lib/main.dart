@@ -1,4 +1,4 @@
-import 'package:baby_flix/babiflix/provider/episodeProvider.dart';
+
 import 'package:baby_flix/babiflix/provider/genreProvider.dart';
 import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
 import 'package:baby_flix/babiflix/provider/serieProvider.dart';
@@ -19,7 +19,6 @@ import 'package:baby_flix/babiflix/widget/teve.dart';
 import 'package:provider/provider.dart';
 import 'babiflix/provider/film.dart';
 import 'babiflix/provider/films.dart';
-import 'babiflix/provider/saisonProvider.dart';
 import 'babiflix/screen/Accueil1.dart';
 import 'babiflix/screen/Chaine.dart';
 
@@ -62,12 +61,9 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider.value(
           value: SerieProvider(),
         ),
-           ChangeNotifierProvider.value(
-          value: SaisonProvider(),
-        ),
-           ChangeNotifierProvider.value(
-          value: EpisodeProvider(),
-        ),
+       
+        
+        
       ],
       child: MaterialApp(
           title: 'Flutter Demo',

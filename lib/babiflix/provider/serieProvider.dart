@@ -13,16 +13,16 @@ class SerieProvider with ChangeNotifier {
   Future<void> getAllSerie() async{
     final url="https://babiflixdinamisation-default-rtdb.firebaseio.com/serie.json";
   try{
-    final result = await http.get(url);
+    var result = await http.get(url);
      print("////////Get info from provider////////");
       print(result.body);
       print(result.statusCode);
     if(result.statusCode == 200){
-       final fetchData = json.decode(result.body) as  Map<String, dynamic> ;
+       final fetchData = json.decode(result.body) as  Map<String, dynamic>  ;
       List<Serie> all = [];
       fetchData.forEach((key, value) {
         print(value);
-        Serie mesSerie = Serie.fromMap(value);
+        Serie mesSerie = Serie.fromMap(value).toMap(). ;
         mesSerie.id = key;
         all.add(mesSerie);
          print("////////////////Nouveau add ${mesSerie.toMap()}//////////////////////////");

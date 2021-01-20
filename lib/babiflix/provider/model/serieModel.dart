@@ -1,4 +1,6 @@
-
+// To parse this JSON data, do
+//
+//     final serie = serieFromMap(jsonString);
 
 import 'dart:convert';
 
@@ -9,173 +11,118 @@ String serieToMap(Serie data) => json.encode(data.toMap());
 class Serie {
   Serie({
     this.id,
-    this.titre,
-    this.image,
-    this.nombreSaison,
+    this.titreSerie,
+    this.imageSerie,
+    this.nombreSaisonSerie,
     this.status,
-    this.dateDajout,
-    this.genreSerie,
-    this.saisonList,
+    this.dateSortieSerie,
+    this.saison,
   });
 
   String id;
-  String titre;
-  String image;
-  int nombreSaison;
+  String titreSerie;
+  String imageSerie;
+  int nombreSaisonSerie;
   bool status;
-  String dateDajout;
-  GenreSerie genreSerie;
-  SaisonList saisonList;
+  String dateSortieSerie;
+  List<Saison> saison;
 
   factory Serie.fromMap(Map<String, dynamic> json) => Serie(
         id: json["id"] == null ? null : json["id"],
-        titre: json["titre"] == null ? null : json["titre"],
-        image: json["image"] == null ? null : json["image"],
-        nombreSaison:
-            json["nombreSaison"] == null ? null : json["nombreSaison"],
+        titreSerie: json["titreSerie"] == null ? null : json["titreSerie"],
+        imageSerie: json["imageSerie"] == null ? null : json["imageSerie"],
+        nombreSaisonSerie: json["nombreSaisonSerie"] == null
+            ? null
+            : json["nombreSaisonSerie"],
         status: json["status"] == null ? null : json["status"],
-        dateDajout: json["dateDajout"] == null ? null : json["dateDajout"],
-        genreSerie: json["genreSerie"] == null
+        dateSortieSerie:
+            json["dateSortieSerie"] == null ? null : json["dateSortieSerie"],
+        saison: json["saison"] == null
             ? null
-            : GenreSerie.fromMap(json["genreSerie"]),
-        saisonList: json["saisonList"] == null
-            ? null
-            : SaisonList.fromMap(json["saisonList"]),
+            : List<Saison>.from(json["saison"].map((x) => Saison.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
         "id": id == null ? null : id,
-        "titre": titre == null ? null : titre,
-        "image": image == null ? null : image,
-        "nombreSaison": nombreSaison == null ? null : nombreSaison,
+        "titreSerie": titreSerie == null ? null : titreSerie,
+        "imageSerie": imageSerie == null ? null : imageSerie,
+        "nombreSaisonSerie":
+            nombreSaisonSerie == null ? null : nombreSaisonSerie,
         "status": status == null ? null : status,
-        "dateDajout": dateDajout == null ? null : dateDajout,
-        "genreSerie": genreSerie == null ? null : genreSerie.toMap(),
-        "saisonList": saisonList == null ? null : saisonList.toMap(),
+        "dateSortieSerie": dateSortieSerie == null ? null : dateSortieSerie,
+        "saison": saison == null
+            ? null
+            : List<dynamic>.from(saison.map((x) => x.toMap())),
       };
 }
 
-class GenreSerie {
-  GenreSerie({
+class Saison {
+  Saison({
     this.id,
-    this.titre,
-    this.status,
+    this.titreSaison,
+    this.imageSaison,
+    this.episode,
   });
 
   String id;
-  String titre;
-  bool status;
+  String titreSaison;
+  String imageSaison;
+  List<Episode> episode;
 
-  factory GenreSerie.fromMap(Map<String, dynamic> json) => GenreSerie(
+  factory Saison.fromMap(Map<String, dynamic> json) => Saison(
         id: json["id"] == null ? null : json["id"],
-        titre: json["titre"] == null ? null : json["titre"],
-        status: json["status"] == null ? null : json["status"],
+        titreSaison: json["titreSaison"] == null ? null : json["titreSaison"],
+        imageSaison: json["imageSaison"] == null ? null : json["imageSaison"],
+        episode: json["Episode"] == null
+            ? null
+            : List<Episode>.from(
+                json["Episode"].map((x) => Episode.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
         "id": id == null ? null : id,
-        "titre": titre == null ? null : titre,
-        "status": status == null ? null : status,
-      };
-}
-
-class SaisonList {
-  SaisonList({
-    this.serieSaison,
-  });
-
-  SerieSaison serieSaison;
-
-  factory SaisonList.fromMap(Map<String, dynamic> json) => SaisonList(
-        serieSaison: json["serieSaison"] == null
+        "titreSaison": titreSaison == null ? null : titreSaison,
+        "imageSaison": imageSaison == null ? null : imageSaison,
+        "Episode": episode == null
             ? null
-            : SerieSaison.fromMap(json["serieSaison"]),
-      );
-
-  Map<String, dynamic> toMap() => {
-        "serieSaison": serieSaison == null ? null : serieSaison.toMap(),
+            : List<dynamic>.from(episode.map((x) => x.toMap())),
       };
 }
 
-class SerieSaison {
-  SerieSaison({
+class Episode {
+  Episode({
     this.id,
-    this.titre,
-    this.image,
-    this.listEpisodes,
-  });
-
-  String id;
-  String titre;
-  String image;
-  ListEpisodes listEpisodes;
-
-  factory SerieSaison.fromMap(Map<String, dynamic> json) => SerieSaison(
-        id: json["id"] == null ? null : json["id"],
-        titre: json["titre"] == null ? null : json["titre"],
-        image: json["image"] == null ? null : json["image"],
-        listEpisodes: json["listEpisodes"] == null
-            ? null
-            : ListEpisodes.fromMap(json["listEpisodes"]),
-      );
-
-  Map<String, dynamic> toMap() => {
-        "id": id == null ? null : id,
-        "titre": titre == null ? null : titre,
-        "image": image == null ? null : image,
-        "listEpisodes": listEpisodes == null ? null : listEpisodes.toMap(),
-      };
-}
-
-class ListEpisodes {
-  ListEpisodes({
-    this.episodes,
-  });
-
-  Episodes episodes;
-
-  factory ListEpisodes.fromMap(Map<String, dynamic> json) => ListEpisodes(
-        episodes: json["Episodes"] == null
-            ? null
-            : Episodes.fromMap(json["Episodes"]),
-      );
-
-  Map<String, dynamic> toMap() => {
-        "Episodes": episodes == null ? null : episodes.toMap(),
-      };
-}
-
-class Episodes {
-  Episodes({
-    this.id,
-    this.titre,
-    this.image,
+    this.titreEpisode,
+    this.numeroEpisode,
+    this.imageSaison,
     this.description,
-    this.urlEpisodes,
+    this.urlEpisode,
   });
 
   String id;
-  String titre;
-  String image;
+  String titreEpisode;
+  String numeroEpisode;
+  String imageSaison;
   String description;
-  String urlEpisodes;
+  String urlEpisode;
 
-  factory Episodes.fromMap(Map<String, dynamic> json) => Episodes(
+  factory Episode.fromMap(Map<String, dynamic> json) => Episode(
         id: json["id"] == null ? null : json["id"],
-        titre: json["titre"] == null ? null : json["titre"],
-        image: json["image"] == null ? null : json["image"],
+        titreEpisode:
+            json["titreEpisode"] == null ? null : json["titreEpisode"],
+        numeroEpisode:
+            json["numeroEpisode"] == null ? null : json["numeroEpisode"],
+        imageSaison: json["imageSaison"] == null ? null : json["imageSaison"],
         description: json["description"] == null ? null : json["description"],
-        urlEpisodes: json["urlEpisodes"] == null ? null : json["urlEpisodes"],
+        urlEpisode: json["UrlEpisode"] == null ? null : json["UrlEpisode"],
       );
 
   Map<String, dynamic> toMap() => {
         "id": id == null ? null : id,
-        "titre": titre == null ? null : titre,
-        "image": image == null ? null : image,
+        "titreEpisode": titreEpisode == null ? null : titreEpisode,
+        "numeroEpisode": numeroEpisode == null ? null : numeroEpisode,
+        "imageSaison": imageSaison == null ? null : imageSaison,
         "description": description == null ? null : description,
-        "urlEpisodes": urlEpisodes == null ? null : urlEpisodes,
+        "UrlEpisode": urlEpisode == null ? null : urlEpisode,
       };
 }
-
-
-

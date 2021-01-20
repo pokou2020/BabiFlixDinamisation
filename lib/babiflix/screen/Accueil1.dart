@@ -180,7 +180,7 @@ class _MainBodyState extends State<MainBody> {
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        serieData.series[index].image),
+                                        serieData.series[index].imageSerie),
                                     fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -209,7 +209,7 @@ class _MainBodyState extends State<MainBody> {
                                           child: FittedBox(
                                             child: Text(
                                               serieData
-                                                  .series[index].titre,
+                                                  .series[index].titreSerie,
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
@@ -244,7 +244,7 @@ class _MainBodyState extends State<MainBody> {
                                               child: FittedBox(
                                             child: Text(
                                               serieData.series[index]
-                                                  .dateDajout,
+                                                  .dateSortieSerie,
                                               style: TextStyle(
                                                 color: Colors.white,
                                               ),
@@ -253,14 +253,7 @@ class _MainBodyState extends State<MainBody> {
                                           SizedBox(
                                             width: 3,
                                           ),
-                                          Container(
-                                            child: Text(
-                                              "-",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
+                                          
                                           SizedBox(
                                             width: 3,
                                           ),
