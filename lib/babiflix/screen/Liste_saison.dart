@@ -1,9 +1,18 @@
+import 'package:baby_flix/babiflix/provider/data.dart';
+import 'package:baby_flix/babiflix/provider/filmProvider.dart';
+import 'package:baby_flix/babiflix/provider/model/saisonModel.dart';
+import 'package:baby_flix/babiflix/provider/saisonProvider.dart';
 import 'package:baby_flix/babiflix/provider/serieProvider.dart';
+import 'package:baby_flix/babiflix/screen/detailserie.dart';
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
 
 class ListeSaison extends StatefulWidget {
   static const routeName = '/Liste_saison';
+  //pour afficher la liste des saisons
+  final List<Saison> availableSaison;
+  ListeSaison(this.availableSaison);
+
   @override
   _ListeSaisonState createState() => _ListeSaisonState();
 }
@@ -64,7 +73,7 @@ class _ListeSaisonState extends State<ListeSaison> {
         style: TextStyle(color: Colors.black),
         autofocus: true,
         decoration: InputDecoration(
-            hintText: "rechercher une serie",
+            hintText: "rechercher un film",
             border: InputBorder.none,
             hintStyle: TextStyle(color: Colors.grey)),
       ),
@@ -76,28 +85,51 @@ class _ListeSaisonState extends State<ListeSaison> {
           onPressed: () => dynamicSearch()),
     );
   }
+   
+
+  // bool _loadedInitData = false;
+  // String categoryTitle;
+
+  //@override
   // void didChangeDependencies() {
-  //   if (!_loadedInitData) {
-  //     final routeArgs =
-  //         ModalRoute.of(context).settings.arguments as Map<String, String>;
-  //     categoryTitle = routeArgs['title'];
-  //     final categoryId = routeArgs['id'];
-  //     displayedMeals = widget.availableMeals.where((meal) {
-  //       return meal.categories.contains(categoryId);
-  //     }).toList();
-  //     _loadedInitData = true;
-  //   }
+  //    if (!_loadedInitData) {
+  //       final routeArgs =
+  //           ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+  //       categoryTitle = routeArgs['title'];
+  //       final saisonId = routeArgs['id'];
+  //       displayedSaison = widget.availableSaison.where((saisons) {
+  //         return serieData.contains(saisonId);
+  //       }).toList();
+  //       _loadedInitData = true;
+  //     }
 
   //   super.didChangeDependencies();
   // }
+   bool init = true;
+  @override
+  Future<void> didChangeDependencies() async {
+    if (init) {
+      var now = new DateTime.now();
+      print(now);
+      print("//////////////Bonsoir famille//////////////////////");
+       await Provider.of<SaisonProvider>(context, listen: false).getAllsaison();
+
+
+      setState(() {
+        init = false;
+      });
+    }
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final serieData = Provider.of<SerieProvider>(context);
-
-    final serieID = ModalRoute.of(context).settings.arguments as String;
-    final selectedSaison =
-        serieData.series.firstWhere((element) => element.id == serieID);
+  final saisonData=Provider.of<SaisonProvider>(context);
+  final serieID=ModalRoute.of(context).settings.arguments as String;
+  final selectedSaison=saisonData.saisons.where((saison) => saison.serieId.contains(serieID)).toList();
+  print(selectedSaison);
+    
     return Scaffold(
       appBar: search ? searchAppBar() : defaultAppBar(),
       body: Container(
@@ -108,63 +140,10 @@ class _ListeSaisonState extends State<ListeSaison> {
           padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Column(
             children: <Widget>[
-              Container(
-                height: 50,
-                alignment: Alignment.center,
-                child: Text(
-                  " Toutes les saison",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: MediaQuery.of(context).size.height / 11,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                          color: Color.fromRGBO(59, 59, 60, 1), width: 2)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          child: Text(
-                            "Filtrer par ",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: DropdownButton(
-                            underline: SizedBox(),
-                            items: this._dropDownMenuItems,
-                            dropdownColor: Colors.black,
-                            hint: Text(
-                              _btnSelectedVAl,
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            onChanged: (String newValue) {
-                              setState(() {
-                                _btnSelectedVAl = newValue;
-                              });
-                            }),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
               Expanded(
                 child: Container(
                     child: GridView.builder(
-                  itemCount: selectedSaison.saison.length,
+                  itemCount: selectedSaison.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 1,
@@ -174,48 +153,55 @@ class _ListeSaisonState extends State<ListeSaison> {
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(
-                                    '${selectedSaison.saison[index].imageSaison}'),
-                                fit: BoxFit.cover),
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  height: 30,
-                                  width: 60,
-                                  color: Colors.black38,
-                                  child: Text(
-                                    "${selectedSaison.saison[index].titreSaison}",
-                                    style: TextStyle(color: Colors.red),
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.of(context).pushNamed(DetailSerie.routeName,
+                          arguments: saisonData.saisons[index].id
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      '${selectedSaison[index].imageSaison}'),
+                                  fit: BoxFit.cover),
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 30,
+                                    width: 60,
+                                    color: Colors.black38,
+                                    child: Text(
+                                      "Saison${selectedSaison[index].numeroSaison}",
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Color.fromRGBO(59, 59, 60, 1),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10),
                                   ),
-                                )
-                              ],
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(59, 59, 60, 1),
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10),
                                 ),
-                              ),
-                              child: Text(
-                                "${selectedSaison.titreSerie}",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            )
-                          ],
+                                child: Text(
+                                  "${selectedSaison[index].titreSaison}",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     );

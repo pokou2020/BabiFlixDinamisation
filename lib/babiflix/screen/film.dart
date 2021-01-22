@@ -1,7 +1,5 @@
 import 'package:baby_flix/babiflix/provider/data.dart';
-import 'package:baby_flix/babiflix/provider/film.dart';
 import 'package:baby_flix/babiflix/provider/filmProvider.dart';
-import 'package:baby_flix/babiflix/provider/films.dart';
 import 'package:baby_flix/babiflix/widget/filmItem.dart';
 import 'package:baby_flix/babiflix/widget/teveItem.dart';
 import 'package:flutter/material.dart';

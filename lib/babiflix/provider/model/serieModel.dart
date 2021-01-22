@@ -1,106 +1,106 @@
-class Serie {
-  Serie({
-    this.id,
-    this.titreSerie,
-    this.imageSerie,
-    this.nombreSaisonSerie,
-    this.status,
-    this.dateSortieSerie,
-    this.saison,
-  });
+// class Serie {
+//   Serie({
+//     this.id,
+//     this.titreSerie,
+//     this.imageSerie,
+//     this.nombreSaisonSerie,
+//     this.status,
+//     this.dateSortieSerie,
+//     this.saison,
+//   });
 
-  String id;
-  String titreSerie;
-  String imageSerie;
-  String nombreSaisonSerie;
-  bool status;
-  String dateSortieSerie;
-  List<Saison> saison;
-}
+//   String id;
+//   String titreSerie;
+//   String imageSerie;
+//   String nombreSaisonSerie;
+//   bool status;
+//   String dateSortieSerie;
+//   List<Saison> saison;
+// }
 
-class Saison {
-  Saison({
-    this.id,
-    // this.idSerie,
-    this.titreSaison,
-    this.imageSaison,
-    this.episode,
-  });
+// class Saison {
+//   Saison({
+//     this.id,
+//     // this.idSerie,
+//     this.titreSaison,
+//     this.imageSaison,
+//     this.episode,
+//   });
 
-  String id;
-  String titreSaison;
-  String imageSaison;
-  // String idSerie;
-  List<Episode> episode;
-}
+//   String id;
+//   String titreSaison;
+//   String imageSaison;
+//   // String idSerie;
+//   List<Episode> episode;
+// }
 
-class Episode {
-  Episode({
-    this.id,
-    // this.idSaison,
-    this.titreEpisode,
-    this.numeroEpisode,
-    this.imageSaison,
-    this.description,
-    this.urlEpisode,
-  });
+// class Episode {
+//   Episode({
+//     this.id,
+//     // this.idSaison,
+//     this.titreEpisode,
+//     this.numeroEpisode,
+//     this.imageSaison,
+//     this.description,
+//     this.urlEpisode,
+//   });
 
-  String id;
-//  String idSaison;
-  String titreEpisode;
-  String numeroEpisode;
-  String imageSaison;
-  String description;
-  String urlEpisode;
-}
+//   String id;
+// //  String idSaison;
+//   String titreEpisode;
+//   String numeroEpisode;
+//   String imageSaison;
+//   String description;
+//   String urlEpisode;
+// }
 
 
 
 // To parse this JSON data, do
-//
+
 //     final serie = serieFromMap(jsonString);
 
-// import 'dart:convert';
+import 'dart:convert';
 
-// Serie serieFromMap(String str) => Serie.fromMap(json.decode(str));
+Serie serieFromMap(String str) => Serie.fromMap(json.decode(str));
 
-// String serieToMap(Serie data) => json.encode(data.toMap());
+String serieToMap(Serie data) => json.encode(data.toMap());
 
-// class Serie {
-//     Serie({
-//         this.id,
-//         this.titreSerie,
-//         this.imageSerie,
-//         this.nombreSaisonSerie,
-//         this.status,
-//         this.dateSortieSerie,
-//     });
+class Serie {
+    Serie({
+        this.id,
+        this.titreSerie,
+        this.imageSerie,
+        this.nombreSaisonSerie,
+        this.status,
+        this.dateSortieSerie,
+    });
 
-//     String id;
-//     String titreSerie;
-//     String imageSerie;
-//     String nombreSaisonSerie;
-//     bool status;
-//     String dateSortieSerie;
+    String id;
+    String titreSerie;
+    String imageSerie;
+    String nombreSaisonSerie;
+    bool status;
+    String dateSortieSerie;
 
-//     factory Serie.fromMap(Map<String, dynamic> json) => Serie(
-//         id: json["id"] == null ? null : json["id"],
-//         titreSerie: json["titreSerie"] == null ? null : json["titreSerie"],
-//         imageSerie: json["imageSerie"] == null ? null : json["imageSerie"],
-//         nombreSaisonSerie: json["nombreSaisonSerie"] == null ? null : json["nombreSaisonSerie"],
-//         status: json["status"] == null ? null : json["status"],
-//         dateSortieSerie: json["dateSortieSerie"] == null ? null : json["dateSortieSerie"],
-//     );
+    factory Serie.fromMap(Map<String, dynamic> json) => Serie(
+        id: json["id"] == null ? null : json["id"],
+        titreSerie: json["titreSerie"] == null ? null : json["titreSerie"],
+        imageSerie: json["imageSerie"] == null ? null : json["imageSerie"],
+        nombreSaisonSerie: json["nombreSaisonSerie"] == null ? null : json["nombreSaisonSerie"],
+        status: json["status"] == null ? null : json["status"],
+        dateSortieSerie: json["dateSortieSerie"] == null ? null : json["dateSortieSerie"],
+    );
 
-//     Map<String, dynamic> toMap() => {
-//         "id": id == null ? null : id,
-//         "titreSerie": titreSerie == null ? null : titreSerie,
-//         "imageSerie": imageSerie == null ? null : imageSerie,
-//         "nombreSaisonSerie": nombreSaisonSerie == null ? null : nombreSaisonSerie,
-//         "status": status == null ? null : status,
-//         "dateSortieSerie": dateSortieSerie == null ? null : dateSortieSerie,
-//     };
-// }
+    Map<String, dynamic> toMap() => {
+        "id": id == null ? null : id,
+        "titreSerie": titreSerie == null ? null : titreSerie,
+        "imageSerie": imageSerie == null ? null : imageSerie,
+        "nombreSaisonSerie": nombreSaisonSerie == null ? null : nombreSaisonSerie,
+        "status": status == null ? null : status,
+        "dateSortieSerie": dateSortieSerie == null ? null : dateSortieSerie,
+    };
+}
 
 
 

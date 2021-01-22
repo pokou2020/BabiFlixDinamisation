@@ -117,7 +117,7 @@ class _ListeFilmState extends State<ListeFilm> {
               Expanded(
                 child: Container(
                     child: GridView.builder(
-                  itemCount: selectedSaison.saison.length,
+                  itemCount: 4,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 1,
@@ -131,8 +131,8 @@ class _ListeFilmState extends State<ListeFilm> {
                         color: Colors.red,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage(
-                                    '${selectedSaison.saison[index].imageSaison}'),
+                                image: NetworkImage(
+                                    '${selectedSaison.imageSerie}'),
                                 fit: BoxFit.cover),
                             color: Colors.grey,
                             borderRadius: BorderRadius.circular(10)),
@@ -146,7 +146,7 @@ class _ListeFilmState extends State<ListeFilm> {
                                   width: 60,
                                   color: Colors.black38,
                                   child: Text(
-                                    "${selectedSaison.saison[index].titreSaison}",
+                                    "${selectedSaison.titreSerie}",
                                     style: TextStyle(color: Colors.red),
                                   ),
                                 )

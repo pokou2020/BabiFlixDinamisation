@@ -1,10 +1,14 @@
 import 'package:baby_flix/babiflix/provider/data.dart';
+import 'package:baby_flix/babiflix/provider/episodeProvider.dart';
 import 'package:baby_flix/babiflix/widget/filmItem.dart';
 import 'package:baby_flix/babiflix/widget/teveItem.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 class DetailSerie extends StatefulWidget {
+   static const routeName='/Episode_Detail';
   @override
   _DetailSerieState createState() => _DetailSerieState();
 }
@@ -15,6 +19,7 @@ class _DetailSerieState extends State<DetailSerie> {
     'Saison 2',
     'Saison 3',
   ];
+  
   final List<DropdownMenuItem<String>> _dropDownMenuItems = menuItems
       .map((String value) => DropdownMenuItem<String>(
             value: value,
@@ -25,8 +30,28 @@ class _DetailSerieState extends State<DetailSerie> {
           ))
       .toList();
   String _btnSelectedVAl = 'Saison 1';
+   bool init = true;
+  @override
+  Future<void> didChangeDependencies() async {
+    if (init) {
+      var now = new DateTime.now();
+      print(now);
+      print("//////////////Bonsoir famille//////////////////////");
+       await Provider.of<EpisodeProvider>(context, listen: false).getAllEpisode();
+
+
+      setState(() {
+        init = false;
+      });
+    }
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
+    final episodeSaison=Provider.of<EpisodeProvider>(context);
+    final saisonID=ModalRoute.of(context).settings.arguments as String;
+    final selectedEpisode=episodeSaison.episodes.where((element) => element.saisonId.contains(saisonID)).toList();
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -416,7 +441,7 @@ class _DetailSerieState extends State<DetailSerie> {
                         width: MediaQuery.of(context).size.width,
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
-                          itemCount: 7,
+                          itemCount: selectedEpisode.length,
                           itemBuilder: (context, i) {
                             return Container(
                               height: 110,
@@ -433,14 +458,14 @@ class _DetailSerieState extends State<DetailSerie> {
                                     height: 100,
                                     decoration: BoxDecoration(
                                         image: DecorationImage(
-                                          image: AssetImage('images/film3.jpg'),
+                                          image: NetworkImage( "${selectedEpisode[i].imageSaison}"),
                                           fit: BoxFit.cover,
                                         ),
                                         borderRadius: BorderRadius.circular(5)),
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    'Episode 1',
+                                   "${selectedEpisode[i].titreEpisode}",
                                     style: TextStyle(
                                       color: Colors.white,
                                     ),

@@ -1,14 +1,15 @@
+import 'package:baby_flix/babiflix/provider/model/episodeModel.dart';
 import 'package:baby_flix/babiflix/provider/model/saisonModel.dart';
 import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class SerieProvider with ChangeNotifier {
-  List<Serie> _series = [];
-  List<Serie> get series => this._series;
-  Future<void> getAllSerie() async{
-    final url="https://babiflixdinamisation-default-rtdb.firebaseio.com/serie.json";
+class EpisodeProvider with ChangeNotifier {
+  List<Epsiode> _episodes = [];
+  List<Epsiode> get episodes => this._episodes;
+  Future<void> getAllEpisode() async{
+    final url="https://babiflixdinamisation-default-rtdb.firebaseio.com/episode.json";
   try{
     final result = await http.get(url);
      print("////////Get info from provider////////");
@@ -16,16 +17,16 @@ class SerieProvider with ChangeNotifier {
       print(result.statusCode);
     if(result.statusCode == 200){
        final fetchData = json.decode(result.body) as  Map<String, dynamic> ;
-      List<Serie> all = [];
+      List<Epsiode> all = [];
       fetchData.forEach((key, value) {
         print(value);
-        Serie mesSerie = Serie.fromMap(value);
-        mesSerie.id = key;
+        Epsiode mesepisode = Epsiode.fromMap(value);
+        mesepisode.id = key;
         print("/////////////////////key key${key.toString()}/////////////////////key key");
-        all.add(mesSerie);
-         print("////////////////Nouveau add ${mesSerie.toMap()}//////////////////////////");
+        all.add(mesepisode);
+         print("////////////////Nouveau add ${mesepisode.toMap()}//////////////////////////");
       });
-      _series = all;
+      _episodes = all;
       notifyListeners();
     }
   } catch(e){
