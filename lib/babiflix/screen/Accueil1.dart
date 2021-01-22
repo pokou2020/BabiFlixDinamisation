@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import 'Liste_Films.dart';
+
 class Acceuil1 extends StatefulWidget {
   @override
   _Acceuil1State createState() => _Acceuil1State();
@@ -253,7 +255,6 @@ class _MainBodyState extends State<MainBody> {
                                           SizedBox(
                                             width: 3,
                                           ),
-                                          
                                           SizedBox(
                                             width: 3,
                                           ),
@@ -330,7 +331,9 @@ class _MainBodyState extends State<MainBody> {
                           padding: const EdgeInsets.all(8.0),
                           child: InkWell(
                             onTap: () {
-                              Navigator.of(context).pushNamed("Liste_Films");
+                              Navigator.of(context).pushNamed(
+                                  ListeFilm.routeName,
+                                  arguments: genreData.genre[index].id);
                             },
                             child: Container(
                               width: 100,

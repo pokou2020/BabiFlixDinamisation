@@ -1,4 +1,3 @@
-
 import 'package:baby_flix/babiflix/provider/genreProvider.dart';
 import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
 import 'package:baby_flix/babiflix/provider/serieProvider.dart';
@@ -58,12 +57,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: GenreProvider(),
         ),
-          ChangeNotifierProvider.value(
+        ChangeNotifierProvider.value(
           value: SerieProvider(),
         ),
-       
-        
-        
       ],
       child: MaterialApp(
           title: 'Flutter Demo',
@@ -99,15 +95,14 @@ class MyApp extends StatelessWidget {
             "Chaine": (context) => Chaine(),
             "profil": (context) => Profile2(),
             "Liste_Serie": (context) => ListeSerie(),
-            "Liste_Films": (context) => Listefilms(),
+            // "Liste_Films": (context) => Listefilms(),
             "Liste_Animes": (context) => ListeAnimes(),
             "Liste_Novelas": (context) => ListeNovelas(),
             "movieDetail": (context) => DetailSerie(),
             "modifProfile": (context) => ModiProfile(),
             "MoadifModepass": (context) => MoadifModepass(),
             FilmDetail.routeName: (context) => FilmDetail(),
-            ListeSaison.routeName:(context)=>ListeSaison(),
-
+            ListeSaison.routeName: (context) => ListeSaison(),
           }),
     );
   }
