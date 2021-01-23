@@ -29,7 +29,7 @@ class _Acceuil1State extends State<Acceuil1>
       print(now);
       print("//////////////Bonjour le monde//////////////////////");
       await Provider.of<FilmProvider>(context, listen: false).getAllFilm();
-       await Provider.of<SerieProvider>(context, listen: false).getAllSerie();
+      await Provider.of<SerieProvider>(context, listen: false).getAllSerie();
 
       await Provider.of<GenreProvider>(context, listen: false).getAllGenre();
 

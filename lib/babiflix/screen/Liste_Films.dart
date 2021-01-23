@@ -1,10 +1,11 @@
 import 'package:baby_flix/babiflix/provider/filmProvider.dart';
+import 'package:baby_flix/babiflix/provider/filmProviderTest.dart';
 import 'package:baby_flix/babiflix/provider/serieProvider.dart';
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
 
 class ListeFilm extends StatefulWidget {
-  static const routeName = '/Liste_saison';
+  static const routeName = '/Liste_film';
   @override
   _ListeFilmState createState() => _ListeFilmState();
 }
@@ -43,8 +44,8 @@ class _ListeFilmState extends State<ListeFilm> {
           child: Image(
             image: AssetImage('images/bbf.png'),
           )),
-      //  Text(
-      //   'BABIFLIX',
+      //     Text(
+      //   genreTitle,
       //   style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
       // ),
       actions: <Widget>[
@@ -78,32 +79,37 @@ class _ListeFilmState extends State<ListeFilm> {
     );
   }
 
-  bool _loadedInitData = false;
-  String categoryTitle;
+  bool init = true;
 
   @override
-  void didChangeDependencies() {
-    //  if (!_loadedInitData) {
-    //     final routeArgs =
-    //         ModalRoute.of(context).settings.arguments as Map<String, String>;
-    //     categoryTitle = routeArgs['title'];
-    //     final categoryId = routeArgs['id'];
-    //     displayedMeals = widget.availableMeals.where((meal) {
-    //       return meal.categories.contains(categoryId);
-    //     }).toList();
-    //     _loadedInitData = true;
-    //   }
+  Future<void> didChangeDependencies() async {
+    if (init) {
+      var now = new DateTime.now();
+      print(now);
+      print("//////////////Bonsoir famille//////////////////////");
+      // await Provider.of<FilmProviderTest>(context, listen: false);
 
+      setState(() {
+        init = false;
+      });
+    }
+    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    final filmData = Provider.of<SerieProvider>(context);
+    final filmData = Provider.of<FilmProviderTest>(context);
+    // final routeArgs =
+    //         ModalRoute.of(context).settings.arguments as Map<String, String>;
+    //     genreTitle = routeArgs['title'];
 
     final genreID = ModalRoute.of(context).settings.arguments as String;
-    final selectedSaison =
-        filmData.series.firstWhere((element) => element.id == genreID);
+
+    final selectedfilm = filmData.filmsTest
+        .where((film) => film.genreId.contains(genreID))
+        .toList();
+
     return Scaffold(
       appBar: search ? searchAppBar() : defaultAppBar(),
       body: Container(
@@ -117,7 +123,7 @@ class _ListeFilmState extends State<ListeFilm> {
               Expanded(
                 child: Container(
                     child: GridView.builder(
-                  itemCount: 4,
+                  itemCount: selectedfilm.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 1,
@@ -128,13 +134,12 @@ class _ListeFilmState extends State<ListeFilm> {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        color: Colors.red,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: NetworkImage(
-                                    '${selectedSaison.imageSerie}'),
+                                image:
+                                    AssetImage('${selectedfilm[index].image}'),
                                 fit: BoxFit.cover),
-                            color: Colors.grey,
+                            color: Colors.red,
                             borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -146,7 +151,7 @@ class _ListeFilmState extends State<ListeFilm> {
                                   width: 60,
                                   color: Colors.black38,
                                   child: Text(
-                                    "${selectedSaison.titreSerie}",
+                                    "${selectedfilm[index].dateSortie}",
                                     style: TextStyle(color: Colors.red),
                                   ),
                                 )
@@ -163,7 +168,7 @@ class _ListeFilmState extends State<ListeFilm> {
                                 ),
                               ),
                               child: Text(
-                                "${selectedSaison.titreSerie}",
+                                "${selectedfilm[index].titre}",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
