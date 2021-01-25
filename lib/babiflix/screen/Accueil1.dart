@@ -516,38 +516,38 @@ class _MainBodyState extends State<MainBody> {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 150,
-                    child: ListView.builder(
-                      itemCount: filmsData.getgenreFlimAfrique().length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, i) {
-                        return InkWell(
-                          onTap: () {
-                            Navigator.of(context).pushNamed(
-                                FilmDetail.routeName,
-                                arguments:
-                                    filmsData.getgenreFlimAfrique()[i].id);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 120,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(filmsData
-                                        .getgenreFlimAfrique()[i]
-                                        .image),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                  // Container(
+                  //   height: 150,
+                  //   child: ListView.builder(
+                  //     itemCount: filmsData.getgenreFlimAfrique().length,
+                  //     scrollDirection: Axis.horizontal,
+                  //     itemBuilder: (context, i) {
+                  //       return InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context).pushNamed(
+                  //               FilmDetail.routeName,
+                  //               arguments:
+                  //                   filmsData.getgenreFlimAfrique()[i].id);
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.all(8.0),
+                  //           child: Container(
+                  //             width: 120,
+                  //             decoration: BoxDecoration(
+                  //               image: DecorationImage(
+                  //                   image: NetworkImage(filmsData
+                  //                       .getgenreFlimAfrique()[i]
+                  //                       .image),
+                  //                   fit: BoxFit.cover),
+                  //               borderRadius: BorderRadius.circular(10),
+                  //               color: Colors.red,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
 
                   Padding(
                     padding: const EdgeInsets.all(10),
@@ -558,38 +558,38 @@ class _MainBodyState extends State<MainBody> {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 150,
-                    child: ListView.builder(
-                      itemCount: filmsData.getgenreFlimAComique().length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, i) {
-                        return InkWell(
-                          onTap: () {
-                            Navigator.of(context).pushNamed(
-                                FilmDetail.routeName,
-                                arguments:
-                                    filmsData.getgenreFlimAComique()[i].id);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 120,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(filmsData
-                                        .getgenreFlimAComique()[i]
-                                        .image),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                  // Container(
+                  //   height: 150,
+                  //   child: ListView.builder(
+                  //     itemCount: filmsData.getgenreFlimAComique().length,
+                  //     scrollDirection: Axis.horizontal,
+                  //     itemBuilder: (context, i) {
+                  //       return InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context).pushNamed(
+                  //               FilmDetail.routeName,
+                  //               arguments:
+                  //                   filmsData.getgenreFlimAComique()[i].id);
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.all(8.0),
+                  //           child: Container(
+                  //             width: 120,
+                  //             decoration: BoxDecoration(
+                  //               image: DecorationImage(
+                  //                   image: NetworkImage(filmsData
+                  //                       .getgenreFlimAComique()[i]
+                  //                       .image),
+                  //                   fit: BoxFit.cover),
+                  //               borderRadius: BorderRadius.circular(10),
+                  //               color: Colors.red,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
 
                   SizedBox(
                     height: 10,

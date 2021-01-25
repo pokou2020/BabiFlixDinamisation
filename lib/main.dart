@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(value: SaisonProvider()),
         ChangeNotifierProvider.value(value: EpisodeProvider()),
-        ChangeNotifierProvider.value(value: FilmProviderTest())
+        ChangeNotifierProvider.value(value: FilmProvider())
       ],
       child: MaterialApp(
           title: 'Flutter Demo',

@@ -366,7 +366,8 @@ class _FilmDetailState extends State<FilmDetail> {
                       Container(
                         width: MediaQuery.of(context).size.width,
                         child: Text(
-                          "${selectedFilm.genreFilm.titre}",
+                          "genre",
+                          // "${selectedFilm.genreFilm.titre}",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),

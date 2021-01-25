@@ -99,16 +99,15 @@ class _ListeFilmState extends State<ListeFilm> {
 
   @override
   Widget build(BuildContext context) {
-    final filmData = Provider.of<FilmProviderTest>(context);
+    final filmData = Provider.of<FilmProvider>(context);
     // final routeArgs =
     //         ModalRoute.of(context).settings.arguments as Map<String, String>;
     //     genreTitle = routeArgs['title'];
 
     final genreID = ModalRoute.of(context).settings.arguments as String;
 
-    final selectedfilm = filmData.filmsTest
-        .where((film) => film.genreId.contains(genreID))
-        .toList();
+    final selectedfilm =
+        filmData.films.where((film) => film.genreId.contains(genreID)).toList();
 
     return Scaffold(
       appBar: search ? searchAppBar() : defaultAppBar(),

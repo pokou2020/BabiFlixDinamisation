@@ -13,48 +13,48 @@ class FilmProvider with ChangeNotifier {
   List<Film> get films => this._films;
 
 //permet de filtrer Les genre de film
-  List<Film> getgenreFlimAfrique() {
-    try {
-      return _films
-          .where((element) => element.genreFilm.titre == "Afrique")
-          .toList();
-    } catch (e) {
-      print("Error to get info from provider ${e.toString()}");
-    }
-  }
+  // List<Film> getgenreFlimAfrique() {
+  //   try {
+  //     return _films
+  //         .where((element) => element.genreFilm.titre == "Afrique")
+  //         .toList();
+  //   } catch (e) {
+  //     print("Error to get info from provider ${e.toString()}");
+  //   }
+  // }
 
-  List<Film> getgenreFlimAComique() {
-    try {
-      return _films
-          .where((element) => element.genreFilm.titre == "Comique")
-          .toList();
-    } catch (e) {
-      print("Error to get info from provider ${e.toString()}");
-    }
-  }
+  // List<Film> getgenreFlimAComique() {
+  //   try {
+  //     return _films
+  //         .where((element) => element.genreFilm.titre == "Comique")
+  //         .toList();
+  //   } catch (e) {
+  //     print("Error to get info from provider ${e.toString()}");
+  //   }
+  // }
 
   // permet de convertir les chaines de caratere en Datime et d'afficher les  films les  plus recent
-  List<Film> filmRecent() {
-    //List<Film> _films = [];
-    List<DateTime> sortieFilm = [];
-    DateFormat format = DateFormat("yyyy-MM-dd HH:mm:ss");
+  // List<Film> filmRecent() {
+  //   //List<Film> _films = [];
+  //   List<DateTime> sortieFilm = [];
+  //   DateFormat format = DateFormat("yyyy-MM-dd HH:mm:ss");
 
-    for (int i = 0; i < films.length; i++) {
-      sortieFilm.add(format.parse(_films[i].dateSortie));
-    }
+  //   for (int i = 0; i < films.length; i++) {
+  //     sortieFilm.add(format.parse(_films[i].dateSortie));
+  //   }
 
-    sortieFilm.sort((key, value) {
-      var now = DateTime.now();
-      //before -> var adate = a.expiry;
-      //var bdate =  "10/04/2021";//before -> var bdate = b.expiry;
-      return now.compareTo(
-          value); //to get the order other way just switch `adate & bdate`
-    });
-    for (int i = 0; i < sortieFilm.length; i++) {
-      print(
-          "///////////////////////////////////////${films[i].dateSortie}//////////////////////////////////////");
-    }
-  }
+  //   sortieFilm.sort((key, value) {
+  //     var now = DateTime.now();
+  //     //before -> var adate = a.expiry;
+  //     //var bdate =  "10/04/2021";//before -> var bdate = b.expiry;
+  //     return now.compareTo(
+  //         value); //to get the order other way just switch `adate & bdate`
+  //   });
+  //   for (int i = 0; i < sortieFilm.length; i++) {
+  //     print(
+  //         "///////////////////////////////////////${films[i].dateSortie}//////////////////////////////////////");
+  //   }
+  // }
 
   Future<void> getAllFilm() async {
     final url =

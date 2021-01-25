@@ -3,14 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'model/filmModel.dart';
-
 class GenreProvider with ChangeNotifier {
   List<Genre> _genre = [];
   List<Genre> get genre => this._genre;
-
-  List<Film> _films = [];
-  List<Film> get films => this._films;
 
   Future<void> getAllGenre() async {
     final url =
@@ -33,15 +28,15 @@ class GenreProvider with ChangeNotifier {
     }
   }
 
-  var genreTitre = Genre().titre;
+  // var genreTitre = Genre().titre;
 
-  List<Film> getgenreFlim() {
-    try {
-      return _films
-          .where((element) => element.genreFilm.titre == genreTitre)
-          .toList();
-    } catch (e) {
-      print("Error to get info from provider ${e.toString()}");
-    }
-  }
+  // List<Film> getgenreFlim() {
+  //   try {
+  //     return _films
+  //         .where((element) => element.genreFilm.titre == genreTitre)
+  //         .toList();
+  //   } catch (e) {
+  //     print("Error to get info from provider ${e.toString()}");
+  //   }
+  // }
 }
