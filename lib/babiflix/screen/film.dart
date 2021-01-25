@@ -45,7 +45,7 @@ class _FilmDetailState extends State<FilmDetail> {
     final selectedFilm =
         filmsData.films.firstWhere((film) => film.id == filmID);
     _controller = VideoPlayerController.network(
-        'https://www.youtube.com/watch?v=ILK2sa5iLsI')
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});

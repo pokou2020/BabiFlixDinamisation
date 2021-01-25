@@ -55,65 +55,65 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Saison> _availableSaison;
-     List<Epsiode> _availableSaisons;
-        return MultiProvider(
-          providers: [
-            ChangeNotifierProvider.value(
-              value: FilmProvider(),
-            ),
-            ChangeNotifierProvider.value(
-              value: GenreProvider(),
-            ),
-            ChangeNotifierProvider.value(
-              value: SerieProvider(),
-            ),
-            ChangeNotifierProvider.value(value: SaisonProvider()),
-              ChangeNotifierProvider.value(value: EpisodeProvider())
-          ],
-          child: MaterialApp(
-              title: 'Flutter Demo',
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                unselectedWidgetColor: Colors.white,
-                primarySwatch: Colors.red,
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-              ),
-              home: SplashScreen(),
-              routes: {
-                'inscrip': (context) => Inscription(),
-                'connex': (context) => Connexion(),
-                "inscr": (context) => Acceuil1(),
-                "connec": (context) => Acceuil1(),
-                "teve": (context) => Tele(),
-                // "Liste_films_Action": (context) => ListefilmsAction(),
-                "seri": (context) => SerieCate(),
-                "ytb": (context) => Youtbe(),
-                "radio": (context) => RadioCate(),
-                "afr": (context) => Afrik(),
-                "nov": (context) => Novelas(),
-                "par": (context) => Parametr(),
-                "compt": (ctx) => Profil(),
-                // "sinops": (context) => Film(),
-                "VoirPlus": (context) => VoirPlus(),
-                "drawer": (context) => Drawers(),
-                'Accueil1': (context) => Acceuil1(),
-                "suggession": (context) => Suggession(),
-                // 'movieDetail': (context) => FilmDetail(),
-                'teleDetail': (context) => DetailTele(),
-                //"radio":(context)=>RadioCate(),
-                "Chaine": (context) => Chaine(),
-                "profil": (context) => Profile2(),
-                "Liste_Serie": (context) => ListeSerie(),
-                // "Liste_Films": (context) => Listefilms(),
-                "Liste_Animes": (context) => ListeAnimes(),
-                "Liste_Novelas": (context) => ListeNovelas(),
-                //"movieDetail": (context) => DetailSerie(),
-                "modifProfile": (context) => ModiProfile(),
-                "MoadifModepass": (context) => MoadifModepass(),
-                FilmDetail.routeName: (context) => FilmDetail(),
-                ListeSaison.routeName: (context) => ListeSaison(_availableSaison),
-                DetailSerie.routeName:(context)=>DetailSerie(_availableSaisons),
-
+    List<Epsiode> _availableSaisons;
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: FilmProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: GenreProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: SerieProvider(),
+        ),
+        ChangeNotifierProvider.value(value: SaisonProvider()),
+        ChangeNotifierProvider.value(value: EpisodeProvider())
+      ],
+      child: MaterialApp(
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            unselectedWidgetColor: Colors.white,
+            primarySwatch: Colors.red,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: SplashScreen(),
+          routes: {
+            'inscrip': (context) => Inscription(),
+            'connex': (context) => Connexion(),
+            "inscr": (context) => Acceuil1(),
+            "connec": (context) => Acceuil1(),
+            "teve": (context) => Tele(),
+            // "Liste_films_Action": (context) => ListefilmsAction(),
+            "seri": (context) => SerieCate(),
+            "ytb": (context) => Youtbe(),
+            "radio": (context) => RadioCate(),
+            "afr": (context) => Afrik(),
+            "nov": (context) => Novelas(),
+            "par": (context) => Parametr(),
+            "compt": (ctx) => Profil(),
+            // "sinops": (context) => Film(),
+            "VoirPlus": (context) => VoirPlus(),
+            "drawer": (context) => Drawers(),
+            'Accueil1': (context) => Acceuil1(),
+            "suggession": (context) => Suggession(),
+            // 'movieDetail': (context) => FilmDetail(),
+            'teleDetail': (context) => DetailTele(),
+            //"radio":(context)=>RadioCate(),
+            "Chaine": (context) => Chaine(),
+            "profil": (context) => Profile2(),
+            "Liste_Serie": (context) => ListeSerie(),
+            // "Liste_Films": (context) => Listefilms(),
+            "Liste_Animes": (context) => ListeAnimes(),
+            "Liste_Novelas": (context) => ListeNovelas(),
+            //"movieDetail": (context) => DetailSerie(),
+            "modifProfile": (context) => ModiProfile(),
+            "MoadifModepass": (context) => MoadifModepass(),
+            FilmDetail.routeName: (context) => FilmDetail(),
+            ListeSaison.routeName: (context) => ListeSaison(_availableSaison),
+            DetailSerie.routeName: (context) => DetailSerie(_availableSaisons),
+            ListeFilm.routeName: (context) => ListeFilm(),
           }),
     );
   }

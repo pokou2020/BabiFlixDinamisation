@@ -85,7 +85,6 @@ class _ListeSaisonState extends State<ListeSaison> {
           onPressed: () => dynamicSearch()),
     );
   }
-   
 
   // bool _loadedInitData = false;
   // String categoryTitle;
@@ -105,15 +104,14 @@ class _ListeSaisonState extends State<ListeSaison> {
 
   //   super.didChangeDependencies();
   // }
-   bool init = true;
+  bool init = true;
   @override
   Future<void> didChangeDependencies() async {
     if (init) {
       var now = new DateTime.now();
       print(now);
       print("//////////////Bonsoir famille//////////////////////");
-       await Provider.of<SaisonProvider>(context, listen: false).getAllsaison();
-
+      await Provider.of<SaisonProvider>(context, listen: false).getAllsaison();
 
       setState(() {
         init = false;
@@ -125,11 +123,13 @@ class _ListeSaisonState extends State<ListeSaison> {
 
   @override
   Widget build(BuildContext context) {
-  final saisonData=Provider.of<SaisonProvider>(context);
-  final serieID=ModalRoute.of(context).settings.arguments as String;
-  final selectedSaison=saisonData.saisons.where((saison) => saison.serieId.contains(serieID)).toList();
-  print(selectedSaison);
-    
+    final saisonData = Provider.of<SaisonProvider>(context);
+    final serieID = ModalRoute.of(context).settings.arguments as String;
+    final selectedSaison = saisonData.saisons
+        .where((saison) => saison.serieId.contains(serieID))
+        .toList();
+    print(selectedSaison);
+
     return Scaffold(
       appBar: search ? searchAppBar() : defaultAppBar(),
       body: Container(
@@ -154,10 +154,9 @@ class _ListeSaisonState extends State<ListeSaison> {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
-                        onTap: (){
+                        onTap: () {
                           Navigator.of(context).pushNamed(DetailSerie.routeName,
-                          arguments: saisonData.saisons[index].id
-                          );
+                              arguments: selectedSaison[index].id);
                         },
                         child: Container(
                           decoration: BoxDecoration(
