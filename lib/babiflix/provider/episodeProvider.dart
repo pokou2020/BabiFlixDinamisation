@@ -8,11 +8,11 @@ import 'dart:convert';
 class EpisodeProvider with ChangeNotifier {
   List<Epsiode> _episodes = [];
   List<Epsiode> get episodes => this._episodes;
+
   Future<void> getAllEpisode() async{
     final url="https://babiflixdinamisation-default-rtdb.firebaseio.com/episode.json";
   try{
     final result = await http.get(url);
-     print("////////Get info from provider////////");
       print(result.body);
       print(result.statusCode);
     if(result.statusCode == 200){
@@ -24,7 +24,7 @@ class EpisodeProvider with ChangeNotifier {
         mesepisode.id = key;
         print("/////////////////////key key${key.toString()}/////////////////////key key");
         all.add(mesepisode);
-         print("////////////////Nouveau add ${mesepisode.toMap()}//////////////////////////");
+         print("////////////////Mes episodes ${mesepisode.toMap()}Mes episodes//////////////////////////");
       });
       _episodes = all;
       notifyListeners();

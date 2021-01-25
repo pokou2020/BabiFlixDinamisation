@@ -1,5 +1,6 @@
 import 'package:baby_flix/babiflix/provider/data.dart';
 import 'package:baby_flix/babiflix/provider/episodeProvider.dart';
+import 'package:baby_flix/babiflix/provider/model/episodeModel.dart';
 import 'package:baby_flix/babiflix/widget/filmItem.dart';
 import 'package:baby_flix/babiflix/widget/teveItem.dart';
 import 'package:flutter/material.dart';
@@ -9,34 +10,36 @@ import 'package:provider/provider.dart';
 
 class DetailSerie extends StatefulWidget {
    static const routeName='/Episode_Detail';
+    final List<Epsiode> availableSaisons;
+  DetailSerie(this.availableSaisons);
   @override
   _DetailSerieState createState() => _DetailSerieState();
 }
 
 class _DetailSerieState extends State<DetailSerie> {
-  static const menuItems = <String>[
-    'Saison 1',
-    'Saison 2',
-    'Saison 3',
-  ];
+  // static const menuItems = <String>[
+  //   'Saison 1',
+  //   'Saison 2',
+  //   'Saison 3',
+  // ];
   
-  final List<DropdownMenuItem<String>> _dropDownMenuItems = menuItems
-      .map((String value) => DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: TextStyle(color: Colors.white),
-            ),
-          ))
-      .toList();
-  String _btnSelectedVAl = 'Saison 1';
+  // final List<DropdownMenuItem<String>> _dropDownMenuItems = menuItems
+  //     .map((String value) => DropdownMenuItem<String>(
+  //           value: value,
+  //           child: Text(
+  //             value,
+  //             style: TextStyle(color: Colors.white),
+  //           ),
+  //         ))
+  //     .toList();
+  // String _btnSelectedVAl = 'Saison 1';
+
    bool init = true;
   @override
   Future<void> didChangeDependencies() async {
     if (init) {
-      var now = new DateTime.now();
-      print(now);
-      print("//////////////Bonsoir famille//////////////////////");
+      
+      print("//////////////Bonsoir les gars//////////////////////");
        await Provider.of<EpisodeProvider>(context, listen: false).getAllEpisode();
 
 
@@ -47,11 +50,13 @@ class _DetailSerieState extends State<DetailSerie> {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
+
   @override
   Widget build(BuildContext context) {
     final episodeSaison=Provider.of<EpisodeProvider>(context);
     final saisonID=ModalRoute.of(context).settings.arguments as String;
-    final selectedEpisode=episodeSaison.episodes.where((element) => element.saisonId.contains(saisonID)).toList();
+    final selectedEpisode=episodeSaison.episodes.where((episode) => episode.saisonId.contains(saisonID)).toList();
+     print("/////////////////////Episode${selectedEpisode.toString()}Episode/////////////////////key key");
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -391,20 +396,20 @@ class _DetailSerieState extends State<DetailSerie> {
                   padding: EdgeInsets.only(left: 30),
                   child: Column(
                     children: [
-                      Container(
-                          alignment: Alignment.centerRight,
-                          child: DropdownButton(
-                              items: this._dropDownMenuItems,
-                              dropdownColor: Colors.black,
-                              hint: Text(
-                                _btnSelectedVAl,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              onChanged: (String newValue) {
-                                setState(() {
-                                  _btnSelectedVAl = newValue;
-                                });
-                              })),
+                      // Container(
+                      //     alignment: Alignment.centerRight,
+                      //     child: DropdownButton(
+                      //         items: this._dropDownMenuItems,
+                      //         dropdownColor: Colors.black,
+                      //         hint: Text(
+                      //           _btnSelectedVAl,
+                      //           style: TextStyle(color: Colors.white),
+                      //         ),
+                      //         onChanged: (String newValue) {
+                      //           setState(() {
+                      //             _btnSelectedVAl = newValue;
+                      //           });
+                      //         })),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Row(
@@ -456,11 +461,13 @@ class _DetailSerieState extends State<DetailSerie> {
                                   Container(
                                     width: 120,
                                     height: 100,
+                                    
                                     decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: NetworkImage( "${selectedEpisode[i].imageSaison}"),
-                                          fit: BoxFit.cover,
-                                        ),
+                                      color: Colors.red,
+                                        // image: DecorationImage(
+                                        //   image: NetworkImage( "${selectedEpisode[i].imageSaisons}"),
+                                        //   fit: BoxFit.cover,
+                                        // ),
                                         borderRadius: BorderRadius.circular(5)),
                                   ),
                                   SizedBox(width: 10),

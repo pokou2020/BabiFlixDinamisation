@@ -14,7 +14,7 @@ class Epsiode {
         this.saisonId,
         this.titreEpisode,
         this.numeroEpisode,
-        this.imageSaison,
+        this.imageSaisons,
         this.description,
         this.urlEpisode,
     });
@@ -23,7 +23,7 @@ class Epsiode {
     String saisonId;
     String titreEpisode;
     String numeroEpisode;
-    String imageSaison;
+    String imageSaisons;
     String description;
     String urlEpisode;
 
@@ -32,7 +32,7 @@ class Epsiode {
         saisonId: json["saisonId"] == null ? null : json["saisonId"],
         titreEpisode: json["titreEpisode"] == null ? null : json["titreEpisode"],
         numeroEpisode: json["numeroEpisode"] == null ? null : json["numeroEpisode"],
-        imageSaison: json["imageSaison"] == null ? null : json["imageSaison"],
+        imageSaisons: json["imageSaisons"] == null ? null : json["imageSaisons"],
         description: json["description"] == null ? null : json["description"],
         urlEpisode: json["UrlEpisode"] == null ? null : json["UrlEpisode"],
     );
@@ -42,7 +42,7 @@ class Epsiode {
         "saisonId": saisonId == null ? null : saisonId,
         "titreEpisode": titreEpisode == null ? null : titreEpisode,
         "numeroEpisode": numeroEpisode == null ? null : numeroEpisode,
-        "imageSaison": imageSaison == null ? null : imageSaison,
+        "imageSaisons": imageSaisons == null ? null : imageSaisons,
         "description": description == null ? null : description,
         "UrlEpisode": urlEpisode == null ? null : urlEpisode,
     };
