@@ -4,6 +4,8 @@ import 'package:baby_flix/babiflix/provider/serieProvider.dart';
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
 
+import 'film.dart';
+
 class ListeFilm extends StatefulWidget {
   static const routeName = '/Liste_film';
   @override
@@ -132,48 +134,54 @@ class _ListeFilmState extends State<ListeFilm> {
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    AssetImage('${selectedfilm[index].image}'),
-                                fit: BoxFit.cover),
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  height: 30,
-                                  width: 60,
-                                  color: Colors.black38,
-                                  child: Text(
-                                    "${selectedfilm[index].dateSortie}",
-                                    style: TextStyle(color: Colors.red),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(FilmDetail.routeName,
+                              arguments: filmData.films[index].id);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      '${selectedfilm[index].image}'),
+                                  fit: BoxFit.cover),
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 30,
+                                    width: 60,
+                                    color: Colors.black38,
+                                    child: Text(
+                                      "${selectedfilm[index].dateSortie}",
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Color.fromRGBO(59, 59, 60, 1),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10),
                                   ),
-                                )
-                              ],
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(59, 59, 60, 1),
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10),
                                 ),
-                              ),
-                              child: Text(
-                                "${selectedfilm[index].titre}",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            )
-                          ],
+                                child: Text(
+                                  "${selectedfilm[index].titre}",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     );

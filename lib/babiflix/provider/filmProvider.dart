@@ -13,25 +13,25 @@ class FilmProvider with ChangeNotifier {
   List<Film> get films => this._films;
 
 //permet de filtrer Les genre de film
-  // List<Film> getgenreFlimAfrique() {
-  //   try {
-  //     return _films
-  //         .where((element) => element.genreFilm.titre == "Afrique")
-  //         .toList();
-  //   } catch (e) {
-  //     print("Error to get info from provider ${e.toString()}");
-  //   }
-  // }
+  List<Film> getgenreFlimAfrique() {
+    try {
+      return _films
+          .where((element) => element.genreId == "-MQwYiYyBZhNOPyR1Jcq")
+          .toList();
+    } catch (e) {
+      print("Error to get info from provider ${e.toString()}");
+    }
+  }
 
-  // List<Film> getgenreFlimAComique() {
-  //   try {
-  //     return _films
-  //         .where((element) => element.genreFilm.titre == "Comique")
-  //         .toList();
-  //   } catch (e) {
-  //     print("Error to get info from provider ${e.toString()}");
-  //   }
-  // }
+  List<Film> getgenreFlimAComique() {
+    try {
+      return _films
+          .where((element) => element.genreId == "-MQwYclIHzWlUARNkvpJ")
+          .toList();
+    } catch (e) {
+      print("Error to get info from provider ${e.toString()}");
+    }
+  }
 
   // permet de convertir les chaines de caratere en Datime et d'afficher les  films les  plus recent
   // List<Film> filmRecent() {
