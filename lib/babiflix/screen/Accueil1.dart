@@ -296,14 +296,21 @@ class _MainBodyState extends State<MainBody> {
                         itemBuilder: (context, i) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width / 1.6,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                      image: NetworkImage(
-                                          filmsData.films[i].image),
-                                      fit: BoxFit.cover)),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                    FilmDetail.routeName,
+                                    arguments: filmsData.films[i].id);
+                              },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width / 1.6,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            filmsData.films[i].image),
+                                        fit: BoxFit.cover)),
+                              ),
                             ),
                           );
                         }),
@@ -516,38 +523,38 @@ class _MainBodyState extends State<MainBody> {
                       ),
                     ),
                   ),
-                  // Container(
-                  //   height: 150,
-                  //   child: ListView.builder(
-                  //     itemCount: filmsData.getgenreFlimAfrique().length,
-                  //     scrollDirection: Axis.horizontal,
-                  //     itemBuilder: (context, i) {
-                  //       return InkWell(
-                  //         onTap: () {
-                  //           Navigator.of(context).pushNamed(
-                  //               FilmDetail.routeName,
-                  //               arguments:
-                  //                   filmsData.getgenreFlimAfrique()[i].id);
-                  //         },
-                  //         child: Padding(
-                  //           padding: const EdgeInsets.all(8.0),
-                  //           child: Container(
-                  //             width: 120,
-                  //             decoration: BoxDecoration(
-                  //               image: DecorationImage(
-                  //                   image: NetworkImage(filmsData
-                  //                       .getgenreFlimAfrique()[i]
-                  //                       .image),
-                  //                   fit: BoxFit.cover),
-                  //               borderRadius: BorderRadius.circular(10),
-                  //               color: Colors.red,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
+                  Container(
+                    height: 150,
+                    child: ListView.builder(
+                      itemCount: filmsData.getgenreFlimAfrique().length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, i) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                                FilmDetail.routeName,
+                                arguments:
+                                    filmsData.getgenreFlimAfrique()[i].id);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: 120,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(filmsData
+                                        .getgenreFlimAfrique()[i]
+                                        .image),
+                                    fit: BoxFit.cover),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
 
                   Padding(
                     padding: const EdgeInsets.all(10),
@@ -558,38 +565,38 @@ class _MainBodyState extends State<MainBody> {
                       ),
                     ),
                   ),
-                  // Container(
-                  //   height: 150,
-                  //   child: ListView.builder(
-                  //     itemCount: filmsData.getgenreFlimAComique().length,
-                  //     scrollDirection: Axis.horizontal,
-                  //     itemBuilder: (context, i) {
-                  //       return InkWell(
-                  //         onTap: () {
-                  //           Navigator.of(context).pushNamed(
-                  //               FilmDetail.routeName,
-                  //               arguments:
-                  //                   filmsData.getgenreFlimAComique()[i].id);
-                  //         },
-                  //         child: Padding(
-                  //           padding: const EdgeInsets.all(8.0),
-                  //           child: Container(
-                  //             width: 120,
-                  //             decoration: BoxDecoration(
-                  //               image: DecorationImage(
-                  //                   image: NetworkImage(filmsData
-                  //                       .getgenreFlimAComique()[i]
-                  //                       .image),
-                  //                   fit: BoxFit.cover),
-                  //               borderRadius: BorderRadius.circular(10),
-                  //               color: Colors.red,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
+                  Container(
+                    height: 150,
+                    child: ListView.builder(
+                      itemCount: filmsData.getgenreFlimAComique().length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, i) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                                FilmDetail.routeName,
+                                arguments:
+                                    filmsData.getgenreFlimAComique()[i].id);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: 120,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(filmsData
+                                        .getgenreFlimAComique()[i]
+                                        .image),
+                                    fit: BoxFit.cover),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
 
                   SizedBox(
                     height: 10,
@@ -610,20 +617,20 @@ class _MainBodyState extends State<MainBody> {
                                   width: MediaQuery.of(context).size.width / 2,
                                   child: Column(
                                     children: [
-                                      Container(
-                                          height: 70,
-                                          width: 100,
-                                          child: Icon(
-                                            Icons.tv,
-                                            color: Colors.red,
-                                            size: 70,
-                                          )),
+                                      // Container(
+                                      //     height: 70,
+                                      //     width: 100,
+                                      //     child: Icon(
+                                      //       Icons.tv,
+                                      //       color: Colors.red,
+                                      //       size: 70,
+                                      //     )),
 
-                                      SizedBox(
-                                        height: 25,
-                                      ),
+                                      // SizedBox(
+                                      //   height: 25,
+                                      // ),
                                       Container(
-                                        height: 20,
+                                        height: 10,
                                         decoration: BoxDecoration(
                                             image: DecorationImage(
                                                 image: AssetImage(
