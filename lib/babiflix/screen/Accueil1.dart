@@ -305,7 +305,9 @@ class _MainBodyState extends State<MainBody> {
                               onTap: () {
                                 Navigator.of(context).pushNamed(
                                     VuFilm.routeName,
-                                    arguments: filmsData.films[i].id);
+                                      arguments: {
+                               "genreID": filmsData.films[i].genreId,
+                               "id": filmsData.films[i].id});
                               },
                               child: Container(
                                 width: MediaQuery.of(context).size.width / 1.6,
@@ -388,7 +390,9 @@ class _MainBodyState extends State<MainBody> {
                           onTap: () {
                             Navigator.of(context).pushNamed(
                                 VuFilm.routeName,
-                                arguments: filmsData.films[i].id);
+                                    arguments: {
+                               "genreID": filmsData.films[i].genreId,
+                               "id": filmsData.films[i].id});
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -474,8 +478,9 @@ class _MainBodyState extends State<MainBody> {
                           onTap: () {
                             Navigator.of(context).pushNamed(
                                VuFilm.routeName,
-                                arguments:
-                                    filmsData.getgenreFlimAfrique()[i].id);
+                                 arguments: {
+                               "genreID": filmsData.getgenreFlimAfrique()[i].genreId,
+                               "id": filmsData.getgenreFlimAfrique()[i].id});
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -516,8 +521,9 @@ class _MainBodyState extends State<MainBody> {
                           onTap: () {
                             Navigator.of(context).pushNamed(
                                 VuFilm.routeName,
-                                arguments:
-                                    filmsData.getgenreFlimAComique()[i].id);
+                                    arguments: {
+                               "genreID": filmsData.getgenreFlimAComique()[i].genreId,
+                               "id": filmsData.getgenreFlimAComique()[i].id});
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
