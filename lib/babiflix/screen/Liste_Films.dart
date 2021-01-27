@@ -1,6 +1,7 @@
 import 'package:baby_flix/babiflix/provider/filmProvider.dart';
 import 'package:baby_flix/babiflix/provider/filmProviderTest.dart';
 import 'package:baby_flix/babiflix/provider/serieProvider.dart';
+import 'package:baby_flix/babiflix/screen/vuFilm.dart';
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
 
@@ -136,8 +137,10 @@ class _ListeFilmState extends State<ListeFilm> {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          Navigator.of(context).pushNamed(FilmDetail.routeName,
-                              arguments: filmData.films[index].id);
+                          Navigator.of(context).pushNamed(VuFilm.routeName,
+                              arguments: {
+                               "genreID": genreID,
+                               "id": selectedfilm[index].id});
                         },
                         child: Container(
                           decoration: BoxDecoration(

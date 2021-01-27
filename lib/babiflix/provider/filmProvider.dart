@@ -33,28 +33,17 @@ class FilmProvider with ChangeNotifier {
     }
   }
 
-  // permet de convertir les chaines de caratere en Datime et d'afficher les  films les  plus recent
-  // List<Film> filmRecent() {
-  //   //List<Film> _films = [];
-  //   List<DateTime> sortieFilm = [];
-  //   DateFormat format = DateFormat("yyyy-MM-dd HH:mm:ss");
-
-  //   for (int i = 0; i < films.length; i++) {
-  //     sortieFilm.add(format.parse(_films[i].dateSortie));
-  //   }
-
-  //   sortieFilm.sort((key, value) {
-  //     var now = DateTime.now();
-  //     //before -> var adate = a.expiry;
-  //     //var bdate =  "10/04/2021";//before -> var bdate = b.expiry;
-  //     return now.compareTo(
-  //         value); //to get the order other way just switch `adate & bdate`
-  //   });
-  //   for (int i = 0; i < sortieFilm.length; i++) {
-  //     print(
-  //         "///////////////////////////////////////${films[i].dateSortie}//////////////////////////////////////");
-  //   }
-  // }
+ // permet de convertir les chaines de caratere en Datime et d'afficher les  films les  plus recent
+  List<Film> filmRecent() {
+   DateFormat date=DateFormat("yyyy-MM-dd ");
+   // DateTime dateTime=date.parse("2021-01-26 10:15:00");
+   try{
+     return _films.where((element) => date.parse(element.dateSortie).isBefore(DateTime.now()));
+   }catch(e){
+     print("Error to get info from provider ${e.toString()}");
+     print(filmRecent()); 
+   }
+  }
 
   Future<void> getAllFilm() async {
     final url =

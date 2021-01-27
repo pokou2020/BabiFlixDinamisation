@@ -1,8 +1,5 @@
-import 'package:baby_flix/babiflix/provider/data.dart';
-import 'package:baby_flix/babiflix/provider/filmProvider.dart';
 import 'package:baby_flix/babiflix/provider/model/saisonModel.dart';
 import 'package:baby_flix/babiflix/provider/saisonProvider.dart';
-import 'package:baby_flix/babiflix/provider/serieProvider.dart';
 import 'package:baby_flix/babiflix/screen/detailserie.dart';
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';

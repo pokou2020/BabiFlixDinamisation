@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:baby_flix/babiflix/provider/data.dart';
 import 'package:baby_flix/babiflix/provider/filmProvider.dart';
+import 'package:baby_flix/babiflix/provider/genreProvider.dart';
+import 'package:baby_flix/babiflix/provider/model/filmModel.dart';
 import 'package:baby_flix/babiflix/widget/filmItem.dart';
 import 'package:baby_flix/babiflix/widget/teveItem.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
 class FilmDetail extends StatefulWidget {
-  static const routeName = '/film-detail';
+  // static const routeName = '/film-detail';
   @override
   _FilmDetailState createState() => _FilmDetailState();
 }
@@ -37,13 +41,20 @@ class _FilmDetailState extends State<FilmDetail> {
   VideoPlayerController _controller;
 
   FilmProvider filmsData;
+  List<Film>getAllGenre;
+
 
   @override
   void didChangeDependencies() {
     filmsData = Provider.of<FilmProvider>(context);
-    final filmID = ModalRoute.of(context).settings.arguments as String;
+    final  routeAgrGenre = ModalRoute.of(context).settings.arguments as Map;
+    final filmID=routeAgrGenre["id"];
+    final genreId=routeAgrGenre["genreID"];
+
     final selectedFilm =
         filmsData.films.firstWhere((film) => film.id == filmID);
+
+      getAllGenre = _getAllGenre(genreId);
     _controller = VideoPlayerController.network(
         'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
       ..initialize().then((_) {
@@ -54,10 +65,30 @@ class _FilmDetailState extends State<FilmDetail> {
     super.didChangeDependencies();
   }
 
+  List<Film> _getAllGenre(String genreID){
+     try {
+      return filmsData.films
+          .where((element) => element.genreId ==genreID)
+          .toList();
+    } catch (e) {
+      print("Error to get info from provider ${e.toString()}");
+    }
+          // try{
+          // filmsData.films.where((film) => film.genreId.contains(genreID)).toList();
+          // }catch(e){
+          //   print("//////// all errors filmData in genres ${e.toString()}");
+          // }
+          // return [];
+        }
+
   @override
   Widget build(BuildContext context) {
     // final filmsData = Provider.of<FilmProvider>(context);
-    final filmID = ModalRoute.of(context).settings.arguments as String;
+ filmsData = Provider.of<FilmProvider>(context);
+    final  routeAgrGenre = ModalRoute.of(context).settings.arguments as Map;
+    final filmID=routeAgrGenre["id"];
+    final genreID=routeAgrGenre["genreID"];
+
     final selectedFilm =
         filmsData.films.firstWhere((film) => film.id == filmID);
 
@@ -392,11 +423,11 @@ class _FilmDetailState extends State<FilmDetail> {
                   height: 190,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: filmData.length,
+                    itemCount: getAllGenre.length,
                     itemBuilder: (context, i) {
                       return FimlItem(
-                        img: filmData[i]["cover"],
-                        title: filmData[i]["titre"],
+                        img: getAllGenre[i].image,
+                        title: getAllGenre[i].titre,
                       );
                     },
                   ),

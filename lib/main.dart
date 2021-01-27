@@ -15,6 +15,7 @@ import 'package:baby_flix/babiflix/screen/MoadifModepass.dart';
 import 'package:baby_flix/babiflix/screen/detailserie.dart';
 import 'package:baby_flix/babiflix/screen/movieDetail.dart';
 import 'package:baby_flix/babiflix/screen/suggession.dart';
+import 'package:baby_flix/babiflix/screen/vuFilm.dart';
 import 'package:baby_flix/babiflix/widget/VoirPlus.dart';
 import 'package:baby_flix/babiflix/widget/acceuillWid.dart';
 import 'package:baby_flix/babiflix/widget/drawer.dart';
@@ -110,7 +111,7 @@ class MyApp extends StatelessWidget {
             //"movieDetail": (context) => DetailSerie(),
             "modifProfile": (context) => ModiProfile(),
             "MoadifModepass": (context) => MoadifModepass(),
-            FilmDetail.routeName: (context) => FilmDetail(),
+            VuFilm.routeName: (context) => VuFilm(),
             ListeSaison.routeName: (context) => ListeSaison(_availableSaison),
             DetailSerie.routeName: (context) => DetailSerie(_availableSaisons),
             ListeFilm.routeName: (context) => ListeFilm(),

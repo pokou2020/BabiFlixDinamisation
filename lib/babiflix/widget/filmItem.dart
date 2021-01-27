@@ -33,7 +33,7 @@ class FimlItem extends StatelessWidget {
                 color: Colors.black,
                 borderRadius: BorderRadius.circular(5),
                 image: DecorationImage(
-                  image: AssetImage(img),
+                  image: NetworkImage(img),
                   // fit: BoxFit.cover,
                 ),
               ),

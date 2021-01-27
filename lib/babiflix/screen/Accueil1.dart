@@ -4,6 +4,7 @@ import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
 import 'package:baby_flix/babiflix/provider/serieProvider.dart';
 import 'package:baby_flix/babiflix/screen/Liste_saison.dart';
 import 'package:baby_flix/babiflix/screen/film.dart';
+import 'package:baby_flix/babiflix/screen/vuFilm.dart';
 import 'package:baby_flix/babiflix/widget/drawer.dart';
 import 'package:baby_flix/babiflix/widget/series.dart';
 import 'package:carousel_slider/carousel_controller.dart';
@@ -22,14 +23,18 @@ class Acceuil1 extends StatefulWidget {
 class _Acceuil1State extends State<Acceuil1>
     with SingleTickerProviderStateMixin {
   bool init = true;
+  DateFormat date=DateFormat("yyyy-MM-dd HH:mm:ss");
   @override
   Future<void> didChangeDependencies() async {
     if (init) {
+      DateTime dateTime=date.parse("2021-01-26 10:15:00");
       var now = new DateTime.now();
+      print(dateTime);
       print(now);
       print("//////////////Bonjour le monde//////////////////////");
       await Provider.of<FilmProvider>(context, listen: false).getAllFilm();
       await Provider.of<SerieProvider>(context, listen: false).getAllSerie();
+     // await Provider.of<FilmProvider>(context).filmRecent();
 
       await Provider.of<GenreProvider>(context, listen: false).getAllGenre();
 
@@ -278,7 +283,7 @@ class _MainBodyState extends State<MainBody> {
                     padding: const EdgeInsets.all(10),
                     child: Container(
                       child: Text(
-                        "Dernier sortie",
+                        "Derniere sortie",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -299,7 +304,7 @@ class _MainBodyState extends State<MainBody> {
                             child: InkWell(
                               onTap: () {
                                 Navigator.of(context).pushNamed(
-                                    FilmDetail.routeName,
+                                    VuFilm.routeName,
                                     arguments: filmsData.films[i].id);
                               },
                               child: Container(
@@ -382,7 +387,7 @@ class _MainBodyState extends State<MainBody> {
                         return InkWell(
                           onTap: () {
                             Navigator.of(context).pushNamed(
-                                FilmDetail.routeName,
+                                VuFilm.routeName,
                                 arguments: filmsData.films[i].id);
                           },
                           child: Padding(
@@ -468,7 +473,7 @@ class _MainBodyState extends State<MainBody> {
                         return InkWell(
                           onTap: () {
                             Navigator.of(context).pushNamed(
-                                FilmDetail.routeName,
+                               VuFilm.routeName,
                                 arguments:
                                     filmsData.getgenreFlimAfrique()[i].id);
                           },
@@ -510,7 +515,7 @@ class _MainBodyState extends State<MainBody> {
                         return InkWell(
                           onTap: () {
                             Navigator.of(context).pushNamed(
-                                FilmDetail.routeName,
+                                VuFilm.routeName,
                                 arguments:
                                     filmsData.getgenreFlimAComique()[i].id);
                           },
