@@ -139,8 +139,9 @@ class _ListeFilmState extends State<ListeFilm> {
                         onTap: () {
                           Navigator.of(context).pushNamed(VuFilm.routeName,
                               arguments: {
-                               "genreID": genreID,
-                               "id": selectedfilm[index].id});
+                                "genreID": genreID,
+                                "id": selectedfilm[index].id
+                              });
                         },
                         child: Container(
                           decoration: BoxDecoration(
