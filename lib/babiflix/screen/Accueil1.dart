@@ -16,6 +16,10 @@ import 'package:provider/provider.dart';
 import 'Liste_Films.dart';
 
 class Acceuil1 extends StatefulWidget {
+   static const routeName = '/Acceuil1';
+  Acceuil1({this.uid, this.id });
+  final String uid;
+  final String id;
   @override
   _Acceuil1State createState() => _Acceuil1State();
 }

@@ -83,10 +83,10 @@ class MyApp extends StatelessWidget {
           ),
           home: SplashScreen(),
           routes: {
-            'inscrip': (context) => Inscription(),
-            'connex': (context) => Connexion(),
-            "inscr": (context) => Acceuil1(),
-            "connec": (context) => Acceuil1(),
+            //'inscrip': (context) => Inscription(),
+            //'connex': (context) => Connexion(),
+            //"inscr": (context) => Acceuil1(),
+            //"connec": (context) => Acceuil1(),
             "teve": (context) => Tele(),
             // "Liste_films_Action": (context) => ListefilmsAction(),
             "seri": (context) => SerieCate(),
@@ -99,7 +99,7 @@ class MyApp extends StatelessWidget {
             // "sinops": (context) => Film(),
             "VoirPlus": (context) => VoirPlus(),
             "drawer": (context) => Drawers(),
-            'Accueil1': (context) => Acceuil1(),
+            //'Accueil1': (context) => Acceuil1(),
             "suggession": (context) => Suggession(),
             // 'movieDetail': (context) => FilmDetail(),
             'teleDetail': (context) => DetailTele(),
@@ -117,7 +117,8 @@ class MyApp extends StatelessWidget {
              VuSerie.routeName: (context) => VuSerie(),
             ListeSaison.routeName: (context) => ListeSaison(_availableSaison),
             ListeFilm.routeName: (context) => ListeFilm(),
-             VuPaysageEpisode.routeName: (context) => VuPaysageEpisode()
+             VuPaysageEpisode.routeName: (context) => VuPaysageEpisode(),
+             Acceuil1.routeName:(context)=>Acceuil1(),
             // "vuPaysageEpisode":(context)=>VuPaysageEpisode(),
           }),
     );
