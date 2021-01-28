@@ -1,6 +1,7 @@
 import 'package:baby_flix/babiflix/provider/data.dart';
 import 'package:baby_flix/babiflix/provider/episodeProvider.dart';
 import 'package:baby_flix/babiflix/provider/model/episodeModel.dart';
+import 'package:baby_flix/babiflix/screen/vuPaysageEpisode.dart';
 import 'package:baby_flix/babiflix/widget/filmItem.dart';
 import 'package:baby_flix/babiflix/widget/teveItem.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,6 @@ import 'package:video_player/video_player.dart';
 
 class DetailSerie extends StatefulWidget {
   static const routeName = '/Episode_Detail';
-  final List<Epsiode> availableSaisons;
-  DetailSerie(this.availableSaisons);
   @override
   _DetailSerieState createState() => _DetailSerieState();
 }
@@ -504,46 +503,63 @@ class _DetailSerieState extends State<DetailSerie> {
                                 scrollDirection: Axis.vertical,
                                 itemCount: selectedEpisode.length,
                                 itemBuilder: (context, i) {
-                                  return Container(
-                                    height: 110,
-                                    margin: EdgeInsets.only(
-                                        left: 20, right: 20, bottom: 10),
-                                    decoration: BoxDecoration(
-                                        color: Color.fromRGBO(59, 59, 60, 0.5),
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Row(
-                                      children: [
-                                        SizedBox(width: 5),
-                                        Container(
-                                          width: 120,
-                                          height: 100,
-                                          decoration: BoxDecoration(
-                                              color: Colors.transparent,
-                                              image: DecorationImage(
-                                                image: NetworkImage(
-                                                    "${selectedEpisode[i].imageSaisons}"),
-                                                fit: BoxFit.cover,
+                                  return Expanded(
+                                    child: Container(
+                                      height: 110,
+                                      margin: EdgeInsets.only(
+                                          left: 20, right: 20, bottom: 10),
+                                      decoration: BoxDecoration(
+                                          color: Color.fromRGBO(59, 59, 60, 0.5),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Row(
+                                       
+                                        children: [
+                                         
+                                          Expanded(
+                                            child: InkWell(
+                                               onTap: (){
+                                              Navigator.of(context).pushNamed(
+                                                VuPaysageEpisode.routeName,
+                                                arguments:selectedEpisode[i].id
+                                              );
+                                            },
+                                              child: Container(
+                                                width: 120,
+                                                height: 100,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.transparent,
+                                                    image: DecorationImage(
+                                                      image: NetworkImage(
+                                                          "${selectedEpisode[i].imageSaisons}"),
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(5)),
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          "${selectedEpisode[i].titreEpisode}",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        IconButton(
-                                            icon: FaIcon(
-                                              FontAwesomeIcons.playCircle,
-                                              color: Color.fromRGBO(
-                                                  230, 30, 36, 1),
                                             ),
-                                            onPressed: () {})
-                                      ],
+                                          ),
+                                          SizedBox(width: 15,),
+                                          Expanded(
+                                            child: Container(
+                                              child: Text(
+                                                "${selectedEpisode[i].titreEpisode}",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        
+                                          IconButton(
+                                              icon: FaIcon(
+                                                FontAwesomeIcons.playCircle,
+                                                color: Color.fromRGBO(
+                                                    230, 30, 36, 1),
+                                              ),
+                                              onPressed: () {})
+                                        ],
+                                      ),
                                     ),
                                   );
                                 },

@@ -16,6 +16,8 @@ import 'package:baby_flix/babiflix/screen/detailserie.dart';
 import 'package:baby_flix/babiflix/screen/movieDetail.dart';
 import 'package:baby_flix/babiflix/screen/suggession.dart';
 import 'package:baby_flix/babiflix/screen/vuFilm.dart';
+import 'package:baby_flix/babiflix/screen/vuPaysageEpisode.dart';
+import 'package:baby_flix/babiflix/screen/vuserie.dart';
 import 'package:baby_flix/babiflix/widget/VoirPlus.dart';
 import 'package:baby_flix/babiflix/widget/acceuillWid.dart';
 import 'package:baby_flix/babiflix/widget/drawer.dart';
@@ -112,9 +114,11 @@ class MyApp extends StatelessWidget {
             "modifProfile": (context) => ModiProfile(),
             "MoadifModepass": (context) => MoadifModepass(),
             VuFilm.routeName: (context) => VuFilm(),
+             VuSerie.routeName: (context) => VuSerie(),
             ListeSaison.routeName: (context) => ListeSaison(_availableSaison),
-            DetailSerie.routeName: (context) => DetailSerie(_availableSaisons),
             ListeFilm.routeName: (context) => ListeFilm(),
+             VuPaysageEpisode.routeName: (context) => VuPaysageEpisode()
+            // "vuPaysageEpisode":(context)=>VuPaysageEpisode(),
           }),
     );
   }

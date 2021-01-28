@@ -1,6 +1,7 @@
 import 'package:baby_flix/babiflix/provider/model/saisonModel.dart';
 import 'package:baby_flix/babiflix/provider/saisonProvider.dart';
 import 'package:baby_flix/babiflix/screen/detailserie.dart';
+import 'package:baby_flix/babiflix/screen/vuserie.dart';
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
 
@@ -152,7 +153,8 @@ class _ListeSaisonState extends State<ListeSaison> {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          Navigator.of(context).pushNamed(DetailSerie.routeName,
+                          Navigator.of(context).pushNamed(
+                            VuSerie.routeName,
                               arguments: selectedSaison[index].id);
                         },
                         child: Container(
