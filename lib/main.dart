@@ -23,6 +23,7 @@ import 'package:baby_flix/babiflix/widget/acceuillWid.dart';
 import 'package:baby_flix/babiflix/widget/drawer.dart';
 import 'package:baby_flix/babiflix/widget/splashscreen.dart';
 import 'package:baby_flix/babiflix/widget/teve.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'babiflix/provider/episodeProvider.dart';
 import 'babiflix/screen/Accueil1.dart';
@@ -48,7 +49,7 @@ import 'babiflix/screen/youtbe.dart';
 import 'babiflix/widget/detailTele.dart';
 import 'babiflix/provider/filmProvider.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
 
@@ -119,6 +120,7 @@ class MyApp extends StatelessWidget {
             ListeFilm.routeName: (context) => ListeFilm(),
              VuPaysageEpisode.routeName: (context) => VuPaysageEpisode(),
              Acceuil1.routeName:(context)=>Acceuil1(),
+             "inscription":(context)=>LoginPage(),
             // "vuPaysageEpisode":(context)=>VuPaysageEpisode(),
           }),
     );

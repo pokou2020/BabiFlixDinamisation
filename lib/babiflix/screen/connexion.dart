@@ -1,145 +1,379 @@
+import 'package:baby_flix/babiflix/screen/Accueil1.dart';
+import 'package:baby_flix/babiflix/widget/FormSign.dart';
+import 'package:baby_flix/babiflix/widget/authBtn.dart';
+import 'package:baby_flix/babiflix/widget/itemLog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-class Connexion extends StatefulWidget {
+import '../widget/formLog.dart';
+import '../widget/inputAuth.dart';
+
+class LoginPage extends StatefulWidget {
   @override
-  _ConnexionState createState() => _ConnexionState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _ConnexionState extends State<Connexion> {
+class _LoginPageState extends State<LoginPage> {
+  bool _val = true;
+  bool isLoading = false;
+  bool _busy = false;
+  FirebaseUser _user;
+
+   final _formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 850,
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Container(
+            height: deviceHeight,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/bcg.jpg'), fit: BoxFit.cover),
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    tileMode: TileMode.clamp,
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.white.withOpacity(0.1),
+                      Colors.black.withOpacity(0.8),
+                      Colors.black,
+                    ]),
+              ),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: MediaQuery.of(context).size.height / 6),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Text(
+                                    'connexion',
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.white),
+                                  ),
+                                )),
+                            InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Text(
+                                    "Inscription",
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.white),
+                                  ),
+                                ))
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      SizedBox(height: MediaQuery.of(context).size.height / 9),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                            Container(
+          height: 50,
+          width: MediaQuery.of(context).size.width / 1.2,
+          alignment: Alignment.center,
           decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("images/accueil.jpeg"), fit: BoxFit.cover),
+              color: Colors.white, borderRadius: BorderRadius.circular(15)),
+          child: TextFormField(
+            controller: emailController,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: "Email",
+              contentPadding: EdgeInsets.only(left: 10),
+              hintStyle: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+               validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Veuillez entrez votre mot de passe';
+                        } else if (!value.contains('@')) {
+                          return 'Svp entrez un mail valide';
+                        }
+                        return null;
+                      },
           ),
-          child: SafeArea(
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: 120),
-                Text(
-                  "Connection",
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 80),
-                Column(
-                  children: <Widget>[
-                    Container(
-                      height: 60,
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
+        )
+                        ],
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Email",
-                            hintStyle: TextStyle(color: Colors.black26),
-                          ),
-                        ),
+                      SizedBox(height: MediaQuery.of(context).size.height / 30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                                   Container(
+                                     height: 50,
+                                     width: MediaQuery.of(context).size.width / 1.2,
+                                     alignment: Alignment.center,
+                                     decoration: BoxDecoration(
+                                         color: Colors.white,
+                                         borderRadius: BorderRadius.circular(15)),
+                                     child: TextFormField(
+                                       controller: passwordController,
+                                       decoration: InputDecoration(
+                                         border: InputBorder.none,
+                                         hintText: "Mot de pass",
+                                         contentPadding: EdgeInsets.only(left: 10),
+                                         hintStyle: TextStyle(
+                                           color: Colors.grey,
+                                         ),
+                                       ),
+                                           validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Entrez le mot de passe';
+                        } else if (value.length < 6) {
+                          return 'Votre mot de passe doit contenir au moins 6 caractere';
+                        }
+                        return null;
+                      },
+                                     ),
+                                   ),
+                        ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      height: 60,
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Mot de passe",
-                            hintStyle: TextStyle(color: Colors.black26),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 60),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(context, "mdp");
-                            },
-                            child: Container(
-                              width: 320,
-                              child: Text(
-                                "Mot de passe oublié ?",
-                                style: TextStyle(color: Colors.white),
-                              ),
+                      SizedBox(height: MediaQuery.of(context).size.height / 100),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            width: MediaQuery.of(context).size.width / 1.2,
+                            child: Row(
+                              children: <Widget>[
+                                Checkbox(
+                                  activeColor: Colors.white,
+                                  checkColor: Colors.black,
+                                  autofocus: false,
+                                  onChanged: (bool value) {
+                                    setState(() {
+                                      this._val = value;
+                                    });
+                                  },
+                                  value: this._val,
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    height: 50,
+                                    child: FittedBox(
+                                      child: Text(
+                                        "Rester connecté",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Expanded(
+                                  child: Container(
+                                    height: 50,
+                                    child: FittedBox(
+                                      child: Text(
+                                        "Mot de passe oublié",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 100,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, 'connec');
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        width: 200,
+                        ],
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height / 50),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                         height: 50,
+                         width: 250,
                         decoration: BoxDecoration(
-                          color: Colors.red.withOpacity(0.7),
                           borderRadius: BorderRadius.circular(10),
+                         color: Colors.red
                         ),
-                        child: Text(
-                          "Connection",
+                        child: isLoading
+                            ? CircularProgressIndicator()
+                            : InkWell(
+                                onTap: () {
+                                  if (_formKey.currentState.validate()) {
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+                                    logInToFb();
+                                  }
+                                },
+                                child: Center(child: Text('Se connecter')),
+                              ),
+                      ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height / 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        height: 0.2,
+                        width: deviceWidth / 1.5,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: deviceHeight / 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text('Ou avec',
                           style: TextStyle(
                             color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                            fontSize: 18,
+                          )),
+                    ],
+                  ),
+                  SizedBox(height: deviceHeight / 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        height: 40,
+                        width: 80,
+                        padding: EdgeInsets.only(top: 10, bottom: 5),
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(59, 89, 152, 1),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Image(
+                          image: AssetImage('images/pa.png'),
+                        ),
+                      ),
+                      SizedBox(width: deviceWidth / 20),
+                      InkWell(
+                      onTap: this._busy
+              ? null
+              : () async {
+                  try {
+                    setState(() => this._busy = true);
+                    final user = await this._googleSignIn();
+                    this._showUserProfilePage(user);
+                  } catch (e) {
+                    setState(() => this._busy = false);
+                  }
+                },
+                        child: Container(
+                          height: 40,
+                          width: 80,
+                          padding: EdgeInsets.only(top: 10, bottom: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Image(
+                            image: AssetImage('images/gle.png'),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, 'inscrip');
-                      },
-                      child: Container(
-                        child: Text(
-                          "vous n'avez pas de compte ? inscrivez-vous",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                  SizedBox(height: deviceHeight / 20),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+    Future<FirebaseUser> _googleSignIn() async {
+    final curUser = this._user ?? await FirebaseAuth.instance.currentUser();
+    if (curUser != null && !curUser.isAnonymous) {
+      return curUser;
+    }
+
+    final googleUser = await GoogleSignIn().signIn();
+
+    final googleAuth = await googleUser.authentication;
+    final AuthCredential credential = GoogleAuthProvider.getCredential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    // Note: user.providerData[0].photoUrl == googleUser.photoUrl.
+
+    // FirebaseAuth.instance.currentUser();
+
+    final user =
+        (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+//    kFirebaseAnalytics.logLogin();
+    setState(() => this._user = user);
+
+    return user;
+  }
+    void _showUserProfilePage(FirebaseUser user, {FirebaseAuth users}) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+          builder: (ctx) => Acceuil1(
+                uid: user.email,
+              )),
+    );
+  }
+    void logInToFb() {
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text)
+        .then((result) {
+          print("///////////////////////////////${result.user}//////////////////////////");
+      isLoading = false;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Acceuil1(uid: result.user.uid)),
+      );
+    }).catchError((err) {
+      print(err.message);
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Sa passe pas"),
+              content: Text(err.message),
+              actions: [
+                FlatButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    });
   }
 }

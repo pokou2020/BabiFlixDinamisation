@@ -9,7 +9,7 @@ class RepositoryUser {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   DatabaseReference database = FirebaseDatabase.instance.reference().child("Users");
 
-  Future<void> registerUser({String email, String password, String confpassword ,String nom}) {
+  Future<void> registerUser({String email, String password,String nom}) {
      firebaseAuth
         .createUserWithEmailAndPassword(
             email: email, password: password, )
@@ -21,7 +21,7 @@ class RepositoryUser {
         "email":email,
         "name": nom,
         "password":password,
-        "confpassword":confpassword
+      
         
       }).then((res) {
      

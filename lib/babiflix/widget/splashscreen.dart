@@ -1,6 +1,7 @@
 
 import 'package:baby_flix/babiflix/screen/Accueil1.dart';
 import 'package:baby_flix/babiflix/screen/connexion.dart';
+import 'package:baby_flix/babiflix/screen/inscription.dart';
 import 'package:baby_flix/babiflix/screen/loginView.dart';
 import 'package:baby_flix/babiflix/widget/acceuillWid.dart';
 import 'package:baby_flix/babiflix/widget/drawer.dart';
@@ -45,7 +46,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void _navigateToHome(){
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (BuildContext context) => LoginView()
+      
+        builder: (BuildContext context) => Inscription()
       )
     );
   }

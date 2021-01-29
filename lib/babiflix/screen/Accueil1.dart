@@ -9,6 +9,7 @@ import 'package:baby_flix/babiflix/widget/drawer.dart';
 import 'package:baby_flix/babiflix/widget/series.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,9 @@ import 'Liste_Films.dart';
 
 class Acceuil1 extends StatefulWidget {
    static const routeName = '/Acceuil1';
-  Acceuil1({this.uid, this.id });
+  Acceuil1({this.uid, this.id, this.user });
+  
+   FirebaseUser user;
   final String uid;
   final String id;
   @override

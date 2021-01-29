@@ -1,18 +1,36 @@
 
 
 import 'dart:ui';
+import 'package:baby_flix/babiflix/screen/inscription.dart';
+import 'package:baby_flix/babiflix/widget/baseAuth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Drawers extends StatefulWidget {
-  Drawers({Key key}):super(key:key);
+ Drawers(
+      {Key key, this.auth, this.userId, this.logoutCallback, this.user})
+      : super(key: key);
+
+  FirebaseUser user;
+  final BaseAuth auth;
+  final VoidCallback logoutCallback;
+  final String userId;
+   
   @override
   _DrawersState createState() => _DrawersState();
 }
 
 class _DrawersState extends State<Drawers> {
   
-
+//  signOut() async {
+//     try {
+//       await widget.auth.signOut();
+//       widget.logoutCallback();
+//     } catch (e) {
+//       print(e);
+//     }
+//   }
  
   @override
   Widget build(BuildContext context) {
@@ -61,16 +79,14 @@ class _DrawersState extends State<Drawers> {
                      ),
                    ),
                           Center(
-                     child: Container(                            
-                       child: Text(
-                         "lepnkouakou@gmail.com",
-                         style: TextStyle(
-                           color: Colors.white,
-                           fontSize: 15,
-                           fontWeight: FontWeight.bold
-                         ),
-                       ),
-                     ),
+                     child:      Container(
+              child: Text("Lepnkouakou@gmail.com",
+                  
+                      style:
+                          TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold, fontSize: 20)),
+            )
                    ),
                    SizedBox(
                      height: 10,
@@ -204,15 +220,23 @@ class _DrawersState extends State<Drawers> {
                      ),
                      leading: IconButton(icon: Icon(Icons.person_add, size: 20, color: Colors.red,), onPressed: (){}),
                    ),
-                       ListTile(
+                       InkWell(
+                         onTap: (){
+
+                      Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Inscription()))  ;                       },
+                         child: ListTile(
                      title: Text("Deconexion",
                      style: TextStyle(
-                       color: Colors.white,
-                       fontSize: 12,
+                         color: Colors.white,
+                         fontSize: 12,
                      ),
                      ),
                      leading: IconButton(icon: Icon(Icons.power_settings_new, size: 20, color: Colors.red,), onPressed: (){}),
                    ),
+                       ),
                       ListTile(
                      title: Text("A propos",
                      style: TextStyle(
