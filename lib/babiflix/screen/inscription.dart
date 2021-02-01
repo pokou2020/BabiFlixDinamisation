@@ -10,56 +10,56 @@ import '../widget/formLog.dart';
 import '../widget/inputAuth.dart';
 
 class Inscription extends StatefulWidget {
-   
   @override
   _InscriptionState createState() => _InscriptionState();
 }
 
 class _InscriptionState extends State<Inscription> {
   bool _val = true;
-   bool isLoading = false;
+  bool isLoading = false;
+ 
   final _formKey = GlobalKey<FormState>();
 
-   RepositoryUser _repositoryUser = RepositoryUser();
-  
-    TextEditingController emailController = TextEditingController();
-    TextEditingController nameController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-  
-    @override
-    void initState() {
+  RepositoryUser _repositoryUser = RepositoryUser();
 
-  
-      super.initState();
-    }
+  TextEditingController emailController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  // @override
+  // void initState() {
+
+  //   super.initState();
+  // }
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          child: Expanded(
+      body: Container(
+        height: deviceHeight,
+        width: deviceWidth,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('images/bcg.jpg'), fit: BoxFit.cover),
+        ),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
             child: Container(
-              
               height: deviceHeight,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('images/bcg.jpg'), fit: BoxFit.cover),
-              ),
               child: Container(
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      tileMode: TileMode.clamp,
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.white.withOpacity(0.1),
-                        Colors.black.withOpacity(0.8),
-                        Colors.black,
-                      ]),
-                ),
+                    // gradient: LinearGradient(
+                    //     tileMode: TileMode.clamp,
+                    //     begin: Alignment.topCenter,
+                    //     end: Alignment.bottomCenter,
+                    //     colors: [
+                    //       Colors.white.withOpacity(0.1),
+                    //       Colors.black.withOpacity(0.8),
+                    //       Colors.black,
+                    //     ]),
+                    ),
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: MediaQuery.of(context).size.height / 6),
@@ -73,7 +73,8 @@ class _InscriptionState extends State<Inscription> {
                             children: <Widget>[
                               InkWell(
                                   onTap: () {
-                                    Navigator.of(context).pushNamed("inscription");
+                                    Navigator.of(context)
+                                        .pushNamed("inscription");
                                   },
                                   child: Container(
                                     padding: EdgeInsets.all(10),
@@ -106,68 +107,73 @@ class _InscriptionState extends State<Inscription> {
                     ),
                     Column(
                       children: <Widget>[
-                        SizedBox(height: MediaQuery.of(context).size.height / 50),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 50),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                           Container(
-            height: 50,
-            width: MediaQuery.of(context).size.width / 1.2,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(15)),
-            child: TextFormField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: "Nom ou pseudo",
-                contentPadding: EdgeInsets.only(left: 10),
-                hintStyle: TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
-                    validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Veuillez remplir le champ nom';
-                          }
-                          return null;
-                        },
-            ),
-        )
+                            Container(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Nom ou pseudo",
+                                  contentPadding: EdgeInsets.only(left: 10),
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Veuillez remplir le champ nom';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            )
                           ],
                         ),
-                        SizedBox(height: MediaQuery.of(context).size.height / 30),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 30),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                           Container(
-            height: 50,
-            width: MediaQuery.of(context).size.width / 1.2,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(15)),
-            child: TextFormField(
-              controller: emailController,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: "Email",
-                contentPadding: EdgeInsets.only(left: 10),
-                hintStyle: TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
-                 validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Veuillez entrez votre mot de passe';
-                          } else if (!value.contains('@')) {
-                            return 'Svp entrez un mail valide';
-                          }
-                          return null;
-                        },
-            ),
-        )
+                            Container(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: TextFormField(
+                                controller: emailController,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Email",
+                                  contentPadding: EdgeInsets.only(left: 10),
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Veuillez entrez votre mot de passe';
+                                  } else if (!value.contains('@')) {
+                                    return 'Svp entrez un mail valide';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            )
                           ],
                         ),
-                        SizedBox(height: MediaQuery.of(context).size.height / 30),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 30),
                         Container(
                           width: MediaQuery.of(context).size.width / 1.2,
                           child: Row(
@@ -176,7 +182,8 @@ class _InscriptionState extends State<Inscription> {
                               Expanded(
                                 child: Container(
                                   height: 50,
-                                  width: MediaQuery.of(context).size.width / 1.2,
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.2,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
@@ -191,14 +198,14 @@ class _InscriptionState extends State<Inscription> {
                                         color: Colors.grey,
                                       ),
                                     ),
-                                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Entrez le mot de passe';
-                          } else if (value.length < 6) {
-                            return 'Votre mot de passe doit contenir au moins 6 caractere';
-                          }
-                          return null;
-                        },
+                                    validator: (value) {
+                                      if (value.isEmpty) {
+                                        return 'Entrez le mot de passe';
+                                      } else if (value.length < 6) {
+                                        return 'Votre mot de passe doit contenir au moins 6 caractere';
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ),
                               ),
@@ -206,7 +213,8 @@ class _InscriptionState extends State<Inscription> {
                             ],
                           ),
                         ),
-                        SizedBox(height: MediaQuery.of(context).size.height / 100),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 100),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -243,48 +251,52 @@ class _InscriptionState extends State<Inscription> {
                             ),
                           ],
                         ),
-                        SizedBox(height: MediaQuery.of(context).size.height / 50),
-                          Container(
-                            alignment: Alignment.center,
-                            height: 50,
-                            width: 200,
-                            decoration: BoxDecoration(
-                              color: Colors.red.withOpacity(0.7),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: isLoading
-                          ? CircularProgressIndicator()
-                          : InkWell(
-                             
-                              onTap: () async{
-                              print("/////////////////////////// FORMS VALID ////////////////////////////////////");
-
-
-                                print(_formKey.currentState.validate());
-
-
-                                if (_formKey.currentState.validate()) {
-                                   await _repositoryUser.registerUser(email: emailController.text, nom: nameController.text, password: passwordController.text);
-  
-                                  setState(() {
-                                    isLoading = true;
-                                  })
-                                  ;
-                                  // registerToFb();
-                                  print("///////////////////////////////////////////////////////////////");
-                                  print("///////////////////////////////////////////////////////////////");
-                                  print("///////////////////////////////////////////////////////////////");
-
-                                    Navigator.pushReplacement(
-                            context,MaterialPageRoute(builder: (context) => Acceuil1()),);
-                                }
-                                
-                              
-
-                              },
-                              child: Center(child: Text("s'inscrire")),
-                            ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 50),
+                        Container(
+                          alignment: Alignment.center,
+                          height: 50,
+                          width: 200,
+                          decoration: BoxDecoration(
+                            color: Colors.red.withOpacity(0.7),
+                            borderRadius: BorderRadius.circular(10),
                           ),
+                          child: isLoading
+                              ? CircularProgressIndicator()
+                              : InkWell(
+                                  onTap: () async {
+                                    print(
+                                        "/////////////////////////// FORMS VALID ////////////////////////////////////");
+
+                                    print(_formKey.currentState.validate());
+
+                                    if (_formKey.currentState.validate()) {
+                                      await _repositoryUser.registerUser(
+                                          email: emailController.text,
+                                          nom: nameController.text,
+                                          password: passwordController.text);
+
+                                      setState(() {
+                                        isLoading = true;
+                                      });
+                                      // registerToFb();
+                                      print(
+                                          "///////////////////////////////////////////////////////////////");
+                                      print(
+                                          "///////////////////////////////////////////////////////////////");
+                                      print(
+                                          "///////////////////////////////////////////////////////////////");
+
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Acceuil1()),
+                                      );
+                                    }
+                                  },
+                                  child: Center(child: Text("s'inscrire")),
+                                ),
+                        ),
                       ],
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 30),

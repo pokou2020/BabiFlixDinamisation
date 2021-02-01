@@ -1,4 +1,5 @@
 
+import 'package:baby_flix/babiflix/Patrick/myIncriton.dart';
 import 'package:baby_flix/babiflix/screen/Accueil1.dart';
 import 'package:baby_flix/babiflix/screen/connexion.dart';
 import 'package:baby_flix/babiflix/screen/inscription.dart';
@@ -47,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
       
-        builder: (BuildContext context) => Inscription()
+        builder: (BuildContext context) => MyInscription()
       )
     );
   }

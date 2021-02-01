@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ModiProfile extends StatefulWidget {
+  static const routeName = "modifProfil";
   @override
   _ModiProfileState createState() => _ModiProfileState();
 }

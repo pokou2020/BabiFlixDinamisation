@@ -26,15 +26,15 @@ class _LoginPageLandState extends State<LoginPageLand> {
         ),
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-                tileMode: TileMode.clamp,
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.white.withOpacity(0.1),
-                  Colors.black.withOpacity(0.8),
-                  Colors.black,
-                ]),
+            // gradient: LinearGradient(
+            //     tileMode: TileMode.clamp,
+            //     begin: Alignment.topCenter,
+            //     end: Alignment.bottomCenter,
+            //     colors: [
+            //       Colors.white.withOpacity(0.1),
+            //       Colors.black.withOpacity(0.8),
+            //       Colors.black,
+            //     ]),
           ),
           child: Column(
             children: <Widget>[

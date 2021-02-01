@@ -27,17 +27,17 @@ class _LoginPageState extends State<LoginPage> {
               image: AssetImage('images/bcg.jpg'), fit: BoxFit.cover),
         ),
         child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                tileMode: TileMode.clamp,
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.white.withOpacity(0.1),
-                  Colors.black.withOpacity(0.8),
-                  Colors.black,
-                ]),
-          ),
+          // decoration: BoxDecoration(
+          //   gradient: LinearGradient(
+          //       tileMode: TileMode.clamp,
+          //       begin: Alignment.topCenter,
+          //       end: Alignment.bottomCenter,
+          //       colors: [
+          //         Colors.white.withOpacity(0.1),
+          //         Colors.black.withOpacity(0.8),
+          //         Colors.black,
+          //       ]),
+          // ),
           child: Column(
             children: <Widget>[
               SizedBox(height: MediaQuery.of(context).size.height / 6),
