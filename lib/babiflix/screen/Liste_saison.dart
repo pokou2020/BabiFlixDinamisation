@@ -141,7 +141,7 @@ class _ListeSaisonState extends State<ListeSaison> {
               Expanded(
                 child: Container(
                     child: GridView.builder(
-                  itemCount: selectedSaison.length,
+                  itemCount: selectedSaison?.length ?? 0,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 1,
@@ -154,6 +154,7 @@ class _ListeSaisonState extends State<ListeSaison> {
                       child: InkWell(
                         onTap: () {
                           Navigator.of(context).pushNamed(
+                            
                             VuSerie.routeName,
                               arguments: selectedSaison[index].id);
                         },

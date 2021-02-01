@@ -1,6 +1,8 @@
 import 'package:baby_flix/babiflix/screen/Accueil1.dart';
 import 'package:baby_flix/babiflix/widget/FormSign.dart';
 import 'package:baby_flix/babiflix/widget/authBtn.dart';
+import 'package:baby_flix/babiflix/widget/baseAuth.dart';
+import 'package:baby_flix/babiflix/widget/drawer.dart';
 import 'package:baby_flix/babiflix/widget/itemLog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +12,16 @@ import '../widget/formLog.dart';
 import '../widget/inputAuth.dart';
 
 class LoginPage extends StatefulWidget {
+    LoginPage({this.auth, this.loginCallback});
+
+  final BaseAuth auth;
+  final VoidCallback loginCallback;
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+    bool _obscureText = true;
   bool _val = true;
   bool isLoading = false;
   bool _busy = false;
@@ -137,14 +144,32 @@ class _LoginPageState extends State<LoginPage> {
                                          color: Colors.white,
                                          borderRadius: BorderRadius.circular(15)),
                                      child: TextFormField(
+                                         obscureText: _obscureText,
                                        controller: passwordController,
                                        decoration: InputDecoration(
+                                      
+                                          suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _obscureText = !_obscureText;
+                                      });
+                                    },
+                                    child: Icon(_obscureText
+                                        ? Icons.visibility
+                                        : Icons.visibility_off),
+                                  ),
                                          border: InputBorder.none,
+                                         
                                          hintText: "Mot de pass",
                                          contentPadding: EdgeInsets.only(left: 10),
                                          hintStyle: TextStyle(
+                                           
                                            color: Colors.grey,
                                          ),
+                                         
+                                filled: true,
+                                  focusedBorder: InputBorder.none, 
+                                   
                                        ),
                                            validator: (value) {
                         if (value.isEmpty) {
@@ -154,6 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                         }
                         return null;
                       },
+                      
                                      ),
                                    ),
                         ],
@@ -284,7 +310,7 @@ class _LoginPageState extends State<LoginPage> {
                   try {
                     setState(() => this._busy = true);
                     final user = await this._googleSignIn();
-                    this._showUserProfilePage(user);
+                    this._accueil(user);
                   } catch (e) {
                     setState(() => this._busy = false);
                   }
@@ -337,11 +363,11 @@ class _LoginPageState extends State<LoginPage> {
 
     return user;
   }
-    void _showUserProfilePage(FirebaseUser user, {FirebaseAuth users}) {
+    void _accueil(FirebaseUser user, {FirebaseAuth users}) {
     Navigator.of(context).push(
       MaterialPageRoute(
           builder: (ctx) => Acceuil1(
-                uid: user.email,
+                user: user,
               )),
     );
   }

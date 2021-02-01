@@ -5,6 +5,7 @@ import 'package:baby_flix/babiflix/provider/serieProvider.dart';
 import 'package:baby_flix/babiflix/screen/Liste_saison.dart';
 import 'package:baby_flix/babiflix/screen/film.dart';
 import 'package:baby_flix/babiflix/screen/vuFilm.dart';
+import 'package:baby_flix/babiflix/widget/baseAuth.dart';
 import 'package:baby_flix/babiflix/widget/drawer.dart';
 import 'package:baby_flix/babiflix/widget/series.dart';
 import 'package:carousel_slider/carousel_controller.dart';
@@ -18,9 +19,11 @@ import 'Liste_Films.dart';
 
 class Acceuil1 extends StatefulWidget {
    static const routeName = '/Acceuil1';
-  Acceuil1({this.uid, this.id, this.user });
-  
-   FirebaseUser user;
+  Acceuil1({this.uid, this.id, this.user  });
+
+    FirebaseUser user;
+  //   final BaseAuth auth;
+  // final VoidCallback logoutCallback;
   final String uid;
   final String id;
   @override
@@ -304,7 +307,7 @@ class _MainBodyState extends State<MainBody> {
                     width: MediaQuery.of(context).size.width,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: filmsData.films.length,
+                        itemCount:filmsData.films?.length ?? 0,
                         itemBuilder: (context, i) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
