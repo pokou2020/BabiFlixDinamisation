@@ -20,9 +20,7 @@ class _VuPaysageEpisodeState extends State<VuPaysageEpisode> {
 
   @override
  Future<void> didChangeDependencies() async {
-    if (init) {
-      print("//////////////Bonsoir les gars//////////////////////");
-      await Provider.of<EpisodeProvider>(context, listen: false)
+    await Provider.of<EpisodeProvider>(context, listen: false)
           .getAllEpisode();
       _controller = VideoPlayerController.network(
           'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
@@ -34,7 +32,6 @@ class _VuPaysageEpisodeState extends State<VuPaysageEpisode> {
       setState(() {
         init = false;
       });
-    }
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
@@ -43,18 +40,10 @@ class _VuPaysageEpisodeState extends State<VuPaysageEpisode> {
    //filmsData = Provider.of<FilmProvider>(context);
    final episodeSaison = Provider.of<EpisodeProvider>(context);
     final saisonID = ModalRoute.of(context).settings.arguments as String;
-    print("Saisson Id $saisonID");
     final selectedEpisode = episodeSaison.episodes
-        .where((episode) => episode.saisonId.contains(saisonID))
+        .where((episode) => episode.id.contains(saisonID))
         .toList();
-    print("SelectedEpisode $selectedEpisode");
-    print(
-        "/////////////////////Episode*******${episodeSaison.episodes[0].saisonId}*******Episode/////////////////////key key");
-    if(MediaQuery.of(context).orientation==Orientation.portrait){
-      setState(() {
-        _controller.pause();
-      });
-    }
+    
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

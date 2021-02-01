@@ -66,21 +66,13 @@ class _DrawersState extends State<Drawers> {
                        ),
                      ),
                    ),
-                        Center(
-                     child: Container(                            
-                       child: Text(
-                         "User",
-                         style: TextStyle(
-                           color: Colors.white,
-                           fontSize: 20,
-                           fontWeight: FontWeight.bold
-                         ),
-                       ),
-                     ),
-                   ),
+           
                           Center(
                      child:      Container(
-              child: Text("Lepnkouakou@gmail.com",
+                 child: Text("Lepnkouakou@gmail.com",
+                //  (widget.user.email != null)
+                //   ? Text(widget.userId)
+                //   : Text(widget.user.email,
                   
                       style:
                           TextStyle(

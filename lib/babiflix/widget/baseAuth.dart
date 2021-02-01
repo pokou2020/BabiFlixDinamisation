@@ -6,6 +6,7 @@ abstract class BaseAuth {
 
   Future<String> signUp(String email, String password);
 
+  Future<FirebaseUser> getCurrentUser();
 
   Future<void> sendEmailVerification();
 
