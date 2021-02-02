@@ -18,9 +18,10 @@ class _MyInscriptionState extends State<MyInscription> {
   final _formKey = GlobalKey<FormState>();
   
   RepositoryUser _repositoryUser = RepositoryUser();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confpasswordController=TextEditingController();
  
 
   @override
@@ -57,9 +58,9 @@ class _MyInscriptionState extends State<MyInscription> {
                                 toggle=false;
                               });
                             },
-                            child: couleur? Text(
+                            child:  Text(
                               "Connexion"
-                            ) :Text(""),
+                            ) ,
                             color: (couleur==true)? Theme.of(context).primaryColor:Colors.transparent,
                           ),
 
@@ -97,6 +98,7 @@ class _MyInscriptionState extends State<MyInscription> {
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(15)),
                                     child: TextFormField(
+                                      controller: _nameController,
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
                                         hintText: "Nom ou pseudo",
@@ -132,7 +134,7 @@ class _MyInscriptionState extends State<MyInscription> {
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(15)),
                               child: TextFormField(
-                                //controller: emailController,
+                                controller: _emailController,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: "Email",
@@ -172,7 +174,7 @@ class _MyInscriptionState extends State<MyInscription> {
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(15)),
                                   child: TextFormField(
-                                  //  controller: passwordController,
+                                    controller: _passwordController,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: "Mot de pass",
@@ -181,7 +183,7 @@ class _MyInscriptionState extends State<MyInscription> {
                                         color: Colors.grey,
                                       ),
                                     ),
-                                    validator: (value) {
+                                    validator:  (value) {
                                       if (value.isEmpty) {
                                         return 'Entrez le mot de passe';
                                       } else if (value.length < 6) {
@@ -213,7 +215,7 @@ class _MyInscriptionState extends State<MyInscription> {
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(15)),
                                   child: TextFormField(
-                                  //  controller: passwordController,
+                                    controller: _confpasswordController,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: "Conf Mot de pass",
@@ -225,8 +227,8 @@ class _MyInscriptionState extends State<MyInscription> {
                                     validator: (value) {
                                       if (value.isEmpty) {
                                         return 'Entrez le mot de passe';
-                                      } else if (value.length < 6) {
-                                        return 'Votre mot de passe doit contenir au moins 6 caractere';
+                                      } else if (value !=_passwordController.text) {
+                                        return 'Mot de passe different';
                                       }
                                       return null;
                                     },
@@ -300,9 +302,9 @@ class _MyInscriptionState extends State<MyInscription> {
 
                                     if (_formKey.currentState.validate()) {
                                       await _repositoryUser.registerUser(
-                                          email: emailController.text,
-                                          nom: nameController.text,
-                                          password: passwordController.text);
+                                          email: _emailController.text,
+                                          nom: _nameController.text,
+                                          password: _passwordController.text);
 
                                       setState(() {
                                         isLoading = true;
@@ -343,9 +345,9 @@ class _MyInscriptionState extends State<MyInscription> {
 
                                     if (_formKey.currentState.validate()) {
                                       await _repositoryUser.registerUser(
-                                          email: emailController.text,
-                                          nom: nameController.text,
-                                          password: passwordController.text);
+                                          email: _emailController.text,
+                                          nom: _nameController.text,
+                                          password: _passwordController.text);
 
                                       setState(() {
                                         isLoading = true;
