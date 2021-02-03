@@ -10,7 +10,7 @@ class MyInscription extends StatefulWidget {
 }
 
 class _MyInscriptionState extends State<MyInscription> {
-   bool toggle = true;
+   bool toggle = false;
    bool couleur=true;
  bool isLoading = false;
   bool _val = true;
@@ -59,7 +59,10 @@ class _MyInscriptionState extends State<MyInscription> {
                               });
                             },
                             child:  Text(
-                              "Connexion"
+                              "Connexion",
+                              style: TextStyle(
+                              color: Colors.white
+                            ),
                             ) ,
                             color: (couleur==true)? Theme.of(context).primaryColor:Colors.transparent,
                           ),
@@ -71,7 +74,11 @@ class _MyInscriptionState extends State<MyInscription> {
                                   couleur=false;
                               });
                             },
-                            child:  Text("Inscription"),
+                            child:  Text("Inscription",
+                            style: TextStyle(
+                              color: Colors.white
+                            ),
+                            ),
                             elevation: _loginMode ? 20 : 00,
                             color: (couleur==false)?Theme.of(context).primaryColor:Colors.transparent,
                           )
@@ -324,7 +331,11 @@ class _MyInscriptionState extends State<MyInscription> {
                                       );
                                     }
                                   },
-                                  child: Center(child: Text("s'inscrire")),
+                                  child: Center(child: Text("s'inscrire",
+                                  style: TextStyle(
+                              color: Colors.white
+                            ),
+                                  )),
                                 ),
                         ):Container(
                           alignment: Alignment.center,
@@ -367,7 +378,11 @@ class _MyInscriptionState extends State<MyInscription> {
                                       );
                                     }
                                   },
-                                  child: Center(child: Text("Connexion")),
+                                  child: Center(child: Text("Connexion",
+                                  style: TextStyle(
+                              color: Colors.white
+                            ),
+                                  )),
                                 ),
                         ),
                             ],

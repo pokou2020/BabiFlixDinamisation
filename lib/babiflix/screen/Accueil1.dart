@@ -61,17 +61,22 @@ class _Acceuil1State extends State<Acceuil1>
     return Scaffold(
       backgroundColor: Colors.black12,
       endDrawer: Drawers(),
-      body: init ? Center(child: CircularProgressIndicator()) : MainBody(),
+      body: init ? Center(child: CircularProgressIndicator()) : MainBody(load: init,),
     );
   }
 }
 
 class MainBody extends StatefulWidget {
+  final bool load;
+
+  MainBody({this.load});
   @override
   _MainBodyState createState() => _MainBodyState();
 }
 
 class _MainBodyState extends State<MainBody> {
+ 
+  
   @override
   Widget build(BuildContext context) {
     final filmsData = Provider.of<FilmProvider>(context);
@@ -182,7 +187,13 @@ class _MainBodyState extends State<MainBody> {
                     ),
                   ),
                   Container(
-                    child: CarouselSlider.builder(
+                    child: (widget.load)? Container(
+                      child: Center(
+                         child: CircularProgressIndicator(
+                           backgroundColor: Colors.white,
+                         ),
+                      ),
+                    ) :CarouselSlider.builder(
                         itemCount: serieData.series.length,
                         itemBuilder: (context, index) {
                           return InkWell(
@@ -302,7 +313,7 @@ class _MainBodyState extends State<MainBody> {
                     ),
                   ),
 
-                  Container(
+                   Container(
                     height: 200,
                     width: MediaQuery.of(context).size.width,
                     child: ListView.builder(
@@ -319,7 +330,9 @@ class _MainBodyState extends State<MainBody> {
                                "genreID": filmsData.films[i].genreId,
                                "id": filmsData.films[i].id});
                               },
-                              child: Container(
+                              child: (widget.load)? Container(
+                                     width: MediaQuery.of(context).size.width / 1.6,
+                                child: Center(child: CircularProgressIndicator(backgroundColor: Colors.white,),)): Container(
                                 width: MediaQuery.of(context).size.width / 1.6,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
@@ -406,15 +419,18 @@ class _MainBodyState extends State<MainBody> {
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Container(
+                            child: (widget.load)? Container(
+                              width: 120,
+                              child: Center(child: CircularProgressIndicator(backgroundColor: Colors.white,))):Container(
                               width: 120,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image:
+                                   //body: init ? Center(child: CircularProgressIndicator()) : MainBody(),
+                                    image:  
                                         NetworkImage(filmsData.films[i].image),
                                     fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.red,
+                               
                               ),
                             ),
                           ),
@@ -452,7 +468,7 @@ class _MainBodyState extends State<MainBody> {
                             child: Container(
                               width: 120,
                               decoration: BoxDecoration(
-                                image: DecorationImage(
+                                image:  DecorationImage(
                                     image: NetworkImage(
                                         serieData.series[i].imageSerie),
                                     fit: BoxFit.cover),

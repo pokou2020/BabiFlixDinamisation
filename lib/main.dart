@@ -25,6 +25,7 @@ import 'package:baby_flix/babiflix/widget/splashscreen.dart';
 import 'package:baby_flix/babiflix/widget/teve.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'babiflix/Patrick/myIncriton.dart';
 import 'babiflix/provider/episodeProvider.dart';
 import 'babiflix/screen/Accueil1.dart';
 import 'babiflix/screen/Chaine.dart';
@@ -84,7 +85,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.red,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: SplashScreen(),
+          home: MyInscription(),
           routes: {
             //'inscrip': (context) => Inscription(),
             //'connex': (context) => Connexion(),
