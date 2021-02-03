@@ -1,5 +1,6 @@
 import 'package:baby_flix/babiflix/provider/fiserbaService.dart';
 import 'package:baby_flix/babiflix/screen/Accueil1.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MyInscription extends StatefulWidget {
@@ -22,6 +23,7 @@ class _MyInscriptionState extends State<MyInscription> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confpasswordController=TextEditingController();
+  
  
 
   @override
@@ -331,60 +333,38 @@ class _MyInscriptionState extends State<MyInscription> {
                                       );
                                     }
                                   },
-                                  child: Center(child: Text("s'inscrire",
+                                  child: Center(child: Text("S'inscrire",
                                   style: TextStyle(
                               color: Colors.white
                             ),
                                   )),
                                 ),
-                        ):Container(
-                          alignment: Alignment.center,
-                          height: 50,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            color: Colors.red.withOpacity(0.7),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: isLoading
-                              ? CircularProgressIndicator()
-                              : InkWell(
-                                  onTap: () async {
-                                    print(
-                                        "/////////////////////////// FORMS VALID ////////////////////////////////////");
-
-                                    print(_formKey.currentState.validate());
-
-                                    if (_formKey.currentState.validate()) {
-                                      await _repositoryUser.registerUser(
-                                          email: _emailController.text,
-                                          nom: _nameController.text,
-                                          password: _passwordController.text);
-
-                                      setState(() {
-                                        isLoading = true;
-                                      });
-                                      // registerToFb();
-                                      print(
-                                          "///////////////////////////////////////////////////////////////");
-                                      print(
-                                          "///////////////////////////////////////////////////////////////");
-                                      print(
-                                          "///////////////////////////////////////////////////////////////");
-
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Acceuil1()),
-                                      );
-                                    }
-                                  },
-                                  child: Center(child: Text("Connexion",
-                                  style: TextStyle(
-                              color: Colors.white
-                            ),
-                                  )),
-                                ),
+                        ):  Container(
+                         height: 50,
+                         width: 250,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.red
+                        
                         ),
+                        child: isLoading
+                            ? Center(child: CircularProgressIndicator())
+                            : InkWell(
+                                onTap: () {
+                                  if (_formKey.currentState.validate()) {
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+                                    logInToFb();
+                                  }
+                                },
+                                child: Center(child: Text('Se connecter',
+                                      style: TextStyle(
+                              color: Colors.white
+                            ),
+                                )),
+                              ),
+                      ),
                             ],
                           ),
                         ),
@@ -396,5 +376,36 @@ class _MyInscriptionState extends State<MyInscription> {
             )
             )
             );
+  }
+  
+  void logInToFb() {
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+            email: _emailController.text, password: _passwordController.text)
+        .then((result) {
+      isLoading = false;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Acceuil1(uid: result.user.uid)),
+      );
+    }).catchError((err) {
+      print(err.message);
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Error"),
+              content: Text(err.message),
+              actions: [
+                FlatButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    });
   }
 }
