@@ -56,12 +56,13 @@ class _VuSerieState extends State<VuSerie> {
         .where((episode) => episode.saisonId.contains(saisonID))
         .toList();
     print("SelectedEpisode $selectedEpisode");
-  
+
     setState(() {
       _portraitPosition =
           MediaQuery.of(context).orientation == Orientation.portrait;
     });
     return Scaffold(
+      backgroundColor: Color.fromRGBO(25, 25, 25, 1),
       body: (_portraitPosition)
           ? init
               ? Center(child: CircularProgressIndicator())
@@ -97,7 +98,9 @@ class _VuSerieState extends State<VuSerie> {
                                       color: Colors.white, fontSize: 18),
                                 ),
                                 Text(
-                                 selectedEpisode.isNotEmpty? '${selectedEpisode[0].titreEpisode}':"",
+                                  selectedEpisode.isNotEmpty
+                                      ? '${selectedEpisode[0].titreEpisode}'
+                                      : "",
                                   style: TextStyle(
                                       color: Colors.red, fontSize: 18),
                                 ),
@@ -130,8 +133,10 @@ class _VuSerieState extends State<VuSerie> {
                                       decoration: BoxDecoration(
                                         color: Colors.transparent,
                                         image: DecorationImage(
-                                          image: NetworkImage(
-                                             selectedEpisode.isNotEmpty? '${selectedEpisode[0].imageSaisons}':''),
+                                          image: NetworkImage(selectedEpisode
+                                                  .isNotEmpty
+                                              ? '${selectedEpisode[0].imageSaisons}'
+                                              : 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg'),
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -185,7 +190,7 @@ class _VuSerieState extends State<VuSerie> {
                               onPressed: () {},
                             ),
                             Text(
-                              'Episode ${selectedEpisode.isNotEmpty?selectedEpisode[0].numeroEpisode:""}',
+                              'Episode ${selectedEpisode.isNotEmpty ? selectedEpisode[0].numeroEpisode : ""}',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
@@ -219,15 +224,19 @@ class _VuSerieState extends State<VuSerie> {
                                     decoration: BoxDecoration(
                                       color: Colors.transparent,
                                       image: DecorationImage(
-                                          image: NetworkImage(
-                                            selectedEpisode.isNotEmpty?  '${selectedEpisode[0].imageSaisons}':""),
+                                          image: NetworkImage(selectedEpisode
+                                                  .isNotEmpty
+                                              ? '${selectedEpisode[0].imageSaisons}'
+                                              : "https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg"),
                                           fit: BoxFit.cover),
                                     ),
                                   ),
                                   Container(
                                     width: 200,
                                     child: Text(
-                                      selectedEpisode.isNotEmpty?'${selectedEpisode[0].titreEpisode}':"",
+                                      selectedEpisode.isNotEmpty
+                                          ? '${selectedEpisode[0].titreEpisode}'
+                                          : "",
                                       style: TextStyle(
                                           color: Colors.red,
                                           fontSize: 20,
@@ -289,7 +298,9 @@ class _VuSerieState extends State<VuSerie> {
                                 width: MediaQuery.of(context).size.width,
                                 height: 150,
                                 child: Text(
-                                selectedEpisode.isNotEmpty?  '${selectedEpisode[0].description}':"",
+                                  selectedEpisode.isNotEmpty
+                                      ? '${selectedEpisode[0].description}'
+                                      : "",
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -529,7 +540,10 @@ class _VuSerieState extends State<VuSerie> {
                                                       color: Colors.transparent,
                                                       image: DecorationImage(
                                                         image: NetworkImage(
-                                                         selectedEpisode.isNotEmpty?   "${selectedEpisode[i].imageSaisons}":""),
+                                                            selectedEpisode
+                                                                    .isNotEmpty
+                                                                ? "${selectedEpisode[i].imageSaisons}"
+                                                                : "https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg"),
                                                         fit: BoxFit.cover,
                                                       ),
                                                       borderRadius:
@@ -544,7 +558,9 @@ class _VuSerieState extends State<VuSerie> {
                                             Expanded(
                                               child: Container(
                                                 child: Text(
-                                                 selectedEpisode.isNotEmpty? "${selectedEpisode[i].titreEpisode}":"",
+                                                  selectedEpisode.isNotEmpty
+                                                      ? "${selectedEpisode[i].titreEpisode}"
+                                                      : "",
                                                   style: TextStyle(
                                                     color: Colors.white,
                                                   ),
@@ -592,8 +608,10 @@ class _VuSerieState extends State<VuSerie> {
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: NetworkImage(
-                                       selectedEpisode.isNotEmpty? "${episodeSaison.episodes[0].imageSaisons}":""),
+                                    image: NetworkImage(selectedEpisode
+                                            .isNotEmpty
+                                        ? "${episodeSaison.episodes[0].imageSaisons}"
+                                        : "https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg"),
                                     fit: BoxFit.cover,
                                   ),
                                 ),

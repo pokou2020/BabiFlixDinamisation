@@ -27,6 +27,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'babiflix/Patrick/myIncriton.dart';
 import 'babiflix/provider/episodeProvider.dart';
+import 'babiflix/provider/fiserbaService.dart';
+import 'babiflix/provider/model/user.dart';
 import 'babiflix/screen/Accueil1.dart';
 import 'babiflix/screen/Chaine.dart';
 
@@ -46,6 +48,7 @@ import 'package:flutter/material.dart';
 import 'babiflix/screen/acceuil.dart';
 import 'babiflix/screen/connexion.dart';
 import 'babiflix/screen/inscription.dart';
+import 'babiflix/screen/wrapper.dart';
 import 'babiflix/screen/youtbe.dart';
 import 'babiflix/widget/detailTele.dart';
 import 'babiflix/provider/filmProvider.dart';
@@ -63,6 +66,7 @@ class MyApp extends StatelessWidget {
     List<Epsiode> _availableSaisons;
     return MultiProvider(
       providers: [
+        StreamProvider<TheUser>.value(value: RepositoryUser().user),
         ChangeNotifierProvider.value(
           value: FilmProvider(),
         ),
@@ -85,7 +89,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.red,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: MyInscription(),
+          home: Wrapper(),
           routes: {
             //'inscrip': (context) => Inscription(),
             //'connex': (context) => Connexion(),
