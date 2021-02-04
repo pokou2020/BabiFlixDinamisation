@@ -23,21 +23,21 @@ class _ListeSaisonState extends State<ListeSaison> {
     });
   }
 
-  static const menuItems = <String>[
-    "Action",
-    'Afrique',
-    'Novelas',
-    'Fixion',
-  ];
-  final List<DropdownMenuItem<String>> _dropDownMenuItems = menuItems
-      .map((String value) => DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: TextStyle(color: Colors.white),
-            ),
-          ))
-      .toList();
+  // static const menuItems = <String>[
+  //   "Action",
+  //   'Afrique',
+  //   'Novelas',
+  //   'Fixion',
+  // ];
+  // final List<DropdownMenuItem<String>> _dropDownMenuItems = menuItems
+  //     .map((String value) => DropdownMenuItem<String>(
+  //           value: value,
+  //           child: Text(
+  //             value,
+  //             style: TextStyle(color: Colors.white),
+  //           ),
+  //         ))
+  //     .toList();
   String _btnSelectedVAl = "Humour";
 
   Widget defaultAppBar() {
@@ -154,7 +154,6 @@ class _ListeSaisonState extends State<ListeSaison> {
                       child: InkWell(
                         onTap: () {
                           Navigator.of(context).pushNamed(
-                            
                             VuSerie.routeName,
                               arguments: selectedSaison[index].id);
                         },

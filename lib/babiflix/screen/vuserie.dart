@@ -15,6 +15,7 @@ import 'vuPaysageEpisode.dart';
 
 class VuSerie extends StatefulWidget {
   static const routeName = '/Episode_Detail';
+  VuSerie();
   @override
   _VuSerieState createState() => _VuSerieState();
 }
@@ -51,12 +52,11 @@ class _VuSerieState extends State<VuSerie> {
     final episodeSaison = Provider.of<EpisodeProvider>(context);
     final saisonID = ModalRoute.of(context).settings.arguments as String;
     print("Saisson Id $saisonID");
-    final selectedEpisode = episodeSaison.episodes
+    final selectedEpisode = episodeSaison.episodes //[]
         .where((episode) => episode.saisonId.contains(saisonID))
         .toList();
     print("SelectedEpisode $selectedEpisode");
-    print(
-        "/////////////////////Episode*******${episodeSaison.episodes[0].saisonId}*******Episode/////////////////////key key");
+  
     setState(() {
       _portraitPosition =
           MediaQuery.of(context).orientation == Orientation.portrait;
@@ -97,7 +97,7 @@ class _VuSerieState extends State<VuSerie> {
                                       color: Colors.white, fontSize: 18),
                                 ),
                                 Text(
-                                  '${selectedEpisode[0].titreEpisode}',
+                                 selectedEpisode.isNotEmpty? '${selectedEpisode[0].titreEpisode}':"",
                                   style: TextStyle(
                                       color: Colors.red, fontSize: 18),
                                 ),
@@ -131,7 +131,7 @@ class _VuSerieState extends State<VuSerie> {
                                         color: Colors.transparent,
                                         image: DecorationImage(
                                           image: NetworkImage(
-                                              '${selectedEpisode[0].imageSaisons}'),
+                                             selectedEpisode.isNotEmpty? '${selectedEpisode[0].imageSaisons}':''),
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -185,7 +185,7 @@ class _VuSerieState extends State<VuSerie> {
                               onPressed: () {},
                             ),
                             Text(
-                              'Episode ${selectedEpisode[0].numeroEpisode}',
+                              'Episode ${selectedEpisode.isNotEmpty?selectedEpisode[0].numeroEpisode:""}',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
@@ -220,14 +220,14 @@ class _VuSerieState extends State<VuSerie> {
                                       color: Colors.transparent,
                                       image: DecorationImage(
                                           image: NetworkImage(
-                                              '${selectedEpisode[0].imageSaisons}'),
+                                            selectedEpisode.isNotEmpty?  '${selectedEpisode[0].imageSaisons}':""),
                                           fit: BoxFit.cover),
                                     ),
                                   ),
                                   Container(
                                     width: 200,
                                     child: Text(
-                                      '${selectedEpisode[0].titreEpisode}',
+                                      selectedEpisode.isNotEmpty?'${selectedEpisode[0].titreEpisode}':"",
                                       style: TextStyle(
                                           color: Colors.red,
                                           fontSize: 20,
@@ -289,7 +289,7 @@ class _VuSerieState extends State<VuSerie> {
                                 width: MediaQuery.of(context).size.width,
                                 height: 150,
                                 child: Text(
-                                  '${selectedEpisode[0].description}',
+                                selectedEpisode.isNotEmpty?  '${selectedEpisode[0].description}':"",
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -529,7 +529,7 @@ class _VuSerieState extends State<VuSerie> {
                                                       color: Colors.transparent,
                                                       image: DecorationImage(
                                                         image: NetworkImage(
-                                                            "${selectedEpisode[i].imageSaisons}"),
+                                                         selectedEpisode.isNotEmpty?   "${selectedEpisode[i].imageSaisons}":""),
                                                         fit: BoxFit.cover,
                                                       ),
                                                       borderRadius:
@@ -544,7 +544,7 @@ class _VuSerieState extends State<VuSerie> {
                                             Expanded(
                                               child: Container(
                                                 child: Text(
-                                                  "${selectedEpisode[i].titreEpisode}",
+                                                 selectedEpisode.isNotEmpty? "${selectedEpisode[i].titreEpisode}":"",
                                                   style: TextStyle(
                                                     color: Colors.white,
                                                   ),
@@ -593,7 +593,7 @@ class _VuSerieState extends State<VuSerie> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                     image: NetworkImage(
-                                        "${episodeSaison.episodes[0].imageSaisons}"),
+                                       selectedEpisode.isNotEmpty? "${episodeSaison.episodes[0].imageSaisons}":""),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
