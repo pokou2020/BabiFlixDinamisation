@@ -8,6 +8,9 @@ import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
 class VuFilm extends StatefulWidget {
+    final int filmID;
+
+  const VuFilm({Key key, this.filmID}) : super(key: key);
   static const routeName = '/film-detail';
   @override
   _VuFilmState createState() => _VuFilmState();

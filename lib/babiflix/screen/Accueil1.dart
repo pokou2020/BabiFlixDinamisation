@@ -3,6 +3,7 @@ import 'package:baby_flix/babiflix/provider/genreProvider.dart';
 import 'package:baby_flix/babiflix/provider/model/serieModel.dart';
 import 'package:baby_flix/babiflix/provider/serieProvider.dart';
 import 'package:baby_flix/babiflix/screen/Liste_saison.dart';
+import 'package:baby_flix/babiflix/screen/Search_Screen.dart';
 import 'package:baby_flix/babiflix/screen/film.dart';
 import 'package:baby_flix/babiflix/screen/vuFilm.dart';
 import 'package:baby_flix/babiflix/widget/baseAuth.dart';
@@ -140,8 +141,10 @@ class _MainBodyState extends State<MainBody> {
                                     color: Colors.white,
                                   ),
                                   onPressed: () {
-                                    Navigator.of(context)
-                                        .pushNamed("suggession");
+                                  
+                  
+                                    Navigator.push(context, MaterialPageRoute(builder: (_)=>SearchBar()))
+                                       ;
                                   }),
                               hintText: "Recherche de Film, Tv, Videos",
                               hintStyle: TextStyle(

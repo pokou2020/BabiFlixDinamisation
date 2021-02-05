@@ -23,6 +23,10 @@ class FilmProvider with ChangeNotifier {
     }
   }
 
+Film findById(String id) {
+    return _films.firstWhere((fil) => fil.id == id);
+  }
+
   List<Film> getgenreFlimAComique() {
     try {
       return _films

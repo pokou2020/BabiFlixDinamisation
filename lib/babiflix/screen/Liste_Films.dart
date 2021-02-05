@@ -9,100 +9,23 @@ import 'film.dart';
 
 class ListeFilm extends StatefulWidget {
   static const routeName = '/Liste_film';
+   
   @override
   _ListeFilmState createState() => _ListeFilmState();
 }
 
 class _ListeFilmState extends State<ListeFilm> {
   bool search = false;
-  void dynamicSearch() {
-    setState(() {
-      search = !search;
-    });
-  }
+ 
 
-  static const menuItems = <String>[
-    "Action",
-    'Afrique',
-    'Novelas',
-    'Fixion',
-  ];
-  final List<DropdownMenuItem<String>> _dropDownMenuItems = menuItems
-      .map((String value) => DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: TextStyle(color: Colors.white),
-            ),
-          ))
-      .toList();
-  String _btnSelectedVAl = "Humour";
 
-  Widget defaultAppBar() {
-    return AppBar(
-      backgroundColor: Colors.black,
-      centerTitle: true,
-      title: Container(
-          width: MediaQuery.of(context).size.width / 5,
-          child: Image(
-            image: AssetImage('images/bbf.png'),
-          )),
-      //     Text(
-      //   genreTitle,
-      //   style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-      // ),
-      actions: <Widget>[
-        IconButton(
-            icon: Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-            onPressed: () => dynamicSearch())
-      ],
-    );
-  }
-
-  Widget searchAppBar() {
-    return AppBar(
-      backgroundColor: Color(0xff191919),
-      title: TextField(
-        style: TextStyle(color: Colors.black),
-        autofocus: true,
-        decoration: InputDecoration(
-            hintText: "rechercher un film",
-            border: InputBorder.none,
-            hintStyle: TextStyle(color: Colors.grey)),
-      ),
-      leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.grey,
-          ),
-          onPressed: () => dynamicSearch()),
-    );
-  }
-
-  bool init = true;
-
-  @override
-  Future<void> didChangeDependencies() async {
-    if (init) {
-      var now = new DateTime.now();
-      print(now);
-      print("//////////////Bonsoir famille//////////////////////");
-      // await Provider.of<FilmProviderTest>(context, listen: false);
-
-      setState(() {
-        init = false;
-      });
-    }
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
     final filmData = Provider.of<FilmProvider>(context);
+    // final loadedProduct =
+    //     Provider.of<SousCategories>(context, listen: false).findById(this.id);
+    // final products = Provider.of<Products>(context).items;
     // final routeArgs =
     //         ModalRoute.of(context).settings.arguments as Map<String, String>;
     //     genreTitle = routeArgs['title'];
@@ -113,7 +36,7 @@ class _ListeFilmState extends State<ListeFilm> {
         filmData.films.where((film) => film.genreId.contains(genreID)).toList();
 
     return Scaffold(
-      appBar: search ? searchAppBar() : defaultAppBar(),
+
       body: Container(
         color: Color(0xff262626),
         width: MediaQuery.of(context).size.width,
