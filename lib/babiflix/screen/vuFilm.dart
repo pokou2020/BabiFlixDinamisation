@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
 class VuFilm extends StatefulWidget {
-    final int filmID;
+  final int filmID;
 
   const VuFilm({Key key, this.filmID}) : super(key: key);
   static const routeName = '/film-detail';
@@ -144,68 +144,68 @@ class _VuFilmState extends State<VuFilm> {
                     //   ),
                     // ),
 
-                    Stack(
-                      overflow: Overflow.visible,
-                      children: [
-                        Container(
-                          height: MediaQuery.of(context).size.height / 2.8,
-                          width: MediaQuery.of(context).size.width,
-                          child: _controller.value.initialized
-                              ? AspectRatio(
+                    Container(
+                      height: MediaQuery.of(context).size.height / 2.8,
+                      width: MediaQuery.of(context).size.width,
+                      child: _controller.value.initialized
+                          ? Stack(
+                              children: [
+                                AspectRatio(
                                   aspectRatio: _controller.value.aspectRatio,
                                   child: VideoPlayer(_controller),
-                                )
-                              : Container(
-                                  height:
-                                      MediaQuery.of(context).size.height / 2.8,
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                    image: DecorationImage(
-                                      image:
-                                          NetworkImage('${selectedFilm.image}'),
-                                      fit: BoxFit.cover,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      this.opacite = 1.0 - this.opacite;
+                                      _controller.value.isPlaying
+                                          ? _controller.pause()
+                                          : _controller.play();
+                                    });
+                                  },
+                                  child: AnimatedOpacity(
+                                    opacity: opacite,
+                                    duration: Duration(seconds: 1),
+                                    child: Container(
+                                      margin: EdgeInsets.only(
+                                        left:
+                                            MediaQuery.of(context).size.height /
+                                                4.8,
+                                        top:
+                                            MediaQuery.of(context).size.height /
+                                                9,
+                                      ),
+                                      height: 70,
+                                      width: 70,
+                                      decoration: BoxDecoration(
+                                        color: Colors.transparent,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Icon(
+                                        _controller.value.isPlaying
+                                            ? Icons.pause
+                                            : Icons.play_arrow,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
-                                  child: Center(
-                                    child: CircularProgressIndicator(),
-                                  ),
                                 ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              this.opacite = 1.0 - this.opacite;
-                              _controller.value.isPlaying
-                                  ? _controller.pause()
-                                  : _controller.play();
-                            });
-                          },
-                          child: AnimatedOpacity(
-                            opacity: opacite,
-                            duration: Duration(seconds: 1),
-                            child: Container(
-                              margin: EdgeInsets.only(
-                                left: MediaQuery.of(context).size.height / 4.8,
-                                top: MediaQuery.of(context).size.height / 7,
-                              ),
-                              height: 70,
-                              width: 70,
+                              ],
+                            )
+                          : Container(
+                              height: MediaQuery.of(context).size.height / 2.8,
+                              width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: Colors.transparent,
-                                shape: BoxShape.circle,
-                                border: Border.all(width: 1, color: Colors.red),
+                                image: DecorationImage(
+                                  image: NetworkImage('${selectedFilm.image}'),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                              child: Icon(
-                                _controller.value.isPlaying
-                                    ? Icons.pause
-                                    : Icons.play_arrow,
-                                color: Colors.white,
+                              child: Center(
+                                child: CircularProgressIndicator(),
                               ),
                             ),
-                          ),
-                        ),
-                      ],
                     ),
                     SizedBox(height: 10),
                     Padding(
@@ -536,64 +536,66 @@ class _VuFilmState extends State<VuFilm> {
           : SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  Stack(
-                    overflow: Overflow.visible,
-                    children: <Widget>[
-                      Container(
-                        height: MediaQuery.of(context).size.height,
-                        width: MediaQuery.of(context).size.width,
-                        child: _controller.value.initialized
-                            ? AspectRatio(
+                  Container(
+                    height: MediaQuery.of(context).size.height / 2.8,
+                    width: MediaQuery.of(context).size.width,
+                    child: _controller.value.initialized
+                        ? Stack(
+                            children: [
+                              AspectRatio(
                                 aspectRatio: _controller.value.aspectRatio,
                                 child: VideoPlayer(_controller),
-                              )
-                            : Container(
-                                height: MediaQuery.of(context).size.height,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image:
-                                        NetworkImage("${selectedFilm.image}"),
-                                    fit: BoxFit.cover,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    this.opacite = 1.0 - this.opacite;
+                                    _controller.value.isPlaying
+                                        ? _controller.pause()
+                                        : _controller.play();
+                                  });
+                                },
+                                child: AnimatedOpacity(
+                                  opacity: opacite,
+                                  duration: Duration(seconds: 1),
+                                  child: Container(
+                                    margin: EdgeInsets.only(
+                                      left: MediaQuery.of(context).size.height /
+                                          4.8,
+                                      top: MediaQuery.of(context).size.height /
+                                          9,
+                                    ),
+                                    height: 70,
+                                    width: 70,
+                                    decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(
+                                      _controller.value.isPlaying
+                                          ? Icons.pause
+                                          : Icons.play_arrow,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
-                                child: Center(
-                                  child: CircularProgressIndicator(),
-                                ),
                               ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            this.opacite = 1.0 - this.opacite;
-                            _controller.value.isPlaying
-                                ? _controller.pause()
-                                : _controller.play();
-                          });
-                        },
-                        child: Opacity(
-                          opacity: opacite,
-                          child: Container(
-                            margin: EdgeInsets.only(
-                              left: MediaQuery.of(context).size.height / 1.2,
-                              top: MediaQuery.of(context).size.height / 2.2,
-                            ),
-                            height: 70,
-                            width: 70,
+                            ],
+                          )
+                        : Container(
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.black.withOpacity(0.4),
+                              color: Colors.transparent,
+                              image: DecorationImage(
+                                image: NetworkImage('${selectedFilm.image}'),
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                            child: Icon(
-                              _controller.value.isPlaying
-                                  ? Icons.pause
-                                  : Icons.play_arrow,
-                              color: Colors.white,
+                            child: Center(
+                              child: CircularProgressIndicator(),
                             ),
                           ),
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               ),
